@@ -20,7 +20,13 @@ Using a combination of a variety of resources such as [Vault](https://www.vaultp
 
 
 
-## Setup
+## Setup - Single Cluster.
+
+After creating the Node / Host, the following command needs to be run against the Node / Host. This specific command will downloading the latest K3s server install, and install against the Node / Host...With the Traefik and ServiceLB disabled.
+
+```shell
+curl -fL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init --kube-apiserver-arg default-not-ready-toleration-seconds=10 --kube-apiserver-arg default-unreachable-toleration-seconds=10 --disable=traefik,servicelb
+```
 
 ### Prerequisites for Cluster:
  
