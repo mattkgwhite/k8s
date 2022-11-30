@@ -7,7 +7,7 @@ resources:
   #- ./hcloud-csi-driver
   - ./ingress-nginx
   # - ./kyverno
-  - ./metal-lb
+  - ./metallb
   # - ./tekton
   # - ./vault
   # - ./vault-secrets-operator
