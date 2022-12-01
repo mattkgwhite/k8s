@@ -4,10 +4,3 @@ kind: Kustomization
 resources:
   - ./cert-manager
   - ./external-dns
-  #- ./hcloud-csi-driver
-  - ./ingress-nginx
-  # - ./kyverno
-  - ./metallb
-  # - ./tekton
-  # - ./vault
-  # - ./vault-secrets-operator
