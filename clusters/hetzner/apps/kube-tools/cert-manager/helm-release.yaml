@@ -18,11 +18,13 @@ spec:
     createNamespace: true
     remediation:
       retries: 3
+    crds: CreateReplace
   upgrade:
     remediation:
       retries: 3
+    crds: CreateReplace
   values:
-    installCRDs: false
+    installCRDs: true
     webhook:
       enabled: true
     extraArgs:
