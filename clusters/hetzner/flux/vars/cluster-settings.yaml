@@ -5,6 +5,4 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
-  METALLB_LB_RANGE: ${METALLB_LB_RANGE}
-  TIMEZONE: ${TIMEZONE}
-  SECRET_EMAIL: ${SECRET_EMAIL}
+  TIMEZONE: "Europe/London"
