@@ -15,7 +15,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: flux-cluster
+  name: flux-system
   namespace: flux-system
 spec:
   interval: 10m
@@ -24,7 +24,7 @@ spec:
   wait: false
   sourceRef:
     kind: GitRepository
-    name: mattkgwhite-homeops
+    name: mattkgwhite-home-ops
   decryption:
     provider: sops
     secretRef:
