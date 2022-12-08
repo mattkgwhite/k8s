@@ -24,7 +24,7 @@ spec:
   wait: false
   sourceRef:
     kind: GitRepository
-    name: mattkgwhite-home-ops
+    name: mattkgwhite-homeops
   decryption:
     provider: sops
     secretRef:
