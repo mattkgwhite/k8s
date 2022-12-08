@@ -3,7 +3,7 @@
 ## 1. Install the Flux manifests into the cluster
 
 ```sh
-kubectl apply --kustomize ./cluster/bootstrap
+  kubectl apply --kustomize ./clusters/hetzner/bootstrap
 ```
 
 ## 2. Apply Cluster Secrets and ConfigMaps needed before bootstrapping this Git Repository
