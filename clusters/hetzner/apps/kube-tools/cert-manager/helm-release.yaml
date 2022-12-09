@@ -25,6 +25,7 @@ spec:
     crds: CreateReplace
   values:
     installCRDs: true
+    namespace: "kube-system"
     webhook:
       enabled: true
     extraArgs:
