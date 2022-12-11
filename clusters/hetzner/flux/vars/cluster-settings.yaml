@@ -6,3 +6,4 @@ metadata:
   namespace: flux-system
 data:
   TIMEZONE: "Europe/London"
+  METALLB_INGRESS_ADDR: ${METALLB_INGRESS_ADDR}
