@@ -7,13 +7,24 @@ Using a combination of a variety of resources such as [Vault](https://www.vaultp
 
 ## TODO
 
-- [ ] Folder Structure Setup
-- [ ] Secret Management - SOPS & Age
+- [X] Folder Structure Setup
+  - [ ] Addition Configuration, On-Going
+- [X] Secret Management - SOPS & Age
 - [ ] Flux Setup / Deployment
 - [ ] Ingress
+  - [ ] Ingress-Nginx
+  - [ ] Emissary Ingress
 - [ ] Security
+  - [ ] Authentication
+- [ ] Storage
+  - [ ] HCloud Volumes
+  - [ ] Minio
 - [ ] CI / CD
+ - [ ] Jenkins
+ - [ ] Tekton
 - [ ] Backups
+  - [ ] Scheduled / Automated
+  - [ ] External Backups
 - [ ] Monitoring & Alerting
 
 ## 📂 Repository structure
@@ -41,3 +52,32 @@ curl -fL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server --cluste
 
 Remote Storage: 
 This functionality requires the CSI-Driver to be install from the `Prerequisites for Cluster:` section. Once install will provide the ability of the cluster to reference remote storage options such as [Hetzner's Storage Boxes](https://www.hetzner.com/storage/storage-box), which are scaleable options for remote storage.
+
+### Databaase
+
+Databases that are waiting to be configured and deployed to the cluster:
+
+- Postgresql
+
+### Monitoring
+
+Monitoring services that are waiting to be configured and deployed to the cluster:
+
+- Grafana
+- Loki
+- Prometheus
+
+### Authentication
+
+Authentication services that are waiting to be configured and deployed to the cluster:
+
+- Authelia
+- 0Auth
+- Keycloak
+
+### CI/CD 
+
+CI/CD services that are waiting to be configured and deployed to the cluster:
+
+- Jenkins
+- Tekton
