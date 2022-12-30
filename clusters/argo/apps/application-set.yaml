@@ -1,11 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-apps
+  name: apps
 spec:
   generators:
     - git:
-        repoURL: https://github.com/krangence/k8s.git
+        repoURL: https://github.com/mattkgwhite/home-ops.git
         revision: HEAD
         files:
           - path: "argo/cluster-apps/**/gen-config.json"
@@ -16,11 +16,11 @@ spec:
         argocd.argoproj.io/manifest-generate-paths: "/{{ path }}"
         argocd.argoproj.io/sync-options: Prune=false
     spec:
-      project: default
+      project: het-wizard
       source:
         path: "{{ path }}"
         targetRevision: HEAD
-        repoURL: https://github.com/krangence/k8s.git
+        repoURL: https://github.com/mattkgwhite/home-ops.git
         helm:
           valueFiles:
             - values.yaml
