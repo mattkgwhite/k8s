@@ -1,9 +1,0 @@
-[
-    {
-      "name": "traefik-default",
-      "cluster": "default",
-      "namespace": "traefik-ingress",
-      "path": "argo/cluster-core/traefik/traefik",
-      "valueFile": "default.yaml"
-    }
-  ]

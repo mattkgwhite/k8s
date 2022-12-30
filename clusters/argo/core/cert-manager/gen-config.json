@@ -1,9 +1,0 @@
-[
-    {
-      "name": "cert-manager-do",
-      "cluster": "default",
-      "namespace": "cert-manager",
-      "path": "argo/cluster-core/cert-manager",
-      "valueFile": "do.yaml"
-    }
-  ]

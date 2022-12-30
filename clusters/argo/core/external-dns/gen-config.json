@@ -1,9 +1,0 @@
-[
-    {
-      "name": "external-dns-do",
-      "cluster": "default",
-      "namespace": "external-dns",
-      "path": "argo/cluster-core/external-dns",
-      "valueFile": "do.yaml"
-    }
-  ]

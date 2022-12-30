@@ -1,9 +1,0 @@
-[
-    {
-      "name": "ingress-nginx",
-      "cluster": "default",
-      "namespace": "ingress-nginx",
-      "path": "argo/cluster-core/ingress-nginx",
-      "valueFile": "values.yaml"
-    }
-  ]
