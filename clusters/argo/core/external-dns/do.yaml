@@ -1,0 +1,13 @@
+global:
+  cluster: do
+
+external-dns:
+  txtOwnerId: do
+
+  extraVolumes:
+    - name: credentials
+      csi:
+        driver: secrets-store.csi.k8s.io
+        readOnly: true
+        volumeAttributes:
+          secretProviderClass: external-dns-do

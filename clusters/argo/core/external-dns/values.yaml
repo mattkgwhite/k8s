@@ -1,0 +1,45 @@
+global:
+  cluster: do
+
+addons:
+  spc:
+    enabled: true
+    defaultObjectPath: k8s/external/aws
+    objects:
+      - name: credentials
+
+
+external-dns:
+  fullnameOverride: external-dns
+
+  sources:
+    - crd
+    - service
+    - ingress
+  provider: aws
+
+  aws:
+    evalutateTargetHealth: false
+
+  interval: "5m"
+  loglevel: debug
+  logFormat: json
+  txtPrefix: "k8s."
+  txtOwnerId: "default"
+  replicas: 1
+  
+  crd:
+    create: true
+
+  domainFilters:
+    - "matt-white.co.uk"
+    - "robotwizard.co.uk"
+
+  extraEnv:
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: /.aws/credentials
+
+  extraVolumeMounts:
+    - name: credentials
+      mountPath: /.aws
+      readOnly: true

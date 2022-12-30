@@ -1,0 +1,2 @@
+secretKey: "CHANGE-ME-FOR-SECRET"
+accessKey: "CHANGE-ME-FOR-ACCESS-KEY"
