@@ -1,0 +1,58 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: external-dns
+  namespace: kube-system
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: external-dns
+      version: 1.11.0
+      sourceRef:
+        kind: HelmRepository
+        name: external-dns-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    interval: 2m
+    # logLevel: debug
+    provider: aws
+    env:
+      - name: AWS_REGION
+        value: eu-west-1
+      - name: AWS_ACCESS_KEY_ID
+        valueFrom:
+          secretKeyRef:
+            name: external-dns-secrets
+            key: access-key-id
+      - name: AWS_SECRET_ACCESS_KEY
+        valueFrom:
+          secretKeyRef:
+            name: external-dns-secrets
+            key: secret-access-key
+    policy: sync
+    sources:
+      - ingress
+    txtPrefix: "k8s."
+    txtOwnerId: "default"
+    domainFilters:
+      valueFrom:
+        secretKeyRef:
+          name: external-dns-secrets
+          key: dns-zones
+    # serviceMonitor:
+    #   enabled: true
+    # resources:
+    #   requests:
+    #     memory: 100Mi
+    #     cpu: 25m
+    #   limits:
+    #     memory: 250Mi
