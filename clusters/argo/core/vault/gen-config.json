@@ -1,7 +1,7 @@
 [
     {
       "name": "vault",
-      "cluster": "het-wizard",
+      "cluster": "default",
       "namespace": "vault",
       "path": "argo/cluster-core/vault",
       "valueFile": "values.yaml"

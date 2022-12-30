@@ -16,7 +16,7 @@ spec:
         argocd.argoproj.io/manifest-generate-paths: "/{{ path }}"
         argocd.argoproj.io/sync-options: Prune=false
     spec:
-      project: het-wizard
+      project: default
       source:
         path: "{{ path }}"
         targetRevision: HEAD
