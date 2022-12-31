@@ -1,7 +1,5 @@
 # HOME-OPS
 
-
-
 This repository contains the Kubernetes configuration files managed by GitOps, specifically [Flux](https://fluxcd.io/) and is a work is progress / under development.
 
 Using a combination of a variety of resources such as [Vault](https://www.vaultproject.io/), [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), [SOPS](https://github.com/mozilla/sops), [Age](https://github.com/FiloSottile/age)
