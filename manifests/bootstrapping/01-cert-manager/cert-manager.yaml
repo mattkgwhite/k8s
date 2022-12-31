@@ -17,6 +17,7 @@ spec:
         - values.yaml
       values: |
         installCRDs: true
+        replicaCount: 1
   project: default
   syncPolicy:
     automated:
