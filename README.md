@@ -1,15 +1,21 @@
-# k8s
+# HOME-OPS
+
+
 
 This repository contains the Kubernetes configuration files managed by GitOps, specifically [Flux](https://fluxcd.io/) and is a work is progress / under development.
 
 Using a combination of a variety of resources such as [Vault](https://www.vaultproject.io/), [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), [SOPS](https://github.com/mozilla/sops), [Age](https://github.com/FiloSottile/age)
 
+### Requirements
 
-## TODO
+- ksops: https://github.com/viaduct-ai/kustomize-sops
+  - Required to build the secrets defined as part of the configuration.
 
-- [X] Folder Structure Setup
+### TODO
+
+- [ ] Folder Structure Setup
   - [ ] Addition Configuration, On-Going
-- [X] Secret Management - SOPS & Age
+- [ ] Secret Management - SOPS & Age
 - [ ] Flux Setup / Deployment
 - [ ] Ingress
   - [ ] Ingress-Nginx
@@ -20,8 +26,8 @@ Using a combination of a variety of resources such as [Vault](https://www.vaultp
   - [ ] HCloud Volumes
   - [ ] Minio
 - [ ] CI / CD
- - [ ] Jenkins
- - [ ] Tekton
+  - [ ] Jenkins
+  - [ ] Tekton
 - [ ] Backups
   - [ ] Scheduled / Automated
   - [ ] External Backups
@@ -29,9 +35,7 @@ Using a combination of a variety of resources such as [Vault](https://www.vaultp
 
 ## 📂 Repository structure
 
-
-
-## Setup - Single Cluster.
+## Setup - Single Cluster
 
 After creating the Node / Host, the following command needs to be run against the Node / Host. This specific command will downloading the latest K3s server install, and install against the Node / Host...With the Traefik and ServiceLB disabled.
 
@@ -39,14 +43,14 @@ After creating the Node / Host, the following command needs to be run against th
 curl -fL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init --kube-apiserver-arg default-not-ready-toleration-seconds=10 --kube-apiserver-arg default-unreachable-toleration-seconds=10 --disable=traefik,servicelb
 ```
 
-### Prerequisites for Cluster:
- 
+### Prerequisites for Cluster
+
 **CSI Driver** - Access to remote storage via a CIFs Share. To install use one of the following depending on Host Node OS:
 
-    ```
-    Ubuntu: `sudo apt-get install -y cifs-utils`
-    CentOS: `yum -y install cifs-utils`
-    ```
+```
+Ubuntu: `sudo apt-get install -y cifs-utils`
+CentOS: `yum -y install cifs-utils`
+```
 
 ### 💾 Storage
 
@@ -75,7 +79,7 @@ Authentication services that are waiting to be configured and deployed to the cl
 - 0Auth
 - Keycloak
 
-### CI/CD 
+### CI/CD
 
 CI/CD services that are waiting to be configured and deployed to the cluster:
 
