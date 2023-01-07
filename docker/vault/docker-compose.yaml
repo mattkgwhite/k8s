@@ -6,11 +6,10 @@ services:
   traefik:
     image: traefik:v2.9.6
     container_name: traefik
+    network_mode: "host"
     volumes:
-      - etc_traefik:/etc/traefik
+      - ./:/etc/traefik
       - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - net
     ports:
       - 80:80
       - 443:443
@@ -32,14 +31,15 @@ services:
       - '--log=true'
       - '--log.level=DEBUG'
       - '--log.filepath=/var/log/traefik.log'
+
   vault:
     image: hashicorp/vault
     hostname: vault
     container_name: vault
     ports:
-      - "8200:8200"
+      - 8200:8200
     volumes:
-      - "/vault/config.hcl:/vault/config/config.hcl"
+      - "./:/vault/config/config.hcl"
     environment:
       VAULT_ADDR: "http://127.0.0.1:8200"
     cap_add:
@@ -53,8 +53,10 @@ services:
       - 'traefik.http.routers.vault.tls=true'
       - 'traefik.http.routers.vault.tls.options=default'
       - 'traefik.http.routers.vault.tls.certresolver=myresolver'
-    networks:
-      - net
 volumes:
   etc_traefik:
   vault:
+
+networks:
+  host:
+    external: true
