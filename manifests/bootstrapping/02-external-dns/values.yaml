@@ -1,4 +1,4 @@
-txtOwnerId: homelab-k3s-danmanners
+txtOwnerId: txt
 txtPrefix: txt.
 registry: txt
 domainFilters:
