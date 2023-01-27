@@ -24,8 +24,7 @@ deployment:
 
 # Pod disruption budget
 podDisruptionBudget:
-  enabled: true
-  maxUnavailable: 50%
+  enabled: false
 
 # Use ingressClass. Ignored if Traefik version < 2.3 / kubernetes < 1.18.x
 ingressClass:
@@ -101,17 +100,17 @@ ports:
     exposedPort: 9000
     protocol: TCP
   web:
-    port: 80
+    port: 8000
     expose: true
     exposedPort: 80
     protocol: TCP
-    nodePort: 80
+    nodePort: 32080
   websecure:
-    port: 443
+    port: 8443
     expose: true
     exposedPort: 443
     protocol: TCP
-    nodePort: 443
+    nodePort: 32443
     tls:
       enabled: false
   metrics:
@@ -137,7 +136,7 @@ service:
     externalTrafficPolicy: Local
   annotations:
     helm_repo_url: "https://helm.traefik.io/traefik"
-    metallb.universe.tf/loadBalancerIPs: 10.56.1.1
+    #metallb.universe.tf/loadBalancerIPs: 10.56.1.1
 
 ## Create HorizontalPodAutoscaler object.
 autoscaling:

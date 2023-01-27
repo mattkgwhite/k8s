@@ -1,14 +1,20 @@
+
+
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: traefik-error-pages
+  name: http-https-redirectscheme
   namespace: kube-system
 spec:
-  errors:
-    status:
-      - "400-599"
-    query: /{status}.html
-    service:
-      name: traefik-error-pages
-      port: 8080
+  redirectScheme:
+    scheme: https
+    permanent: true
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: ServersTransport
+metadata:
+  name: skip-insecure
+  namespace: kube-system
+spec:
+  insecureSkipVerify: true
