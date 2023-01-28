@@ -1,9 +1,16 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: kube-system
 
 resources:
   - external-secrets.yaml
+  #- https://github.com/external-secrets/external-secrets/blob/main/deploy/crds/bundle.yaml
 
-# generators:
-#   - ksops-generator.yaml
+helmCharts:
+  - releaseName: external-secrets
+    name: external-secrets
+    namespace: kube-system
+    repo: https://charts.external-secrets.io
+    version: "0.7.2"
+    valuesFile: values.yaml
