@@ -1,8 +1,8 @@
----
-apiVersion: viaduct.ai/v1
-kind: ksops
-metadata:
-  # Specify a name
-  name: argocd-kms
-files:
-  - argokms.yaml
+# ---
+# apiVersion: viaduct.ai/v1
+# kind: ksops
+# metadata:
+#   # Specify a name
+#   name: argocd-kms
+# files:
+#   - argokms.yaml

@@ -1,22 +1,36 @@
-txtOwnerId: txt
-txtPrefix: txt.
-registry: txt
-domainFilters:
-  - matt-white.co.uk
-  - robotwizard.co.uk
+external-dns:
+  fullnameOverride: external-dns
 
-policy: sync
-interval: 30s
+  sources:
+    - crd
+    - service
+    - ingress
+  provider: aws
 
-crd:
-  create: true
+  interval: "5m"
+  loglevel: debug
+  logFormat: json
+  txtPrefix: "k8s."
+  txtOwnerId: "default"
+  replicas: 1
+  
+  crd:
+    create: true
 
-provider: aws
-aws:
-  zoneType: public
+  domainFilters:
+    - "matt-white.co.uk"
+    - "robotwizard.co.uk"
+
+  aws:
+  region: "eu-west-1"
   credentials:
-    secretName: aws-credentials
-    mountPath: /.aws
-
-nodeSelector:
-  kubernetes.io/arch: amd64
+    accessKeySecretRef:
+      name: external-dns-aws 
+      key: accessKey
+    secretKeySecretRef:
+      name: external-dns-aws
+      key: secretKey
+  # zoneType: public
+  # credentials:
+  #   secretName: aws-credentials
+  #   mountPath: /.aws
