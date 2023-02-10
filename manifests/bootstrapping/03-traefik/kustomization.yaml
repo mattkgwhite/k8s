@@ -12,5 +12,5 @@ helmCharts:
     name: traefik
     namespace: kube-system
     repo: https://helm.traefik.io/traefik
-    version: "20.8.0"
+    version: "21.0.0"
     valuesFile: values.yaml
