@@ -5,7 +5,7 @@ namespace: kube-system
 
 resources:
   - middlewares.yaml
-  - https://github.com/traefik/traefik-helm-chart/traefik/crds?ref=v20.8.0
+  - https://github.com/traefik/traefik-helm-chart/traefik/crds?ref=v21.0.0
 
 helmCharts:
   - releaseName: traefik
