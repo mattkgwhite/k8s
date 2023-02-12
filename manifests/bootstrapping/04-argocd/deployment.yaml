@@ -55,8 +55,8 @@ spec:
           imagePullPolicy: Always
           resources: {}
           volumeMounts:
-            - mountPath: /home/argocd/.aws
-              name: argocd-aws-credentials
+            # - mountPath: /home/argocd/.aws
+            #   name: argocd-aws-credentials
             - mountPath: /usr/local/bin/kustomize
               name: custom-tools
               subPath: kustomize
@@ -70,7 +70,7 @@ spec:
       volumes:
         - name: custom-tools
           emptyDir: {}
-        - name: argocd-aws-credentials
-          secret:
-            defaultMode: 420
-            secretName: argocd-aws-credentials
+        # - name: argocd-aws-credentials
+        #   secret:
+        #     defaultMode: 420
+        #     secretName: argocd-aws-credentials
