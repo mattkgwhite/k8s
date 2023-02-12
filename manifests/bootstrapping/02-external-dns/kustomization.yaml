@@ -5,7 +5,7 @@ namespace: kube-system
 
 helmCharts:
   - name: external-dns
-    releaseName: edns
+    releaseName: external-dns 
     namespace: kube-system
     repo: https://charts.bitnami.com/bitnami
     version: 6.13.2
