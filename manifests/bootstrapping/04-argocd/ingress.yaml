@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - argocd.robotwizard.co.uk
-    secretName: argocd-robotwizard-cert
+    - argo.robotwizard.co.uk
+    secretName: argo-robotwizard-cert
   rules:
-  - host: argocd.robotwizard.co.uk
+  - host: argo.robotwizard.co.uk
     http:
       paths:
       - path: /

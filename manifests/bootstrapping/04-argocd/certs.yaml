@@ -2,14 +2,14 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: argocd-homelab-cert
+  name: argo-homelab-cert
 spec:
-  commonName: argocd.robotwizard.co.uk
-  secretName: argocd-robotwizard-cert
+  commonName: argo.robotwizard.co.uk
+  secretName: argo-robotwizard-cert
   dnsNames:
-    - argocd.robotwizard.co.uk
-    - argocd.hacksm.net
-    - argocd.matt-white.co.uk
+    - argo.robotwizard.co.uk
+    - argo.hacksm.net
+    - argo.matt-white.co.uk
   issuerRef:
     name: acme-prod
     kind: ClusterIssuer
