@@ -7,6 +7,6 @@ helmCharts:
   - name: external-dns
     releaseName: external-dns 
     namespace: kube-system
-    repo: https://charts.bitnami.com/bitnami
-    version: 6.13.2
+    repo: https://kubernetes-sigs.github.io/external-dns/
+    version: 1.12.1
     valuesFile: values.yaml

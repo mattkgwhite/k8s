@@ -1,36 +1,31 @@
-external-dns:
-  fullnameOverride: external-dns
+txtOwnerId: robot-wizard
+txtPrefix: k8s.
+registry: txt
+replicas: 1
+domainFilters:
+  - "matt-white.co.uk"
+  - "robotwizard.co.uk"
+  - "hacksm.net"
 
-  sources:
-    - crd
-    - service
-    - ingress
-  provider: aws
+policy: sync
+interval: 30s
 
-  interval: "5m"
-  loglevel: debug
-  logFormat: json
-  txtPrefix: "k8s."
-  txtOwnerId: "default"
-  replicas: 1
-  
-  crd:
-    create: true
+crd:
+  create: true
 
-  domainFilters:
-    - "matt-white.co.uk"
-    - "robotwizard.co.uk"
+provider: aws
+extraArgs:
+- --aws-zone-type=public
 
-  aws:
-  region: "eu-west-1"
-  credentials:
-    accessKeySecretRef:
-      name: external-dns-aws 
-      key: accessKey
-    secretKeySecretRef:
-      name: external-dns-aws
-      key: secretKey
-  # zoneType: public
-  # credentials:
-  #   secretName: aws-credentials
-  #   mountPath: /.aws
+env:
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: aws-creds
+        key: access-key-id
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: aws-creds
+        key: secret-access-key
+

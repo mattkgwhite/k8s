@@ -15,7 +15,7 @@ spec:
             region: eu-west-1
             accessKeyID: AKIAW4YYMLNFMDBHNGHR
             secretAccessKeySecretRef:
-              name: cert-manager-secrets
+              name: aws-creds
               key: secret-access-key
         selector:
           dnsZones:
