@@ -1,9 +1,0 @@
-[
-    {
-      "name": "vault",
-      "cluster": "default",
-      "namespace": "vault",
-      "path": "argo/cluster-core/vault",
-      "valueFile": "values.yaml"
-    }
-  ]

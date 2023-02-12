@@ -1,11 +1,12 @@
-txtOwnerId: robot-wizard
-txtPrefix: k8s.
-registry: txt
+txtOwnerId: "default"
+txtPrefix: "k8s."
 replicas: 1
 domainFilters:
-  - "matt-white.co.uk"
-  - "robotwizard.co.uk"
-  - "hacksm.net"
+  - matt-white.co.uk
+  - robotwizard.co.uk
+  - hacksm.net
+loglevel: debug
+logFormat: json
 
 policy: sync
 interval: 30s
@@ -15,7 +16,7 @@ crd:
 
 provider: aws
 extraArgs:
-- --aws-zone-type=public
+  - --aws-zone-type=public
 
 env:
   - name: AWS_ACCESS_KEY_ID
@@ -28,4 +29,3 @@ env:
       secretKeyRef:
         name: aws-creds
         key: secret-access-key
-

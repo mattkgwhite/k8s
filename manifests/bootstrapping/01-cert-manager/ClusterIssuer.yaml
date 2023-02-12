@@ -12,7 +12,7 @@ spec:
     solvers:
       - dns01:
           route53:
-            region: eu-west-1
+            region: us-east-1
             accessKeyID: AKIAW4YYMLNFMDBHNGHR
             secretAccessKeySecretRef:
               name: aws-creds

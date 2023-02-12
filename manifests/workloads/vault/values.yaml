@@ -8,13 +8,13 @@ vault:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: nginx
-        cert-manager.io/cluster-issuer: le-prod
+        cert-manager.io/cluster-issuer: acme-prod
       hosts:
-        - host: vault.robotwizard.co.uk
+        - host: kube-vault.robotwizard.co.uk
           paths: [/]
       tls:
-        - hosts: [vault.robotwizard.co.uk]
-          secretName: vault-robotwizard-co-uk
+        - hosts: [kube-vault.robotwizard.co.uk]
+          secretName: kube-vault-robotwizard-co-uk
   dataStorage:
     storageClass: nfs-client
   ui:
