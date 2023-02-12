@@ -12,7 +12,7 @@ spec:
     solvers:
       - dns01:
           route53:
-            region: us-east-1
+            region: eu-west-1
             accessKeyID: AKIAW4YYMLNFMDBHNGHR
             secretAccessKeySecretRef:
               name: cert-manager-secrets
@@ -21,3 +21,4 @@ spec:
           dnsZones:
             - "matt-white.co.uk"
             - "robotwizard.co.uk"
+            - "hacksm.net"

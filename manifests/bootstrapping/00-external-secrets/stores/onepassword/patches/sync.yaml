@@ -1,7 +1,7 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/helmrelease_v2beta1.json
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
+# yaml-language-server: $schema=https://kubernetes-schemas.robotwizard.co.uk/helmrelease_v2beta1.json
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: onepassword-connect
   namespace: kube-system

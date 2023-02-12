@@ -5,6 +5,7 @@ namespace: kube-system
 
 resources:
   - external-secrets.yaml
+  # - ./stores
   #- https://github.com/external-secrets/external-secrets/blob/main/deploy/crds/bundle.yaml
 
 helmCharts:
