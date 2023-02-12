@@ -1,9 +1,0 @@
-[
-    {
-      "name": "secrets-store-csi-driver",
-      "cluster": "default",
-      "namespace": "secrets-store-csi-driver",
-      "path": "argo/cluster-core/secrets-store-csi-driver",
-      "valueFile": "values.yaml"
-    }
-  ]
