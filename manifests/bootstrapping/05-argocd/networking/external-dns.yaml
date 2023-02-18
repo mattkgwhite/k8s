@@ -8,5 +8,5 @@ metadata:
     external-dns.alpha.kubernetes.io/ttl: "300"
 spec:
   type: ExternalName
-  externalName: argocd.robotwizard.co.uk
+  externalName: traefik.robotwizard.co.uk
   sessionAffinity: None
