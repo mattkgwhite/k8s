@@ -2,13 +2,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: argo-robotwizard-cert
+  name: argocd-robotwizard-cert
   namespace: kube-system
 spec:
-  commonName: argo.robotwizard.co.uk
-  secretName: argo-robotwizard-cert
+  commonName: argocd.robotwizard.co.uk
+  secretName: argocd-robotwizard-cert
   dnsNames:
-    - argo.robotwizard.co.uk
+    - argocd.robotwizard.co.uk
   issuerRef:
     name: acme-prod
     kind: ClusterIssuer
