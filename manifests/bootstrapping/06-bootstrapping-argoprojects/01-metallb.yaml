@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://github.com/danmanners/homelab-kube-cluster.git"
-    path: manifests/bootstrapping-onprem/02-metallb
+    repoURL: "https://github.com/mattkgwhite/home-ops.git"
+    path: manifests/bootstrapping-onprem/01-metallb
     targetRevision: main
   destination:
     server: "https://kubernetes.default.svc"
