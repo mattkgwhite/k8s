@@ -6,4 +6,4 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: traefik.robotwizard.co.uk
 spec:
   type: ExternalName
-  externalName: traefik.robotwizard.co.uk
+  externalName: 168.119.230.133
