@@ -3,6 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: argo-homelab-cert
+  namespace: kube-system
 spec:
   commonName: argo.robotwizard.co.uk
   secretName: argo-robotwizard-cert
