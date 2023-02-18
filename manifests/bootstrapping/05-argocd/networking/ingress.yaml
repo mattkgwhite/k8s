@@ -6,7 +6,7 @@ spec:
   entryPoints:
   - web
   routes:
-  - match: Host(`argocd.robotwizard.co.uk`)
+  - match: Host(`argo.robotwizard.co.uk`)
     kind: Rule
     services:
     - name: argo-cd-argocd-server
@@ -23,7 +23,7 @@ spec:
   entryPoints:
   - websecure
   routes:
-  - match: Host(`argocd.robotwizard.co.uk`)
+  - match: Host(`argo.robotwizard.co.uk`)
     kind: Rule
     services:
     - name: argo-cd-argocd-server
