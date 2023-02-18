@@ -10,6 +10,7 @@
     use-forwarded-headers: "true"
     service:
       externalTrafficPolicy: Local
+      loadBalancerIP: 168.119.230.133
     metrics:
       enabled: false
       serviceMonitor:
@@ -17,8 +18,8 @@
         namespace: kube-system
       prometheusRule:
         enabled: false
-    extraArgs:
-      default-ssl-certificate: "robotwizard-co-uk-tls"
+    # extraArgs:
+    #   default-ssl-certificate: "cert-manager/acme-crt-secret"
     resources:
       requests:
         memory: 500Mi
