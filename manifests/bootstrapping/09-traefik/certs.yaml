@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik-cert
+spec:
+  commonName: traefik.robotwizard.co.uk
+  secretName: traefik-cert
+  dnsNames:
+  - traefik.robotwizard.co.uk
+  issuerRef:
+    name: acme-prod
+    kind: ClusterIssuer

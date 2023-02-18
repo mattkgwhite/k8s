@@ -17,3 +17,4 @@ helmCharts:
 resources:
 - ns.yaml
 - ipaddress.yaml
+- layer2advert.yaml

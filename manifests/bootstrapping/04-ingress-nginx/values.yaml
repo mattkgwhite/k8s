@@ -10,7 +10,7 @@
     use-forwarded-headers: "true"
     service:
       externalTrafficPolicy: Local
-      loadBalancerIP: 168.119.230.133
+      # loadBalancerIP: 168.119.230.133
     metrics:
       enabled: false
       serviceMonitor:

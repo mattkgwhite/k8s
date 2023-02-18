@@ -1,15 +1,16 @@
----
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: argocd
 
 resources:
-  # Increment up this version number once you have new encrypted container versions available for the repo server
-  - https://raw.githubusercontent.com/argoproj/argo-cd/v2.6.1/manifests/install.yaml
-  - ns.yaml
-  - certs.yaml
-  - ingress.yaml
-  - ../00-secrets
+- ns.yaml
+- ../00-secrets
+- networking
 
-components:
-  - patches
+helmCharts:
+- name: argo-cd
+  releaseName: argo-cd
+  namespace: argocd
+  repo: https://argoproj.github.io/argo-helm
+  version: "5.22.0"
+  valuesFile: values.yaml

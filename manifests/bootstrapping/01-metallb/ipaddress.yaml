@@ -6,4 +6,3 @@ metadata:
 spec:
   addresses:
   - 168.119.230.133/32
-  autoAssign: true
