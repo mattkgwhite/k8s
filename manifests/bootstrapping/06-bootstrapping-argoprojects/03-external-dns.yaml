@@ -1,22 +1,19 @@
-
-
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: "traefik"
+  name: external-dns
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: "https://github.com/mattkgwhite/homeops.git"
-    path: manifests/bootstrapping/03-traefik
+    repoURL: https://github.com/danmanners/homelab-kube-cluster.git
+    path: manifests/bootstrapping-onprem/04-external-dns
     targetRevision: main
   destination:
-    server: "https://kubernetes.default.svc"
+    server: https://kubernetes.default.svc
     namespace: kube-system
   syncPolicy:
     automated:
       prune: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

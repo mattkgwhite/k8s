@@ -4,7 +4,8 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  - 01-cert-manager.yaml
-  - 02-external-dns.yaml
-  - 03-traefik.yaml
-  - 04-argocd.yaml
+  - 01-metallb.yaml
+  - 02-cert-manager.yaml
+  - 03-external-dns.yaml
+  - 04-traefik.yaml
+  - 05-argocd.yaml
