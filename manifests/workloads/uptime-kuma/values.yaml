@@ -1,4 +1,3 @@
----
 global:
   nameOverride: uptime-kuma
 
@@ -7,7 +6,7 @@ image:
   pullPolicy: IfNotPresent
 
 env:
-  TZ: America/New_York
+  TZ: Europe/London
 
 service:
   main:
