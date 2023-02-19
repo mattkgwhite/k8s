@@ -1,0 +1,8 @@
+---
+apiVersion: viaduct.ai/v1
+kind: ksops
+metadata:
+  name: hetzner-api
+  namespace: kube-system
+files:
+  - secret.sops.yaml
