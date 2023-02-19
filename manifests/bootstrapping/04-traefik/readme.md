@@ -1,4 +1,4 @@
-# Deploying Cert-Manager
+# Deploying Traefik
 
 Update the relevant files and references as given in the README.md at the root of this repository in the `### Configuration Updates` section.
 
