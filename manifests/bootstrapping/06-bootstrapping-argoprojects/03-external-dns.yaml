@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/mattkgwhite/home-ops.git
-    path: manifests/bootstrapping-onprem/03-external-dns
+    path: manifests/bootstrapping/03-external-dns
     targetRevision: main
   destination:
     server: https://kubernetes.default.svc

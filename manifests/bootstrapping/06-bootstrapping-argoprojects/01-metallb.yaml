@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: "https://github.com/mattkgwhite/home-ops.git"
-    path: manifests/bootstrapping-onprem/01-metallb
+    path: manifests/bootstrapping/01-metallb
     targetRevision: main
   destination:
     server: "https://kubernetes.default.svc"

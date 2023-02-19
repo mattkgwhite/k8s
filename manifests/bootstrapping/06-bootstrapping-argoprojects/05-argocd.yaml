@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/mattkgwhite/home-ops.git
-    path: manifests/bootstrapping-onprem/05-argocd
+    path: manifests/bootstrapping/05-argocd
     targetRevision: main
   destination:
     server: https://kubernetes.default.svc
