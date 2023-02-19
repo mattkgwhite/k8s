@@ -1,35 +1,43 @@
 # HOME-OPS
 
-This repository contains the Kubernetes configuration files managed by GitOps, specifically [Flux](https://fluxcd.io/) and is a work is progress / under development.
+This repository contains the Kubernetes configuration files managed by GitOps, specifically [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) and is a work is progress / under development.
 
-Using a combination of a variety of resources such as [Vault](https://www.vaultproject.io/), [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), [SOPS](https://github.com/mozilla/sops), [Age](https://github.com/FiloSottile/age)
+Using a combination of a variety of resources such as [Vault](https://www.vaultproject.io/), [SOPS](https://github.com/mozilla/sops), [Age](https://github.com/FiloSottile/age)
 
 ### Requirements
 
 - ksops: https://github.com/viaduct-ai/kustomize-sops
   - Required to build the secrets defined as part of the configuration.
+- sops: https://github.com/mozilla/sops
+  - encrypt secrets stored in `secret.sops.yaml` files within this repository.
 
 ### TODO
 
-- [ ] Folder Structure Setup
+- [X] Folder Structure Setup
   - [ ] Addition Configuration, On-Going
-- [ ] Secret Management - SOPS & Age
-- [ ] Flux Setup / Deployment
-- [ ] Ingress
-  - [ ] Ingress-Nginx
-  - [ ] Emissary Ingress
-- [ ] Security
-  - [ ] Authentication
+- [X] Secret Management - SOPS, Age & KSOPS
+- [ ] Metallb - Load Balancer
+- [ ] SSL Certificates - Cert Manager
+- [ ] DNS Records - External DNS
+- [ ] Ingress - Traefik
+- [ ] ArgoCD
+- [ ] Cluster Bootstrapping - handover control after bootstrapping cluster to ArgoCD.
 - [ ] Storage
   - [ ] HCloud Volumes
   - [ ] Minio
+- [ ] Monitoring & Alerting
+  - [ ] kube-prometheus-stack
+  - [ ] loki
+- [ ] Security
+  - [ ] Authentication / Access Control
+- [ ] Database
+  - [ ] PGNative
 - [ ] CI / CD
   - [ ] Jenkins
   - [ ] Tekton
 - [ ] Backups
   - [ ] Scheduled / Automated
   - [ ] External Backups
-- [ ] Monitoring & Alerting
 
 ## 📂 Repository structure
 
@@ -40,6 +48,16 @@ After creating the Node / Host, the following command needs to be run against th
 ```shell
 curl -fL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init --kube-apiserver-arg default-not-ready-toleration-seconds=10 --kube-apiserver-arg default-unreachable-toleration-seconds=10 --disable=traefik,servicelb
 ```
+
+### Configuration Updates
+
+1. 00-secrets - update the secrets.sops.yaml file with relevant AWS Credentials.
+2. 01-metallb - update Public IP Address reference in ipaddress.yaml file.
+3. 02-cert-manager - update clusterissuer.yaml file, specifically email reference, access-key reference and dnsNames.
+4. 03-external-dns - update values.yaml file, specifically domainFilters
+5. 04-traefik - update domain references and public ip address (same as what was entered into the Metallb > ipaddress.yaml file)
+6. 05-argocd - update domain references
+7. 06-bootstrapping-argoprojects - update names and github repository references.
 
 ### Prerequisites for Cluster
 
@@ -55,11 +73,15 @@ CentOS: `yum -y install cifs-utils`
 Remote Storage: 
 This functionality requires the CSI-Driver to be install from the `Prerequisites for Cluster:` section. Once install will provide the ability of the cluster to reference remote storage options such as [Hetzner's Storage Boxes](https://www.hetzner.com/storage/storage-box), which are scaleable options for remote storage.
 
+- Hetzner Storage Box
+- Hetzner 'hcloud-csi-driver' - virtual disks against the VPS itself.
+
 ### Databaase
 
 Databases that are waiting to be configured and deployed to the cluster:
 
 - Postgresql
+- pg-native
 
 ### Monitoring
 
