@@ -1,0 +1,46 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: uptime-cert
+spec:
+  commonName: uptime.robotwizard.co.uk
+  secretName: uptime-cert
+  dnsNames:
+    - uptime.robotwizard.co.uk
+  issuerRef:
+    name: acme-prod
+    kind: ClusterIssuer
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: uptime-robotwizard-co-uk-web
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`uptime.robotwizard.co.uk`)
+      kind: Rule
+      services:
+        - name: uptime-kuma
+          port: 80
+      middlewares:
+        - name: http-https-redirectscheme
+          namespace: kube-system
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: uptime-robotwizard-co-uk-websecure
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`uptime.robotwizard.co.uk`)
+      kind: Rule
+      services:
+        - name: uptime-kuma
+          port: 80
+  tls:
+    secretName: uptime-cert
