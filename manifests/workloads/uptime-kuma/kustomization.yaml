@@ -20,3 +20,4 @@ resources:
   - ns.yaml
   - ingress.yaml
   - service.yaml
+  - argocd-application.yaml
