@@ -1,0 +1,9 @@
+[
+  {
+    "name": "hcloud-csi-driver",
+    "cluster": "default",
+    "namespace": "kube-system",
+    "path": "manifests/workloads/hcloud-csi-driver",
+    "valueFile": "values.yaml"
+  }
+]
