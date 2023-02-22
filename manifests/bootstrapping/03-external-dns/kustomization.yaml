@@ -10,3 +10,6 @@ helmCharts:
     repo: https://kubernetes-sigs.github.io/external-dns/
     version: 1.12.1
     valuesFile: values.yaml
+
+generators:
+  - ksops-generator.yaml
