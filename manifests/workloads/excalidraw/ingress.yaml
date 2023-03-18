@@ -1,0 +1,72 @@
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whiteboard-robotwizard-extname
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: whiteboard.robotwizard.com
+    external-dns.alpha.kubernetes.io/ttl: "300"
+  labels:
+    app.kubernetes.io/name: excalidraw
+spec:
+  type: ExternalName
+  externalName: kube.robotwizard.co.uk
+  sessionAffinity: None
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: excalidraw
+  namespace: excalidraw
+spec:
+  commonName: whiteboard.robotwizard.co.uk
+  secretName: excalidraw
+  dnsNames:
+    - whiteboard.robotwizard.co.uk
+  issuerRef:
+    name: acme-prod
+    kind: ClusterIssuer
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: excalidraw-web
+  namespace: excalidraw
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`whiteboard.robotwizard.co.uk`)
+      kind: Rule
+      services:
+        - name: excalidraw
+          port: http
+      middlewares:
+        - name: http-https-redirectscheme
+          namespace: kube-system
+    - match: Host(`robotwizard.co.uk`)
+      kind: Rule
+      services:
+        - name: excalidraw
+          port: http
+      middlewares:
+        - name: http-https-redirectscheme
+          namespace: kube-system
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: excalidraw-websecure
+  namespace: excalidraw
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`whiteboard.robotwizard.co.uk`)
+      kind: Rule
+      services:
+        - name: excalidraw
+          port: http
+  tls:
+    secretName: excalidraw
