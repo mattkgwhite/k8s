@@ -1,0 +1,48 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: keycloak-cert
+spec:
+  commonName: keycloak.robotwizard.co.uk
+  secretName: keycloak-cert
+  dnsNames:
+    - keycloak.robotwizard.co.uk
+  issuerRef:
+    name: acme-prod
+    kind: ClusterIssuer
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: keycloak-robotwizard-co-uk-web
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`keycloak.robotwizard.co.uk`)
+      kind: Rule
+      services:
+        - name: keycloak
+          port: 80
+          # port: 32746
+      middlewares:
+        - name: http-https-redirectscheme
+          namespace: kube-system
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: keycloak-robotwizard-co-uk-websecure
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`keycloak.robotwizard.co.uk`)
+      kind: Rule
+      services:
+        - name: keycloak
+          port: 80
+          # port: 32746
+  tls:
+    secretName: keycloak-cert
