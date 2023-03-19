@@ -1,0 +1,46 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tekton-cert
+spec:
+  commonName: tekton.robotwizard.co.uk
+  secretName: tekton-cert
+  dnsNames:
+    - tekton.robotwizard.co.uk
+  issuerRef:
+    name: acme-prod
+    kind: ClusterIssuer
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: tekton-robotwizard-co-uk-web
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`tekton.robotwizard.co.uk`)
+      kind: Rule
+      services:
+        - name: tekton
+          port: 80
+      middlewares:
+        - name: http-https-redirectscheme
+          namespace: kube-system
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: tekton-robotwizard-co-uk-websecure
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`tekton.robotwizard.co.uk`)
+      kind: Rule
+      services:
+        - name: tekton
+          port: 80
+  tls:
+    secretName: tekton-cert
