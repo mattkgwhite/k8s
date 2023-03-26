@@ -3,6 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: keycloak-cert
+  namespace: oidc
 spec:
   commonName: keycloak.robotwizard.co.uk
   secretName: keycloak-cert
@@ -16,6 +17,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: keycloak-robotwizard-co-uk-web
+  namespace: oidc
 spec:
   entryPoints:
     - web
@@ -34,6 +36,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: keycloak-robotwizard-co-uk-websecure
+  namespace: oidc
 spec:
   entryPoints:
     - websecure

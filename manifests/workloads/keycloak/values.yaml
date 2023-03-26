@@ -1,0 +1,4 @@
+namespaceOverride: "oidc"
+
+service:
+  type: "ClusterIP"
