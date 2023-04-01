@@ -12,35 +12,26 @@ spec:
     name: acme-prod
     kind: ClusterIssuer
 ---
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: uptime-robotwizard-co-uk-web
+  name: uptime-kuma
+  annotations:
+    cert-manager.io/cluster-issuer: acme-prod
 spec:
-  entryPoints:
-    - web
-  routes:
-    - match: Host(`uptime.robotwizard.co.uk`)
-      kind: Rule
-      services:
-        - name: uptime-kuma
-          port: 80
-      middlewares:
-        - name: http-https-redirectscheme
-          namespace: kube-system
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: uptime-robotwizard-co-uk-websecure
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`uptime.robotwizard.co.uk`)
-      kind: Rule
-      services:
-        - name: uptime-kuma
-          port: 80
+  ingressClassName: nginx
   tls:
+  - hosts:
+    - uptime.robotwizard.co.uk
     secretName: uptime-cert
+  rules:
+  - host: uptime.robotwizard.co.uk
+    http:
+      paths:
+      - backend:
+          service:
+            name: uptime-kuma
+            port:
+              number: 80
+        path: /
+        pathType: Prefix

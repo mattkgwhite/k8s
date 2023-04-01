@@ -10,5 +10,5 @@ metadata:
     app.kubernetes.io/instance: uptime-kuma
 spec:
   type: ExternalName
-  externalName: traefik.robotwizard.co.uk
+  externalName: nginx.robotwizard.co.uk
   sessionAffinity: None
