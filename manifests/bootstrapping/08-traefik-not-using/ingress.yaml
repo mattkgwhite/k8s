@@ -1,5 +1,3 @@
-
-
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
@@ -25,7 +23,7 @@ spec:
   entryPoints:
   - websecure
   routes:
-  - match: Host(`traefik.robotwizard.co.uk`)
+  - match: Host(`traefik.robotwizard.co.uk`) && PathPrefix(`/dashboard`)
     kind: Rule
     services:
     - name: traefik
