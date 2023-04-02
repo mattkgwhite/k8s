@@ -16,14 +16,14 @@ Using a combination of a variety of resources such as [Vault](https://www.vaultp
 - [X] Folder Structure Setup
   - [ ] Addition Configuration, On-Going
 - [X] Secret Management - SOPS, Age & KSOPS
-- [ ] Metallb - Load Balancer
-- [ ] SSL Certificates - Cert Manager
-- [ ] DNS Records - External DNS
-- [ ] Ingress - Traefik
-- [ ] ArgoCD
-- [ ] Cluster Bootstrapping - handover control after bootstrapping cluster to ArgoCD.
+- [X] Metallb - Load Balancer
+- [X] SSL Certificates - Cert Manager
+- [X] DNS Records - External DNS
+- [X] Ingress - Ingress-Nginx
+- [X] ArgoCD
+- [X] Cluster Bootstrapping - handover control after bootstrapping cluster to ArgoCD.
 - [ ] Storage
-  - [ ] HCloud Volumes
+  - [X] HCloud Volumes
   - [ ] Minio
 - [ ] Monitoring & Alerting
   - [ ] kube-prometheus-stack
@@ -55,7 +55,7 @@ curl -fL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server --cluste
 2. 01-metallb - update Public IP Address reference in ipaddress.yaml file.
 3. 02-cert-manager - update clusterissuer.yaml file, specifically email reference, access-key reference and dnsNames.
 4. 03-external-dns - update values.yaml file, specifically domainFilters
-5. 04-traefik - update domain references and public ip address (same as what was entered into the Metallb > ipaddress.yaml file)
+5. 04-ingress-nginx - update services.yaml file, specifically IPV4 address with the IPV4 address entered into `01-metallb > ipaddress.yaml` and the domain reference for *external-dns.alpha.kubernetes.io/hostname*
 6. 05-argocd - update domain references
 7. 06-bootstrapping-argoprojects - update names and github repository references.
 
