@@ -1,0 +1,100 @@
+# global: 
+#   enabled: true
+
+# vault:
+#   server:
+#     # image:
+#     #   repository: "hashicorp/vault"
+#     #   tag: "1.10.1"
+#     #   pullPolicy: IfNotPresent
+#     ingress:
+#       enabled: "true"
+#     dataStorage:
+#       enabled: true
+#       storageClass: hcloud-volumes
+#     dev:
+#       enabled: "false"
+#     standalone:
+#       enabled: "false"
+#     ha:
+#       enabled: "true"
+#       replicas: 1
+#       raft:
+#         enabled: "true"
+#         setNodeId: "true"
+#         config: |
+#           ui = true
+#           listener "tcp" {
+#             tls_disable = 1
+#             address = "[::]:8200"
+#             cluster_address = "[::]:8201"
+#             # Enable unauthenticated metrics access (necessary for Prometheus Operator)
+#             #telemetry {
+#             #  unauthenticated_metrics_access = "true"
+#             #}
+#           }
+#           storage "file" {
+#             path = "/vault/data"
+#           }
+#     ui:
+#       enabled: "true"
+#       serviceType: "ClusterIP"
+#     csi:
+#       enabled: "true"
+#     injector:
+#       enabled: "true"
+#     resources:
+#         requests:
+#           memory: 256Mi
+#           cpu: 250m
+#         limits:
+#           memory: 256Mi
+#     readinessProbe:
+#       enabled: true
+#       path: "/v1/sys/health?sealedcode=204&uninitcode=204"
+#     #   failureThreshold: 2
+#     #   initialDelaySeconds: 10
+#     #   periodSeconds: 5
+#     #   successThreshold: 1
+#     #   timeoutSeconds:
+#     # livenessProbe:
+#     #   failureThreshold: 2
+#     #   initialDelaySeconds: 5
+#     #   periodSeconds: 5
+#     #   successThreshold: 1
+#     #   timeoutSeconds: 3
+#     # # extraSecretEnvironmentVars: 
+#     # #   - envName: AWS_ACCESS_KEY_ID
+#     # #     secretName: aws-creds
+#     # #     secretKey: AWS_ACCESS_KEY_ID
+#     # #   - envName: AWS_SECRET_ACCESS_KEY
+#     # #     secretName: aws-creds
+#     # #     secretKey: AWS_SECRET_ACCESS_KEY
+
+
+# # # vault:
+# #   server:
+# #     image:
+# #       repository: "vault-helm"
+# #       tag: "1.12.1"
+# #       pullPolicy: IfNotPresent
+# #     ingress:
+# #       enabled: true
+# #   dataStorage:
+# #     storageClass: file
+# #   ui:
+# #     enabled: true
+# #     serviceType: "ClusterIP"
+# #   csi:
+# #     enabled: true
+# #   injector:
+# #     enabled: false
+# #   resources:
+# #       requests:
+# #         memory: 256Mi
+# #         cpu: 250m
+# #       limits:
+# #         memory: 256Mi
+# #   readinessProbe:
+# #     enabled: true
+# #     path: "/v1/sys/health?sealedcode=204&uninitcode=204"
