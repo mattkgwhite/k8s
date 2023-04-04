@@ -3,6 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: uptime-cert
+  namespace: monitoring
 spec:
   commonName: uptime.robotwizard.co.uk
   secretName: uptime-cert
@@ -16,6 +17,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: uptime-kuma
+  namespace: monitoring
   annotations:
     cert-manager.io/cluster-issuer: acme-prod
 spec:

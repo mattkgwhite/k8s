@@ -7,14 +7,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://github.com/mattkgwhite/homeops.git"
+    repoURL: https://github.com/mattkgwhite/home-ops.git
     path: manifests/workloads/keycloak
     targetRevision: main
   destination:
-    server: "https://kubernetes.default.svc"
+    server: https://kubernetes.default.svc
     namespace: oidc
   syncPolicy:
     automated:
       prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true

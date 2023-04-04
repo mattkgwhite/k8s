@@ -7,11 +7,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://github.com/mattkgwhite/homeops.git"
+    repoURL: https://github.com/mattkgwhite/home-ops.git
     path: manifests/workloads/vault
     targetRevision: main
   destination:
-    server: "https://kubernetes.default.svc"
+    server: https://kubernetes.default.svc
     namespace: vault
   syncPolicy:
     automated:
