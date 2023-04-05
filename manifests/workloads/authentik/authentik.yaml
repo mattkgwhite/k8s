@@ -3,26 +3,26 @@ kind: Secret
 metadata:
     name: authentik
 stringData:
-    AUTHENTIK_SECRET_KEY: ENC[AES256_GCM,data:bxHDidYgmc1EIoSgFtEG4ipUoENRk/JO/vMjZDfWIq5TgsAVHb2R+JUGxq6/CyUt,iv:cUxQF6S99lngROmH76vhNO87ltiLyomScCNbYIx6C1U=,tag:zUdpEDyyiLP7nEOdvvEHLw==,type:str]
-    AUTHENTIK_POSTGRESQL__USER: ENC[AES256_GCM,data:AWFUaNkYKoNE,iv:k0nBLiRcYYO/j3X9s5wUKdLpa0+5ZijGuGcghlhgq5Q=,tag:y5xaV2Hjt5lYNWRf7qG2hA==,type:str]
-    AUTHENTIK_POSTGRESQL__PASSWORD: ENC[AES256_GCM,data:Qq92FBAjdZGX0s2FMmYBZNcliUusouOxWhrVzGXQ5LwvFWVAZh6CMMyJrHFGMAgU,iv:XYP0fSoDolqrs0CPs7iMJ/LAPRLtVeJvp0+C7gnmQ/s=,tag:3IkHHcojqn9SBtWlV9LPVg==,type:str]
-    AUTHENTIK_POSTGRESQL__PORT: ENC[AES256_GCM,data:7r2RbA==,iv:WSqO1QNyHp27zz5CsuXEcrH2RLZjcLrcGqjZzx/QuN4=,tag:ZoK3C9nep0z02css32M4FA==,type:str]
-    auth-secret-key: ENC[AES256_GCM,data:L6zWNrD2TAhzUW2l6dBjHm5owEr9sbOMQWkRdrEgHxyrR3cZeijwh6kmruOEqFVi,iv:QhuSy2MbQD/hhqHl5cUTZHd1f7pKYDkadpUxYqc+cX8=,tag:hEZRK9e+Hq/YvIg4prGhpQ==,type:str]
-    auth-postgresql-user: ENC[AES256_GCM,data:DPLjHvejosXD,iv:rfpIjSdoEerE3JVVwAeqiDiH4RbrU6Tp7iauukF3Xb0=,tag:geR5aPM54LmNMdm1xfaWlQ==,type:str]
-    auth-postgresql-password: ENC[AES256_GCM,data:2MAXtl2t1vE15YlV5CoGhqMztRp3arRDxfjgGeuulcy8i9jHDshu4cqaZ+JTlEUG,iv:wYQUqV4hQKa06JWAMV80cUppwrgBRzn4rYUdftIS6r0=,tag:KOSQBhEDBZlungr+/HTYNQ==,type:str]
-    auth-postgresql-port: ENC[AES256_GCM,data:ks8xjQ==,iv:VmQ5ns60ZjMlEFmaUCc5msqpyCVRF0Tc7VdRPVXu4Yc=,tag:QJ+X/1lLR/uynaO3g9iBZQ==,type:str]
+    AUTHENTIK_SECRET_KEY: ENC[AES256_GCM,data:CjhqRaS8PcxA0WlvHr8P6aeaQotj0h8BrIK475tXn75AQR8bC5pSlrCV7th/qb/P,iv:CQ129m6NO67WGPDVWL0PLZQnaMxjnOiiFt69aVQBvVo=,tag:a/8cXBZ5mqcxW0SSWBL8QA==,type:str]
+    AUTHENTIK_POSTGRESQL__USER: ENC[AES256_GCM,data:SAFNWYAYxSNm,iv:B7Asjk/xlRQuWgOWRdmjuCBfqkTS8uQPV5Q47IuMKjc=,tag:hlU0ZUJX2CKxZ2vNU/8KGw==,type:str]
+    AUTHENTIK_POSTGRESQL__PASSWORD: ENC[AES256_GCM,data:at+cPaDo8AH0pdklJuqtoP7G6vhQhsMY6qu+Gd2X0z8Oqbt/Mfjw5hb4/rdtmiQH,iv:586/GkugwBhvfnC0lE5TNDmfa5hsbUQUxIX9Suv5Z4A=,tag:BrwnyLd9Z99s2XnLw/aNXA==,type:str]
+    AUTHENTIK_POSTGRESQL__PORT: ENC[AES256_GCM,data:G0cs3g==,iv:tS7X5YErv6RYqOLrEnSfeWY2/GpTTu8185FNKWu4oEU=,tag:Z3GffuOnRwpsSvMuVx7jEA==,type:str]
+    auth-secret-key: ENC[AES256_GCM,data:xGDOYYWyc4IyAc2bty5HODfUrWU05VQF6yxxY+FoejmhzeBQt9YXuzEkJSMgrSgN,iv:UZzG1gl+lL51SowPuGTqGWAcS6mlss44Ttm1wUg8mQ8=,tag:qnX44a0+WDHx4jOoPlnSwQ==,type:str]
+    auth-postgresql-user: ENC[AES256_GCM,data:xdQFZyD7cSA5,iv:ANuIoNjrrlDNFxwraCPE09BLsDFoEPoFbkolRQqc1NU=,tag:1hYMPfISMe53Zvg153wUfw==,type:str]
+    auth-postgresql-password: ENC[AES256_GCM,data:8i4Anu7O9+lvzTWFM5hPBAvZz8Bp0bwLrOpJ8DWbwHJqUgLRIY8+APCFSsf3iI+v,iv:kjyzjdYyAiJosvIJKi+2qQrKr5eVLPcNTAThlbe3gQA=,tag:4qe26m/c1ZTxn3RETJ+qDg==,type:str]
+    auth-postgresql-port: ENC[AES256_GCM,data:OtIUsQ==,iv:sRcrws7ZvQEBzxde+XeI6NMiqwTE7Wso/aRKi6Nuaig=,tag:GAHyLebRvN0V9S4TCQqFfQ==,type:str]
 sops:
     kms:
         - arn: arn:aws:kms:eu-west-1:474108156746:key/bc5f3b08-70c6-4421-a8ee-f6fe32d94d6f
-          created_at: "2023-04-05T20:38:29Z"
-          enc: AQICAHj/+PwZrYiv+HkNp6sXnAQerEWUn8+hg6fmiGghYvJqmgEuUMsB9PPssjmpxmoKofU4AAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMD2MlxVtcPC3zsBHIAgEQgDvB7ot2bMPzuFK7B6ASSETbteK30DO/aJvZad03R99scY5viWS0nuYzoJYGaZq3qBB6Q0a60+NEc81MrA==
+          created_at: "2023-04-05T20:46:23Z"
+          enc: AQICAHj/+PwZrYiv+HkNp6sXnAQerEWUn8+hg6fmiGghYvJqmgH1+szgIS5k3eCoOVlFCW6AAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM0DqMC7QBfpL6wBkQAgEQgDtdzFLu1O5NS7XUJlehjuclgW1mZANW3RLT8NaRDd97Kq6T+ezTmtaYu/I6wUWSvLp+p5QGYc7Pq0WcTw==
           aws_profile: default
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2023-04-05T20:38:30Z"
-    mac: ENC[AES256_GCM,data:qDXMgb7WkKSSLxuv/ywPZE5H8qowyS86sgI3HzvhvYQA6cJ7FuiY+ZeBnB46nw+4zDibSB8ODDECdUN9fJohHN5ljlYtAxLga5FqYO63sr2JEg26xmTIZy165VWyONb//nnMm33AUbBag4rbfUqZYAxzEq9vJPrwj0mtm/NH9Qc=,iv:RBtlypc/Qm5XmgcMSBXg3h5mRTHoXfTd/x8rz7wi3BQ=,tag:QPn9qPESuL8KtVWmG2zTtg==,type:str]
+    lastmodified: "2023-04-05T20:46:24Z"
+    mac: ENC[AES256_GCM,data:8pXyUYkXnsUe3YfDTqvDMY2uKq6gTqt36WoHDJeUhty8g8xELlIF34qXZl7gGqGVKld0kg9l4t+TFEh7omsmHwgp+fhi5Cr9EGPwzA282ibvqvfvxKRcf9df2VbBzX48iJJUA+xNlXd2lOGK52YIXFrSawzW56lOBrfd6d/u5Ys=,iv:Hog3z4VVvkXRUs7jzWReDMjWbV7DCo1cs3HMaD7ILZ4=,tag:XNxScXE4XLIhTmXK/4OSVw==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
