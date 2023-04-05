@@ -11,8 +11,8 @@ helmCharts:
     version: 0.23.0
     valuesFile: values.yaml
 
-generators:
-  - ksops-generator.yaml
+# generators:
+#   - ksops-generator.yaml
 
 resources:
   - ns.yaml
