@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patch-serviceAccount
+spec:
+  selector:
+    matchLabels:
+      app: patch-serviceAccount
+  template:
+    metadata:
+      labels:
+        app: patch-serviceAccount
+    spec:
+      containers:
+      - name: argocd-repo-server
+        volumeMounts:
+        - name: custom-tools
+          mountPath: /usr/local/bin/argocd-vault-replacer
+          subPath: argocd-vault-replacer
+        envFrom:
+          - secretRef:
+              name: argocd-vault-replacer-credentials
+      volumes:
+      - name: custom-tools
+        emptyDir: {}
+      initContainers:
+      - name: argocd-vault-replacer-install
+        image: ghcr.io/crumbhole/argocd-vault-replacer
+        imagePullPolicy: Always
+        volumeMounts:
+          - mountPath: /custom-tools
+            name: custom-tools
