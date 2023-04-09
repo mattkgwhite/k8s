@@ -6,7 +6,6 @@
   "requiredStatusChecks": null,
   "commitMessageSuffix": "[ci-skip]",
   "commitBody": "Signed-off-by: Matt White <krangence@users.noreply.github.com>",
-  "includeForks": true,
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
   "assignees": ["@mattkgwhite"],
