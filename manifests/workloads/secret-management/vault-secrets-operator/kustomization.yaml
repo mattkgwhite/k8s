@@ -1,0 +1,26 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: vault
+
+# helmCharts:
+#   - name: vault-secrets-operator
+#     releaseName: vault-secrets-operator
+#     namespace: vault
+#     repo: https://github.com/ricoberger/vault-secrets-operator
+#     version: 1.21.0
+#     # valuesFile: values.yaml
+
+# # generators:
+# #   - ksops-generator.yaml
+
+# # resources:
+#   # - ns.yaml
+#   # - ingress.yaml
+#   # - service.yaml
+#   # - argocd-application.yaml
+
+resources:
+  - vault-auth.yaml
+  - vault-connection.yaml
+  # - vault-static-secret.yaml

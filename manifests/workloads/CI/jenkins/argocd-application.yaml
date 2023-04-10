@@ -2,17 +2,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: authentik
+  name: jenkins
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: "https://github.com/mattkgwhite/home-ops.git"
-    path: manifests/workloads/authentik
+    repoURL: "https://github.com/mattkgwhite/homeops.git"
+    path: manifests/workloads/ci/jenkins
     targetRevision: main
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: authentik
+    namespace: utility
   syncPolicy:
     automated:
       prune: true
