@@ -7,4 +7,4 @@ metadata:
 spec:
   # required configuration
   # address to the Vault server.
-  address: "http://vault:8200"
+  address: "http://vault.<fqdn>:8200"

@@ -3,13 +3,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: vault
 
-# helmCharts:
-#   - name: vault-secrets-operator
-#     releaseName: vault-secrets-operator
-#     namespace: vault
-#     repo: https://github.com/ricoberger/vault-secrets-operator
-#     version: 1.21.0
-#     # valuesFile: values.yaml
+helmCharts:
+  - name: vault-secrets-operator
+    releaseName: vault-secrets-operator
+    namespace: vault
+    repo: https://helm.releases.hashicorp.com
+    version: 0.1.0-beta
+    # valuesFile: values.yaml
 
 # # generators:
 # #   - ksops-generator.yaml
@@ -21,6 +21,19 @@ namespace: vault
 #   # - argocd-application.yaml
 
 resources:
-  - vault-auth.yaml
+  # - vault-auth.yaml
   - vault-connection.yaml
-  # - vault-static-secret.yaml
+  - vault-static-secret.yaml
+  # - https://github.com/hashicorp/vault-secrets-operator/chart/crds/*?ref=v0.1.0-beta
+  # - https://github.com/hashicorp/vault-secrets-operator/tree/main/chart/crds/vaultauth-crd.yaml
+  # - https://github.com/hashicorp/vault-secrets-operator/tree/main/chart/crds/vaultconnection-crd.yaml
+  # - https://github.com/hashicorp/vault-secrets-operator/tree/main/chart/crds/vaultdynamicsecret-crd.yaml
+  # - https://github.com/hashicorp/vault-secrets-operator/tree/main/chart/crds/vaultpkisecret-crd.yaml
+  # - https://github.com/hashicorp/vault-secrets-operator/tree/main/chart/crds/vaultstaticsecret-crd.yaml
+
+patches:
+  - path: patches/vaultauth-crd.yaml
+  - path: patches/vaultconnection-crd.yaml
+  - path: patches/vaultdynamicsecret-crd.yaml
+  - path: patches/vaultpkisecret-crd.yaml
+  - path: patches/vaultstaticsecret-crd.yaml
