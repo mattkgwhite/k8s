@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: aws-creds
+stringData:
+    jenkins-admin-user: ENC[AES256_GCM,data:T/AuXTyJ,iv:B2VHlpWV23fvWngvFhT9aeFDTPlCouvxheVkXwWjGBo=,tag:wM4fbRdlWssojdqvWh//qg==,type:str]
+    jenkins-admin-password: ENC[AES256_GCM,data:fg6ECIYB6zBow3Sm8tLmyfY1iGJGsBCEQM911zuI9LM=,iv:dhSFNF/hzf1EuVcnGKp3c9686uD+ZygGOp+saPlbQDI=,tag:eanzqj6pC1JmqKTnySydPg==,type:str]
+sops:
+    kms:
+        - arn: arn:aws:kms:eu-west-1:474108156746:key/bc5f3b08-70c6-4421-a8ee-f6fe32d94d6f
+          created_at: "2023-04-27T20:53:09Z"
+          enc: AQICAHj/+PwZrYiv+HkNp6sXnAQerEWUn8+hg6fmiGghYvJqmgET7/Uwou70d+0KFaX6K+YdAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMXp4OYxNBJGRx0n15AgEQgDuigvHBHxcFRd6W4HPL7q6ciI5NNSe4g8J9mKbpiSwXuFoOpmHeAcc+Csauf35/XrghNEopgLCxohY+WA==
+          aws_profile: default
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2023-04-27T20:53:09Z"
+    mac: ENC[AES256_GCM,data:o+iL3L9dVEDqvLyEqbXHCJT2yaeC32X8T+cdUomH3kvN9S2/zcXSVN6o1jZDgX41QjYNsAVPksqoYWypdQX0QoLMvP0nIsVMVF6TJIzGX/nbFhsSasGKUf3VsHFrzGaQrY86ueR7WCjQ/w1TdPCmXyfXOdI0X2yzBdPo1HAdGfs=,iv:kmoM0GjEjSa6pigtA2mTiqiDQV5vaW02rQFpEBYQXAo=,tag:3NTlK0/zjbKqirLAGc0lBQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3
