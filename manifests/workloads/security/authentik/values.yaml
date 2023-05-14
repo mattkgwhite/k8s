@@ -21,12 +21,12 @@ authentik:
   ingress:
     enabled: true
 
-  env:
-    - name: AUTHENTIK_SECRET_KEY
-      valueFrom:
-        secretKeyRef:
-          name: authentik
-          key: AUTHENTIK_SECRET_KEY
+  # env:
+  #   - name: AUTHENTIK_SECRET_KEY
+  #     valueFrom:
+  #       secretKeyRef:
+  #         name: authentik
+  #         key: AUTHENTIK_SECRET_KEY
     # - name: AUTHENTIK_POSTGRESQL__USER
     #   valueFrom:
     #     secretKeyRef:
@@ -35,9 +35,9 @@ authentik:
 
   envValuefrom:
     AUTHENTIK_SECRET_KEY:
-    secretKeyRef:
-      key: authentik
-      name: auth-secret-key
+      secretKeyRef:
+        key: authentik
+        name: auth-secret-key
     AUTHENTIK_POSTGRESQL__USER:
       secretKeyRef:
         key: authentik
@@ -61,14 +61,14 @@ authentik:
     
 postgresql:
   enabled: true
-#    fullnameOverride: postgresql
-  postgresqlUsername: "authentik"
-  postgresqlDatabase: "authentik"
-  persistence:
-    enabled: true
-    storageClass:
-    accessModes:
-      - ReadWriteOnce
+# #    fullnameOverride: postgresql
+#   postgresqlUsername: "authentik"
+#   postgresqlDatabase: "authentik"
+#   persistence:
+#     enabled: true
+#     storageClass:
+#     accessModes:
+#       - ReadWriteOnce
 redis:
   enabled: true
 #    fullnameOverride: redis
