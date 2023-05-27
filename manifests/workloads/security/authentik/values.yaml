@@ -1,55 +1,55 @@
 authentik: 
   fullnameOverride: authentik
 
-  # image:
-  #   repository: ghcr.io/goauthentik/server
-  #   tag: 2023.3.3
-  #   pullPolicy: Always
+  replicas: 1
+
+  worker:
+    replicas: 1
+
+  envValuefrom:
+      AUTHENTIK_SECRET_KEY:
+        secretKeyRef:
+          key: authentik
+          name: AUTHENTIK_SECRET_KEY
+      AUTHENTIK_POSTGRESQL__USER:
+        secretKeyRef:
+          key: authentik
+          name: auth-postgresql-user
+      AUTHENTIK_POSTGRESQL__PASSWORD:
+        secretKeyRef:
+          key: authentik
+          name: auth-postgresql-password
+      AUTHENTIK_POSTGRESQL__PORT:
+        secretKeyRef:
+          key: authentik
+          name: auth-postgresql-port
+
+  env:
+    AUTHENTIK_COOKIE_DOMAIN: robotwizard.co.uk
 
   authentik:
-    # This sends anonymous usage-data, stack traces on errors and
-    # performance data to sentry.beryju.org, and is fully opt-in
-    error_reporting:
-      enabled: false
-    postgresql:
-      name: authentik
-#      port: ''
-#      host: 'postgresql'
-#    redis:
-#      host: redis-master
+
+    # postgresql:
+    #   host: authentik-database-rw
+    redis:
+      host: authentik-redis-master
 
   ingress:
     enabled: true
-
-  # env:
-  #   - name: AUTHENTIK_SECRET_KEY
-  #     valueFrom:
-  #       secretKeyRef:
-  #         name: authentik
-  #         key: AUTHENTIK_SECRET_KEY
-    # - name: AUTHENTIK_POSTGRESQL__USER
-    #   valueFrom:
-    #     secretKeyRef:
-    #       name: aws-creds
-    #       key: secret-access-key
-
-  envValuefrom:
-    AUTHENTIK_SECRET_KEY:
-      secretKeyRef:
-        key: authentik
-        name: auth-secret-key
-    AUTHENTIK_POSTGRESQL__USER:
-      secretKeyRef:
-        key: authentik
-        name: auth-postgresql-user
-    AUTHENTIK_POSTGRESQL__PASSWORD:
-      secretKeyRef:
-        key: authentik
-        name: auth-postgresql-password
-    AUTHENTIK_POSTGRESQL__PORT:
-      secretKeyRef:
-        key: authentik
-        name: auth-postgresql-port
+    
+  postgresql:
+    enabled: true
+  # #    fullnameOverride: postgresql
+  #   postgresqlUsername: "authentik"
+  #   postgresqlDatabase: "authentik"
+  #   persistence:
+  #     enabled: true
+  #     storageClass:
+  #     accessModes:
+  #       - ReadWriteOnce
+  redis:
+    enabled: true
+  #    fullnameOverride: redis
 
   livenessProbe:
     initialDelaySeconds: 15
@@ -58,17 +58,3 @@ authentik:
   readinessProbe:
     initialDelaySeconds: 15
     periodSeconds: 10
-    
-postgresql:
-  enabled: true
-# #    fullnameOverride: postgresql
-#   postgresqlUsername: "authentik"
-#   postgresqlDatabase: "authentik"
-#   persistence:
-#     enabled: true
-#     storageClass:
-#     accessModes:
-#       - ReadWriteOnce
-redis:
-  enabled: true
-#    fullnameOverride: redis
