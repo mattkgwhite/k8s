@@ -1,6 +1,5 @@
 authentik: 
   fullnameOverride: authentik
-
   replicas: 1
 
   worker:
