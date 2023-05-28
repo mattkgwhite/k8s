@@ -8,52 +8,53 @@ authentik:
   envValuefrom:
       AUTHENTIK_SECRET_KEY:
         secretKeyRef:
-          key: authentik
-          name: AUTHENTIK_SECRET_KEY
+          name: authentik
+          key: AUTHENTIK_SECRET_KEY
       AUTHENTIK_POSTGRESQL__USER:
         secretKeyRef:
-          key: authentik
-          name: auth-postgresql-user
+          name: authentik
+          key: AUTHENTIK_POSTGRESQL__USER
       AUTHENTIK_POSTGRESQL__PASSWORD:
         secretKeyRef:
-          key: authentik
-          name: auth-postgresql-password
+          name: authentik
+          key: AUTHENTIK_POSTGRESQL__PASSWORD
       AUTHENTIK_POSTGRESQL__PORT:
         secretKeyRef:
-          key: authentik
-          name: auth-postgresql-port
+          name: authentik
+          key: AUTHENTIK_POSTGRESQL__PORT
 
   env:
     AUTHENTIK_COOKIE_DOMAIN: robotwizard.co.uk
 
   authentik:
-
     # postgresql:
     #   host: authentik-database-rw
     redis:
+      enabled: true
       host: authentik-redis-master
 
-  ingress:
-    enabled: true
+    ingress:
+      enabled: true
+      
+    postgresql:
+      enabled: true
+    # #    fullnameOverride: postgresql
+    #   postgresqlUsername: "authentik"
+    #   postgresqlDatabase: "authentik"
+    #   persistence:
+    #     enabled: true
+    #     storageClass:
+    #     accessModes:
+    #       - ReadWriteOnce
     
-  postgresql:
-    enabled: true
-  # #    fullnameOverride: postgresql
-  #   postgresqlUsername: "authentik"
-  #   postgresqlDatabase: "authentik"
-  #   persistence:
-  #     enabled: true
-  #     storageClass:
-  #     accessModes:
-  #       - ReadWriteOnce
-  redis:
-    enabled: true
+    # redis:
+    #   enabled: true
   #    fullnameOverride: redis
 
-  livenessProbe:
-    initialDelaySeconds: 15
-    periodSeconds: 10
+    livenessProbe:
+      initialDelaySeconds: 15
+      periodSeconds: 10
 
-  readinessProbe:
-    initialDelaySeconds: 15
-    periodSeconds: 10
+    readinessProbe:
+      initialDelaySeconds: 15
+      periodSeconds: 10

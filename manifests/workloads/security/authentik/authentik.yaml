@@ -3,26 +3,23 @@ kind: Secret
 metadata:
     name: authentik
 stringData:
-    AUTHENTIK_SECRET_KEY: ENC[AES256_GCM,data:CjhqRaS8PcxA0WlvHr8P6aeaQotj0h8BrIK475tXn75AQR8bC5pSlrCV7th/qb/P,iv:CQ129m6NO67WGPDVWL0PLZQnaMxjnOiiFt69aVQBvVo=,tag:a/8cXBZ5mqcxW0SSWBL8QA==,type:str]
-    AUTHENTIK_POSTGRESQL__USER: ENC[AES256_GCM,data:SAFNWYAYxSNm,iv:B7Asjk/xlRQuWgOWRdmjuCBfqkTS8uQPV5Q47IuMKjc=,tag:hlU0ZUJX2CKxZ2vNU/8KGw==,type:str]
-    AUTHENTIK_POSTGRESQL__PASSWORD: ENC[AES256_GCM,data:at+cPaDo8AH0pdklJuqtoP7G6vhQhsMY6qu+Gd2X0z8Oqbt/Mfjw5hb4/rdtmiQH,iv:586/GkugwBhvfnC0lE5TNDmfa5hsbUQUxIX9Suv5Z4A=,tag:BrwnyLd9Z99s2XnLw/aNXA==,type:str]
-    AUTHENTIK_POSTGRESQL__PORT: ENC[AES256_GCM,data:G0cs3g==,iv:tS7X5YErv6RYqOLrEnSfeWY2/GpTTu8185FNKWu4oEU=,tag:Z3GffuOnRwpsSvMuVx7jEA==,type:str]
-    auth-secret-key: ENC[AES256_GCM,data:xGDOYYWyc4IyAc2bty5HODfUrWU05VQF6yxxY+FoejmhzeBQt9YXuzEkJSMgrSgN,iv:UZzG1gl+lL51SowPuGTqGWAcS6mlss44Ttm1wUg8mQ8=,tag:qnX44a0+WDHx4jOoPlnSwQ==,type:str]
-    auth-postgresql-user: ENC[AES256_GCM,data:xdQFZyD7cSA5,iv:ANuIoNjrrlDNFxwraCPE09BLsDFoEPoFbkolRQqc1NU=,tag:1hYMPfISMe53Zvg153wUfw==,type:str]
-    auth-postgresql-password: ENC[AES256_GCM,data:8i4Anu7O9+lvzTWFM5hPBAvZz8Bp0bwLrOpJ8DWbwHJqUgLRIY8+APCFSsf3iI+v,iv:kjyzjdYyAiJosvIJKi+2qQrKr5eVLPcNTAThlbe3gQA=,tag:4qe26m/c1ZTxn3RETJ+qDg==,type:str]
-    auth-postgresql-port: ENC[AES256_GCM,data:OtIUsQ==,iv:sRcrws7ZvQEBzxde+XeI6NMiqwTE7Wso/aRKi6Nuaig=,tag:GAHyLebRvN0V9S4TCQqFfQ==,type:str]
+    AUTHENTIK_SECRET_KEY: ENC[AES256_GCM,data:2inPgXqIG5YmhoU0tgGd1VMYIQboHUsSduBoarwEIO4iGP9ugQN7DPZHlNdSLr/d,iv:hNrwdBVb/MPktYP/qwmu4S5BXqNmCAAznNZ+FsYqeXk=,tag:gBIO+PBmW7R+r0YNBfeISA==,type:str]
+    AUTHENTIK_POSTGRESQL__NAME: ENC[AES256_GCM,data:9kFgYrkrS4PX,iv:vFmrEIOqAJxRHGqxspFaWG3mfE+oK1Cdp0Um3JHws0Y=,tag:7CExDKLQ1SFgTLXO6OyOUg==,type:str]
+    AUTHENTIK_POSTGRESQL__USERNAME: ENC[AES256_GCM,data:mYcwxrszv+Tk,iv:RDYUfXdwUzmeSzY2+Df9ZERB46P7zFSURSMKBxsPh68=,tag:WMS+cHYxWaZ0kZrVj+BPwg==,type:str]
+    AUTHENTIK_POSTGRESQL__PASSWORD: ENC[AES256_GCM,data:HwZ5va2pzfkbai2HfCnX7HHVQixOPBLjPrzKY9PPmoQawMHVGx451/8qQiT8b5QL,iv:3mgJuLOuJz4m7x+wgSxXQ60P2IUb+46e1vZXjFd35VI=,tag:wd6bzCZOXAiUc80hyOvKGw==,type:str]
+    AUTHENTIK_POSTGRESQL__PORT: ENC[AES256_GCM,data:bwWkwg==,iv:ZM6WoCm4mOrT382U2++92dYsrzb3wt1Qv6C1ZlU6dMI=,tag:bHEt3FvAHwN2fQjry3suaA==,type:str]
 sops:
     kms:
         - arn: arn:aws:kms:eu-west-1:474108156746:key/bc5f3b08-70c6-4421-a8ee-f6fe32d94d6f
-          created_at: "2023-04-05T20:46:23Z"
-          enc: AQICAHj/+PwZrYiv+HkNp6sXnAQerEWUn8+hg6fmiGghYvJqmgH1+szgIS5k3eCoOVlFCW6AAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM0DqMC7QBfpL6wBkQAgEQgDtdzFLu1O5NS7XUJlehjuclgW1mZANW3RLT8NaRDd97Kq6T+ezTmtaYu/I6wUWSvLp+p5QGYc7Pq0WcTw==
+          created_at: "2023-05-28T10:17:37Z"
+          enc: AQICAHj/+PwZrYiv+HkNp6sXnAQerEWUn8+hg6fmiGghYvJqmgEeMbYbIf63iov7MGqVdOdCAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMCzqAV1B+y8E9RzLxAgEQgDubWMP9D7tLJJnHTeINey+UeYBBx8Xfm6wi46VIwIYGAvKandiODKjyRIzzVdCfJNxvQ3VEsmRUMZNMOw==
           aws_profile: default
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2023-04-05T20:46:24Z"
-    mac: ENC[AES256_GCM,data:8pXyUYkXnsUe3YfDTqvDMY2uKq6gTqt36WoHDJeUhty8g8xELlIF34qXZl7gGqGVKld0kg9l4t+TFEh7omsmHwgp+fhi5Cr9EGPwzA282ibvqvfvxKRcf9df2VbBzX48iJJUA+xNlXd2lOGK52YIXFrSawzW56lOBrfd6d/u5Ys=,iv:Hog3z4VVvkXRUs7jzWReDMjWbV7DCo1cs3HMaD7ILZ4=,tag:XNxScXE4XLIhTmXK/4OSVw==,type:str]
+    lastmodified: "2023-05-28T10:17:37Z"
+    mac: ENC[AES256_GCM,data:LTpXXAuZrjPj6Reurqm2srlRWdNnw1yH0CpDNM6T0jT2G5NjZDGm8qY7tlfdsB5EJjQVyO4FdkVj8mRNqGNY8B7MDFb5U3ZBx6bzQQ7ft701gvsBlGe/LenX3nUdPVMNdegu+rSYy9nyvTilASYlFEZf6aTWgolXzJKRhOyNBug=,iv:OYYVFdxt2NrBq0TZTBoKpLzb5Lmr2CLdLtscK52A4xs=,tag:T/wLDSAZgDFBP4rnmb6yAg==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
