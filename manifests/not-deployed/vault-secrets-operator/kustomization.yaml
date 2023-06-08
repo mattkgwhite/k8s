@@ -8,7 +8,7 @@ helmCharts:
     releaseName: vault-secrets-operator
     namespace: vault
     repo: https://helm.releases.hashicorp.com
-    version: 0.1.0-beta.1
+    version: 0.1.0-rc.1
     # valuesFile: values.yaml
 
 # # generators:
