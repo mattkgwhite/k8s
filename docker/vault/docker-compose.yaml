@@ -4,7 +4,7 @@ networks:
     driver: bridge
 services:
   traefik:
-    image: traefik:v2.10.3
+    image: traefik:v2.10.4
     container_name: traefik
     network_mode: "host"
     volumes:
