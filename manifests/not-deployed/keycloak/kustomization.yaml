@@ -13,7 +13,7 @@ helmCharts:
     releaseName: keycloak
     namespace: oidc
     repo: https://charts.bitnami.com/bitnami
-    version: 15.1.8
+    version: 16.0.3
     # valuesFile: values.yaml 
 # bitnami/keycloak                                13.3.0          20.0.5          
 
