@@ -2,8 +2,6 @@ txtOwnerId: "default"
 txtPrefix: "k8s."
 replicas: 1
 domainFilters:
-  - matt-white.co.uk
-  - robotwizard.co.uk
   - hacksm.net
 loglevel: debug
 logFormat: json

@@ -5,10 +5,10 @@ metadata:
   name: vault-cert
   namespace: vault
 spec:
-  commonName: vault.robotwizard.co.uk
+  commonName: vault.hacksm.net
   secretName: vault-cert
   dnsNames:
-    - vault.robotwizard.co.uk
+    - vault.hacksm.net
   issuerRef:
     name: acme-prod
     kind: ClusterIssuer
@@ -24,10 +24,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - vault.robotwizard.co.uk
+    - vault.hacksm.net
     secretName: vault-cert
   rules:
-  - host: vault.robotwizard.co.uk
+  - host: vault.hacksm.net
     http:
       paths:
       - backend:

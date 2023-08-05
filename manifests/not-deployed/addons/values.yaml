@@ -5,7 +5,7 @@ spc:
   enabled: false
   provider: vault
   role: csi-secrets-store
-  vaultAddress: https://vault.robotwizard.co.uk
+  vaultAddress: https://vault.hacksm.net
   defaultSecretMountPath: kv-v2
   defaultObjectPath: ""
   secretObjects: false

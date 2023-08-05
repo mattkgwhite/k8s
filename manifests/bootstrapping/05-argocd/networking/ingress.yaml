@@ -8,10 +8,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - argocd.robotwizard.co.uk
+    - argocd.hacksm.net
     secretName: argocd-cert
   rules:
-  - host: argocd.robotwizard.co.uk
+  - host: argocd.hacksm.net
     http:
       paths:
       - backend:

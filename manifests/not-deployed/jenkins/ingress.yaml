@@ -5,10 +5,10 @@ metadata:
   name: jenkins-cert
   namespace: jenkins
 spec:
-  commonName: jenkins.robotwizard.co.uk
+  commonName: jenkins.hacksm.net
   secretName: jenkins-cert
   dnsNames:
-    - jenkins.robotwizard.co.uk
+    - jenkins.hacksm.net
   issuerRef:
     name: acme-prod
     kind: ClusterIssuer
@@ -24,10 +24,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - jenkins.robotwizard.co.uk
+    - jenkins.hacksm.net
     secretName: jenkins-cert
   rules:
-  - host: jenkins.robotwizard.co.uk
+  - host: jenkins.hacksm.net
     http:
       paths:
       - backend:

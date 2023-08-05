@@ -5,10 +5,10 @@ metadata:
   name: argocd-cert
   namespace: argocd
 spec:
-  commonName: argocd.robotwizard.co.uk
+  commonName: argocd.hacksm.net
   secretName: argocd-cert
   dnsNames:
-    - argocd.robotwizard.co.uk
+    - argocd.hacksm.net
   issuerRef:
     name: acme-prod
     kind: ClusterIssuer

@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: primary-ip
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: traefik.robotwizard.co.uk
+    external-dns.alpha.kubernetes.io/hostname: traefik.hacksm.net
 spec:
   type: ExternalName
-  externalName: 168.119.230.133
+  externalName: 128.140.15.44

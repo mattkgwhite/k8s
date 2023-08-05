@@ -6,7 +6,7 @@ spec:
   entryPoints:
   - web
   routes:
-  - match: Host(`traefik.robotwizard.co.uk`)
+  - match: Host(`traefik.hacksm.net`)
     kind: Rule
     services:
     - name: traefik
@@ -23,7 +23,7 @@ spec:
   entryPoints:
   - websecure
   routes:
-  - match: Host(`traefik.robotwizard.co.uk`) && PathPrefix(`/dashboard`)
+  - match: Host(`traefik.hacksm.net`) && PathPrefix(`/dashboard`)
     kind: Rule
     services:
     - name: traefik

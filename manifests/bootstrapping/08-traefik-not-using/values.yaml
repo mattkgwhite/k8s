@@ -14,7 +14,7 @@ service:
   enabled: true
   type: LoadBalancer
   annotations:
-    metallb.universe.tf/loadBalancerIPs: 168.119.230.133
+    metallb.universe.tf/loadBalancerIPs: 128.140.15.44
   spec:
     loadBalancerClass: metallb
 

@@ -24,7 +24,7 @@ authentik:
           key: AUTHENTIK_POSTGRESQL__PORT
 
   env:
-    AUTHENTIK_COOKIE_DOMAIN: robotwizard.co.uk
+    AUTHENTIK_COOKIE_DOMAIN: hacksm.net
 
   authentik:
     # postgresql:

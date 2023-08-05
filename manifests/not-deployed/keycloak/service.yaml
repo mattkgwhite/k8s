@@ -5,11 +5,11 @@ metadata:
   name: keycloak-extname
   namespace: oidc
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: keycloak.robotwizard.co.uk
+    external-dns.alpha.kubernetes.io/hostname: keycloak.hacksm.net
     external-dns.alpha.kubernetes.io/ttl: "300"
   labels:
     app.kubernetes.io/instance: keycloak
 spec:
   type: ExternalName
-  externalName: nginx.robotwizard.co.uk
+  externalName: nginx.hacksm.net
   sessionAffinity: None

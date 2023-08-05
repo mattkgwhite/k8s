@@ -4,11 +4,11 @@ kind: Service
 metadata:
   name: vault-extname
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: vault.robotwizard.co.uk
+    external-dns.alpha.kubernetes.io/hostname: vault.hacksm.net
     external-dns.alpha.kubernetes.io/ttl: "300"
   labels:
     app.kubernetes.io/instance: vault
 spec:
   type: ExternalName
-  externalName: nginx.robotwizard.co.uk
+  externalName: nginx.hacksm.net
   sessionAffinity: None

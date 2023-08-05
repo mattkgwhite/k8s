@@ -5,10 +5,10 @@ metadata:
   name: authentik-cert
   namespace: authentik
 spec:
-  commonName: authentik.robotwizard.co.uk
+  commonName: authentik.hacksm.net
   secretName: authentik-cert
   dnsNames:
-    - authentik.robotwizard.co.uk
+    - authentik.hacksm.net
   issuerRef:
     name: acme-prod
     kind: ClusterIssuer
@@ -24,10 +24,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - authentik.robotwizard.co.uk
+    - authentik.hacksm.net
     secretName: authentik-cert
   rules:
-  - host: authentik.robotwizard.co.uk
+  - host: authentik.hacksm.net
     http:
       paths:
       - backend:

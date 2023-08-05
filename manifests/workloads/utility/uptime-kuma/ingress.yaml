@@ -5,10 +5,10 @@ metadata:
   name: uptime-cert
   namespace: monitoring
 spec:
-  commonName: uptime.robotwizard.co.uk
+  commonName: uptime.hacksm.net
   secretName: uptime-cert
   dnsNames:
-    - uptime.robotwizard.co.uk
+    - uptime.hacksm.net
   issuerRef:
     name: acme-prod
     kind: ClusterIssuer
@@ -24,10 +24,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - uptime.robotwizard.co.uk
+    - uptime.hacksm.net
     secretName: uptime-cert
   rules:
-  - host: uptime.robotwizard.co.uk
+  - host: uptime.hacksm.net
     http:
       paths:
       - backend:

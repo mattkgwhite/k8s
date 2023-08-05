@@ -3,10 +3,10 @@ kind: Certificate
 metadata:
   name: traefik-cert
 spec:
-  commonName: traefik.robotwizard.co.uk
+  commonName: traefik.hacksm.net
   secretName: traefik-cert
   dnsNames:
-  - traefik.robotwizard.co.uk
+  - traefik.hacksm.net
   issuerRef:
     name: acme-prod
     kind: ClusterIssuer

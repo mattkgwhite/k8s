@@ -5,10 +5,10 @@ metadata:
   name: keycloak-cert
   namespace: oidc
 spec:
-  commonName: keycloak.robotwizard.co.uk
+  commonName: keycloak.hacksm.net
   secretName: keycloak-cert
   dnsNames:
-    - keycloak.robotwizard.co.uk
+    - keycloak.hacksm.net
   issuerRef:
     name: acme-prod
     kind: ClusterIssuer
@@ -24,10 +24,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - keycloak.robotwizard.co.uk
+    - keycloak.hacksm.net
     secretName: keycloak-cert
   rules:
-  - host: keycloak.robotwizard.co.uk
+  - host: keycloak.hacksm.net
     http:
       paths:
       - backend:

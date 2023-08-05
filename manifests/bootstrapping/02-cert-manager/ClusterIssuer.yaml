@@ -5,7 +5,7 @@ metadata:
   name: acme-prod
 spec:
   acme:
-    email: certificates@robotwizard.co.uk
+    email: certificates@hacksm.net
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: acme-prod-account-key
@@ -19,6 +19,4 @@ spec:
               key: secret-access-key
         selector:
           dnsZones:
-            - "matt-white.co.uk"
-            - "robotwizard.co.uk"
             - "hacksm.net"
