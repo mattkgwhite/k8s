@@ -1,23 +1,12 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+---
+apiVersion: v1
+kind: Service
 metadata:
-  name: argo
+  name: argo-extname
   annotations:
-    cert-manager.io/cluster-issuer: acme-prod
+    external-dns.alpha.kubernetes.io/hostname: argo.hacksm.net
+    external-dns.alpha.kubernetes.io/ttl: "300"
 spec:
-  ingressClassName: nginx
-  tls:
-  - hosts:
-    - argo.robotwizard.co.uk
-    secretName: argo-cert
-  rules:
-  - host: argo.robotwizard.co.uk
-    http:
-      paths:
-      - backend:
-          service:
-            name: argo-cd-argocd-server
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
+  type: ExternalName
+  externalName: nginx.hacksm.net
+  sessionAffinity: None
