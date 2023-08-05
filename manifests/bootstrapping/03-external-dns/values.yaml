@@ -1,12 +1,16 @@
 txtOwnerId: "default"
-txtPrefix: "k8s."
+txtPrefix: txt.
+registry: txt
 replicas: 1
 domainFilters:
   - hacksm.net
+sources:
+  - service
+
 loglevel: debug
 logFormat: json
 
-policy: sync
+policy: upsert-only
 interval: 30s
 
 crd:
