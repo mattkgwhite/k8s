@@ -7,5 +7,4 @@ resources:
   - 01-metallb.yaml
   - 02-cert-manager.yaml
   - 03-external-dns.yaml
-  - 04-traefik.yaml
-  - 05-argocd.yaml
+  - 04-argocd.yaml
