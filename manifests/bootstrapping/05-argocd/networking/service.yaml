@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argo
+  annotations:
+    cert-manager.io/cluster-issuer: acme-prod
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - argo.robotwizard.co.uk
+    secretName: argo-cert
+  rules:
+  - host: argo.robotwizard.co.uk
+    http:
+      paths:
+      - backend:
+          service:
+            name: argo-cd-argocd-server
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
