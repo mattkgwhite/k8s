@@ -8,7 +8,7 @@ spec:
   commonName: argocd.hacksm.net
   secretName: argocd-cert
   dnsNames:
-    - argocd.hacksm.net
+    - argo.hacksm.net
   issuerRef:
     name: acme-prod
     kind: ClusterIssuer
