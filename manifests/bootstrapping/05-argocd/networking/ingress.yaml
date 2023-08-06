@@ -1,22 +1,22 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argo
+  name: argocd
   annotations:
     cert-manager.io/cluster-issuer: acme-prod
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - argo.hacksm.net
-    secretName: argo-cert
+    - argocd.hacksm.net
+    secretName: argocd-cert
   rules:
-  - host: argo.hacksm.net
+  - host: argocd.hacksm.net
     http:
       paths:
       - backend:
           service:
-            name: argo-cd-argocd-server
+            name: argocd-cd-argocdcd-server
             port:
               number: 80
         path: /

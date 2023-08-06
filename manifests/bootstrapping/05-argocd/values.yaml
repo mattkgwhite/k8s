@@ -54,18 +54,18 @@ server:
   config:
     kustomize.buildOptions: "--enable-alpha-plugins --enable-exec"
     application.instanceLabelKey: argocd.argoproj.io/instance
-    url: https://argo.hacksm.net
+    url: https://argocd.hacksm.net
     # Why in the FUCK is this here? See below!
     # https://argo-cd.readthedocs.io/en/release-2.4/faq/#why-is-my-application-still-outofsync-immediately-after-a-successful-sync
     # https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cm.yaml#L235
     # Thanks a ton to @onedr0p, @toboshii, and @xUnholy for the help in figuring this out!
-  # ingress:
-  #   enabled: true
+  ingress:
+    enabled: false
   #   ingressClassName: nginx
   #   annotations: {}
   #   hosts:
-  #   - argo.hacksm.net
+  #   - argocd.hacksm.net
   #   tls:
   #   - secretName: argocd-cert
   #     hosts:
-  #     - argo.hacksm.net
+  #     - argocd.hacksm.net
