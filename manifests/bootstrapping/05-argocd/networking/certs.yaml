@@ -1,14 +1,12 @@
----
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: argocd-cert
-  namespace: argocd
 spec:
   commonName: argocd.hacksm.net
   secretName: argocd-cert
   dnsNames:
-    - argocd.hacksm.net
+  - argocd.hacksm.net
   issuerRef:
     name: acme-prod
     kind: ClusterIssuer

@@ -5,5 +5,3 @@ namespace: argocd
 resources:
 - certs.yaml
 - external-dns.yaml
-- ingress.yaml
-- service.yaml
