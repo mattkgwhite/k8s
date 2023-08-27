@@ -1,0 +1,77 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: external-dns
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: external-dns
+  namespace: external-dns
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  refreshInterval: "5m"
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: 1password
+  target:
+    creationPolicy: Owner
+  data:
+    - secretKey: aws-creds
+      remoteRef:
+        key: access-key-id
+    - secretKey: aws-creds
+      remoteRef:
+        key: secret-access-key
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns
+  namespace: argocd
+spec:
+  destination:
+    namespace: external-dns
+    server: https://kubernetes.default.svc
+  project: homelab
+  source:
+    chart: external-dns
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 6.24.1
+    helm:
+      values: |
+        fullnameOverride: external-dns
+        txtOwnerId: "default"
+        txtPrefix: txt.
+        registry: txt
+        replicas: 1
+        domainFilters:
+          - hacksm.net
+        sources:
+          - service
+        loglevel: debug
+        logFormat: json
+        policy: upsert-only
+        interval: 30s
+        crd:
+          create: true
+        provider: aws
+        extraArgs:
+          - --aws-zone-type=public
+        env:
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: aws-creds
+                key: access-key-id
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: aws-creds
+                key: secret-access-key
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true

@@ -1,0 +1,19 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: certificates
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-staging
+  namespace: certificates
+spec:
+  secretName: wildcard-staging
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  commonName: '<path:stringreplacesecret#domain>'
+  dnsNames:
+  - '<path:stringreplacesecret#domain>'
+  - '*.<path:stringreplacesecret#domain>'
