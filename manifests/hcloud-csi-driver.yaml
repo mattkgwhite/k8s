@@ -1,0 +1,28 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: hcloud
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hcloud-csi-driver
+  namespace: argocd
+spec:
+  destination:
+    namespace: hcloud
+    server: https://kubernetes.default.svc
+  project: homelab
+  source:
+    chart: hcloud-csi-driver
+    repoURL: https://helm-charts.mlohr.com/
+    targetRevision: 2.2.1
+    helm: 
+      values: |
+        secret:
+          existingSecretName: <path:stringreplacesecret#hcloud-secret> 
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true

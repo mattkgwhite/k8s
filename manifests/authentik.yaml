@@ -98,7 +98,6 @@ spec:
             annotations:
               external-dns.custom/type: private
               external-dns.alpha.kubernetes.io/hostname: "authentik.<path:stringreplacesecret#domain>"
-              # external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
             hosts:
                 - host: authentik.<path:stringreplacesecret#domain>
                   paths:
