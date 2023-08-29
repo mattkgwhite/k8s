@@ -10,7 +10,7 @@ annotations:
       image: ghcr.io/goauthentik/proxy:2023.6.1
       whitelisted: true
     - name: authentik-outpost-ldap
-      image: ghcr.io/goauthentik/ldap:2023.6.1
+      image: ghcr.io/goauthentik/ldap:2023.8.0
       whitelisted: true
     - name: authentik-outpost-radius
       image: ghcr.io/goauthentik/radius:2023.6.1
