@@ -20,7 +20,7 @@ spec:
     helm: 
       values: |
         secret:
-          existingSecretName: <path:stringreplacesecret#hcloud-secret> 
+          existingSecretName: <path:stringreplacesecret#hcloudsecret> 
   syncPolicy:
     automated:
       allowEmpty: true
