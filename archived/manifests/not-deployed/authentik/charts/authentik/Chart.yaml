@@ -4,16 +4,16 @@ annotations:
       description: upgrade to authentik 2023.5.2
   artifacthub.io/images: |
     - name: authentik
-      image: ghcr.io/goauthentik/server:2023.6.2
+      image: ghcr.io/goauthentik/server:2023.8.0
       whitelisted: true
     - name: authentik-outpost-proxy
-      image: ghcr.io/goauthentik/proxy:2023.6.1
+      image: ghcr.io/goauthentik/proxy:2023.8.0
       whitelisted: true
     - name: authentik-outpost-ldap
       image: ghcr.io/goauthentik/ldap:2023.8.0
       whitelisted: true
     - name: authentik-outpost-radius
-      image: ghcr.io/goauthentik/radius:2023.6.1
+      image: ghcr.io/goauthentik/radius:2023.8.0
       whitelisted: true
   artifacthub.io/license: GPL
   artifacthub.io/links: |
