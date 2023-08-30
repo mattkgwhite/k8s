@@ -20,10 +20,12 @@ spec:
   data:
     - secretKey: aws-creds
       remoteRef:
-        key: aws-access-key
+        key: aws-creds 
+        property: aws-access-key
     - secretKey: aws-creds
       remoteRef:
-        key: secret-access-key
+        key: aws-creds
+        property: secret-access-key
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
