@@ -8,8 +8,8 @@ kind: ExternalSecret
 metadata:
   name: external-dns
   namespace: external-dns
-  annotations:
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  # annotations:
+  #   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   refreshInterval: "5m"
   secretStoreRef:
