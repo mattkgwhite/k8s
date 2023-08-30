@@ -59,17 +59,24 @@ spec:
         provider: aws
         extraArgs:
           - --aws-zone-type=public
-        env:
-          - name: AWS_ACCESS_KEY_ID
-            valueFrom:
-              secretKeyRef:
-                name: aws-creds
-                key: aws-access-key
-          - name: AWS_SECRET_ACCESS_KEY
-            valueFrom:
-              secretKeyRef:
-                name: aws-creds
-                key: secret-access-key
+        credentials
+          accessKeyIDSecretRef:
+            name: "aws-creds"
+            key: "aws-access-key"
+          secretAccessKeySecretRef:
+            name: "aws-creds"
+            key: "secret-access-key"
+        # env:
+        #   - name: AWS_ACCESS_KEY_ID
+        #     valueFrom:
+        #       secretKeyRef:
+        #         name: aws-creds
+        #         key: aws-access-key
+        #   - name: AWS_SECRET_ACCESS_KEY
+        #     valueFrom:
+        #       secretKeyRef:
+        #         name: aws-creds
+        #         key: secret-access-key
   syncPolicy:
     automated:
       allowEmpty: true
