@@ -20,7 +20,7 @@ spec:
   data:
     - secretKey: aws-creds
       remoteRef:
-        key: access-key-id
+        key: aws-access-key
     - secretKey: aws-creds
       remoteRef:
         key: secret-access-key
@@ -64,7 +64,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: aws-creds
-                key: access-key-id
+                key: aws-access-key
           - name: AWS_SECRET_ACCESS_KEY
             valueFrom:
               secretKeyRef:
