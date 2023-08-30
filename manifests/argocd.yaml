@@ -214,6 +214,7 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: argocd.<path:stringreplacesecret#domain>
     # external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/cors-expose-headers: "*, X-CustomResponseHeader"
 spec:
   ingressClassName: ingress-nginx-external
   rules:
@@ -235,6 +236,7 @@ metadata:
   namespace: argocd
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+    nginx.ingress.kubernetes.io/cors-expose-headers: "*, X-CustomResponseHeader"
 spec:
   ingressClassName: ingress-nginx-external
   rules:
