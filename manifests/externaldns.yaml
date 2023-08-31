@@ -19,13 +19,13 @@ spec:
     name: external-dns-secret
     creationPolicy: Owner
   data:
-  - secretKey: aws-creds
+  - secretKey: aws
     remoteRef:
-      key: aws-creds 
+      key: aws
       property: aws-access-key
-  - secretKey: aws-creds
+  - secretKey: aws
     remoteRef:
-      key: aws-creds
+      key: aws
       property: secret-access-key
 ---
 apiVersion: argoproj.io/v1alpha1
