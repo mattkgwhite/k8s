@@ -48,11 +48,7 @@ spec:
     helm: 
       values: |
         secret:
-          hcloudApiToken: 
-            valueFrom:
-              secretRefFrom:
-                key: token
-                name: hetzner
+          existingSecretName: hcloud-secret
   syncPolicy:
     automated:
       allowEmpty: true
