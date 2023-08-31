@@ -27,6 +27,9 @@ spec:
     remoteRef:
       key: aws
       property: secret-access-key
+  dataFrom:
+    - extract:
+        key: aws
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
