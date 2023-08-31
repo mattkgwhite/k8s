@@ -16,6 +16,7 @@ spec:
     kind: ClusterSecretStore
     name: 1password
   target:
+    name: aws-creds
     creationPolicy: Owner
   data:
   - secretKey: aws-creds
