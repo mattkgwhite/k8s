@@ -39,7 +39,7 @@ spec:
   target:
     creationPolicy: Owner
   data:
-    - secretKey: aws-creds
+    - secretKey: secret-access-key
       remoteRef:
         key: aws-creds
         property: secret-access-key
