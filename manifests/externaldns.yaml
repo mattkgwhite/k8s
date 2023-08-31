@@ -19,11 +19,11 @@ spec:
     name: external-dns-secret
     creationPolicy: Owner
   data:
-  - secretKey: aws
+  - secretKey: aws-access-key
     remoteRef:
       key: aws
       property: aws-access-key
-  - secretKey: aws
+  - secretKey: secret-access-key
     remoteRef:
       key: aws
       property: secret-access-key
