@@ -16,7 +16,7 @@ spec:
     kind: ClusterSecretStore
     name: 1password
   target:
-    name: aws-creds
+    name: external-dns-secret
     creationPolicy: Owner
   data:
   - secretKey: aws-creds
@@ -66,12 +66,12 @@ spec:
           - name: AWS_ACCESS_KEY_ID
             valueFrom:
               secretKeyRef:
-                name: aws-creds
+                name: external-dns-secret
                 key: aws-access-key
           - name: AWS_SECRET_ACCESS_KEY
             valueFrom:
               secretKeyRef:
-                name: aws-creds
+                name: external-dns-secret
                 key: secret-access-key
   syncPolicy:
     automated:
