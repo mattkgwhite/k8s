@@ -10,7 +10,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: hcloud
+    namespace: kubesystem
     server: https://kubernetes.default.svc
   project: homelab
   source:
