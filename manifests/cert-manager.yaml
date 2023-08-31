@@ -37,11 +37,12 @@ spec:
     kind: ClusterSecretStore
     name: 1password
   target:
+    name: cert-manager-secret
     creationPolicy: Owner
   data:
     - secretKey: secret-access-key
       remoteRef:
-        key: aws-creds
+        key: aws
         property: secret-access-key
 ---
 apiVersion: cert-manager.io/v1
