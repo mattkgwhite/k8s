@@ -63,7 +63,7 @@ spec:
           region: us-east-1
           accessKeyID: AKIAW4YYMLNFKAG25JMV
           secretAccessKeySecretRef:
-            name: aws-creds
+            name: cert-manager-secret
             key: secret-access-key
       selector:
         dnsZones:
@@ -87,7 +87,7 @@ spec:
           region: us-east-1
           accessKeyID: AKIAW4YYMLNFKAG25JMV
           secretAccessKeySecretRef:
-            name: aws-creds
+            name: cert-manager-secret
             key: secret-access-key
       selector:
         dnsZones:
