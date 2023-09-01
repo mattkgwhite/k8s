@@ -62,6 +62,6 @@ spec:
   - main-address-pool
   interfaces:
   - eth0
-  # nodeSelectors:
-  # - matchLabels:
-  #     kubernetes.io/hostname: argocd
+  nodeSelectors:
+  - matchLabels:
+      kubernetes.io/hostname: argo
