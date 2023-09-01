@@ -19,6 +19,12 @@ spec:
     targetRevision: 4.24.0
     helm:
       values: |
+        fullnameOverride: kube-state-metrics
+        releaseLabel: true # disable for victoria-metrics
+        metricLabelsAllowlist:
+          - deployments=[*]
+          - persistentvolumeclaims=[*]
+          - pods=[*]
         prometheus:
           monitor:
             enabled: true
