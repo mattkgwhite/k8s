@@ -58,7 +58,7 @@ spec:
           - service
         loglevel: debug
         logFormat: json
-        policy: upsert-only
+        policy: sync
         interval: 30s
         crd:
           create: true
