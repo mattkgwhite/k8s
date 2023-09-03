@@ -213,8 +213,12 @@ metadata:
     external-dns.custom/type: private
     external-dns.alpha.kubernetes.io/hostname: argocd.<path:stringreplacesecret#domain>
     # external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     nginx.ingress.kubernetes.io/cors-expose-headers: "*, X-CustomResponseHeader"
+    cert-manager/io/cluster-issuer: letsencrypt-production
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: 'true'
+    nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
+    nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'
 spec:
   ingressClassName: ingress-nginx-external
   rules:
@@ -227,26 +231,26 @@ spec:
               service:
                 name: argocd-server
                 port:
-                  number: 80
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: argocd-grpc
-  namespace: argocd
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
-    nginx.ingress.kubernetes.io/cors-expose-headers: "*, X-CustomResponseHeader"
-spec:
-  ingressClassName: ingress-nginx-external
-  rules:
-    - host: argocd.<path:stringreplacesecret#domain>
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: argocd-server
-                port:
-                  number: 80
+                  number: 443
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: argocd-grpc
+#   namespace: argocd
+#   annotations:
+#     nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+#     nginx.ingress.kubernetes.io/cors-expose-headers: "*, X-CustomResponseHeader"
+# spec:
+#   ingressClassName: ingress-nginx-external
+#   rules:
+#     - host: argocd.<path:stringreplacesecret#domain>
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: argocd-server
+#                 port:
+#                   number: 80
