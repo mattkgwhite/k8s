@@ -218,6 +218,10 @@ metadata:
     kubernetes.io/tls-acme: 'true'
     nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
     nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'
+  tls:
+    - secretName: argocd-cert
+      hosts:
+      - argocd.hacksm.net
 spec:
   ingressClassName: ingress-nginx-external
   rules:
