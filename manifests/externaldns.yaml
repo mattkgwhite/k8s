@@ -53,7 +53,7 @@ spec:
         registry: txt
         replicas: 1
         domainFilters:
-          - hacksm.net
+          - <path:stringreplacesecret#domain>
         sources:
           - service
         loglevel: debug
