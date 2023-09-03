@@ -17,3 +17,18 @@ spec:
   dnsNames:
   - '<path:stringreplacesecret#domain>'
   - '*.<path:stringreplacesecret#domain>'
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-production
+  namespace: certificates
+spec:
+  secretName: wildcard-production
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: '<path:stringreplacesecret#domain>'
+  dnsNames:
+  - '<path:stringreplacesecret#domain>'
+  - '*.<path:stringreplacesecret#domain>'
