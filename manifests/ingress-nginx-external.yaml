@@ -141,11 +141,11 @@ spec:
       allowEmpty: true
       prune: true
       selfHeal: true
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: ingress-nginx-controller
-#   namespace: kube-system
-# spec:
-#   loadBalancerClass: metallb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-nginx-controller
+  namespace: kube-system
+spec:
+  loadBalancerClass: metallb
