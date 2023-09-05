@@ -12,9 +12,17 @@
   "helm-values": {
     "fileMatch": ["./.+\\.yaml$"]
   },
+  "argocd": {
+    "fileMatch":[
+      "manifest/.+\\.yaml$",
+      "manifest/argo-projects/.+\\.yaml$"
+    ]
+  },
   "kubernetes": {
-    "fileMatch": ["\\.yaml$"],
-    "ignorePaths": ["flux-system/", ".github"]
+    "fileMatch": [
+      "manifest/.+\\.yaml$",
+      "bootstrap/.+\\.yaml$"
+    ]
   },
   "regexManagers": [
     {
