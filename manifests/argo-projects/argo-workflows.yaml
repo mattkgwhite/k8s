@@ -85,14 +85,14 @@ spec:
         server:
           enabled: true
           ingress:
-            enabled: true
-            ingressClassName: nginx
-            hosts:
-            - workflows.<path:stringreplacesecret#domain>
-            tls:
-            - secretName: workflows-cert
-              hosts:
-              - workflows.<path:stringreplacesecret#domain>
+            enabled: false
+            # ingressClassName: nginx
+            # hosts:
+            # - workflows.<path:stringreplacesecret#domain>
+            # tls:
+            # - secretName: workflows-cert
+            #   hosts:
+            #   - workflows.<path:stringreplacesecret#domain>
   syncPolicy:
     automated:
       allowEmpty: true
