@@ -93,16 +93,16 @@ spec:
     helm:
       values: |
         ingress:
-            enabled: true
-            ingressClassName: ingress-nginx-external
-            annotations:
-              external-dns.custom/type: private
-              external-dns.alpha.kubernetes.io/hostname: "authentik.<path:stringreplacesecret#domain>"
-            hosts:
-                - host: authentik.<path:stringreplacesecret#domain>
-                  paths:
-                      - path: "/"
-                        pathType: Prefix
+            enabled: false
+            # ingressClassName: ingress-nginx-external
+            # annotations:
+            #   external-dns.custom/type: private
+            #   external-dns.alpha.kubernetes.io/hostname: "authentik.<path:stringreplacesecret#domain>"
+            # hosts:
+            #     - host: authentik.<path:stringreplacesecret#domain>
+            #       paths:
+            #           - path: "/"
+            #             pathType: Prefix
         authentik:
           postgresql:
             host: "authentik-postgres.authentik"
@@ -318,3 +318,27 @@ spec:
         meta_launch_url = "http://argocd.<path:stringreplacesecret#domain>/auth/login"
         policy_engine_mode = "all"
       }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    # app.kubernetes.io/component: server
+    # app.kubernetes.io/name: argocd-server
+    # app.kubernetes.io/part-of: argocd
+  name: authentik-extname
+  namespace: argocd
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: authentik.hacksm.net
+    external-dns.alpha.kubernetes.io/ttl: "300"
+spec:
+  type: ExternalName
+  externalName: nginx.hacksm.net
+  sessionAffinity: None
+  ports:
+    - name: https
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app.kubernetes.io/name: authentik
