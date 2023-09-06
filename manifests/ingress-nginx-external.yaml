@@ -136,16 +136,20 @@ spec:
           scope: false
         serviceAccount:
           create: true
+    plugin:
+      name: kustomize-inline
+      env:
+        - name: KUSTOMIZATION_YAML
+          value: |
+            apiVersion: v1
+            kind: Service
+            metadata:
+              name: ingress-nginx-controller
+              namespace: kube-system
+            spec:
+              loadBalancerClass: metallb
   syncPolicy:
     automated:
       allowEmpty: true
       prune: true
       selfHeal: true
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: ingress-nginx-controller
-  namespace: kube-system
-spec:
-  loadBalancerClass: metallb
