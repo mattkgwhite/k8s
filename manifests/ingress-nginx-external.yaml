@@ -22,9 +22,9 @@ spec:
         controller:
           service:
             type: ClusterIP
-          ingressClass: ingress-nginx-external
+          ingressClass: nginx
           ingressClassResource:
-            name: ingress-nginx-external
+            name: nginx
             controllerValue: "k8s.io/ingress-nginx"
           admissionWebhooks:
             enabled: false
