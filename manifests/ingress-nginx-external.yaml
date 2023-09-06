@@ -25,7 +25,7 @@ spec:
           ingressClass: ingress-nginx-external
           ingressClassResource:
             name: ingress-nginx-external
-            controllerValue: "k8s.io/ingress-nginx-external"
+            controllerValue: "k8s.io/ingress-nginx"
           admissionWebhooks:
             enabled: false
     plugin:
