@@ -28,18 +28,18 @@ spec:
             controllerValue: "k8s.io/ingress-nginx"
           admissionWebhooks:
             enabled: false
-    plugin:
-      name: kustomize-inline
-      env:
-        - name: KUSTOMIZATION_YAML
-          value: |
-            apiVersion: v1
-            kind: Service
-            metadata:
-              name: ingress-nginx-controller
-              namespace: kube-system
-            spec:
-              loadBalancerClass: metallb
+    # plugin:
+    #   name: kustomize-inline
+    #   env:
+    #     - name: KUSTOMIZATION_YAML
+    #       value: |
+    #         apiVersion: v1
+    #         kind: Service
+    #         metadata:
+    #           name: ingress-nginx-controller
+    #           namespace: kube-system
+    #         spec:
+    #           loadBalancerClass: metallb
   syncPolicy:
     automated:
       allowEmpty: true
