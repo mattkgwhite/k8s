@@ -90,7 +90,8 @@ spec:
             targetPorts:
               http: http
               https: https
-            type: LoadBalancer
+            # type: LoadBalancer
+            type: ClusterIP
             external:
               enabled: true
             internal:
