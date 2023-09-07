@@ -21,6 +21,9 @@ spec:
       values: |
         controller:
           service:
+            enabled: true
+            annotations:
+              metallb.universe.tf/loadbalancerIPs: <path:stringreplacesecret#ip>"
             type: ClusterIP
           ingressClass: nginx
           ingressClassResource:
