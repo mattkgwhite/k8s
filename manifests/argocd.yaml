@@ -250,7 +250,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
     nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'
 spec:
-  ingressClassName: ingress-nginx-external
+  ingressClassName: ingress-nginx
   rules:
     - host: argocd.<path:stringreplacesecret#domain>
       http:
