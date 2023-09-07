@@ -249,7 +249,7 @@ metadata:
     kubernetes.io/tls-acme: 'true'
     nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
     nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'
-    metallb.universe.tf/loadBalancerIPs: <path:stringreplacesecret#ip>
+    metallb.universe.tf/loadBalancerIPs: "<path:stringreplacesecret#ip>"
 spec:
   ingressClassName: ingress-nginx
   rules:
