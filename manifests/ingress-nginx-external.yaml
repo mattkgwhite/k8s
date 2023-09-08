@@ -37,8 +37,8 @@ spec:
                   namespace: kube-system
                 prometheusRule:
                   enabled: false
-              extraArgs:
-                default-ssl-certificate: "cert-manager/acme-crt-secret"
+              # extraArgs:
+              #   default-ssl-certificate: "cert-manager/acme-crt-secret"
               resources:
                 requests:
                   memory: 500Mi
