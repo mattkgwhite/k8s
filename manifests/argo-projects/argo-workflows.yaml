@@ -96,7 +96,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: argocd
-  namespace: argocd
+  namespace: argo-workflows
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
