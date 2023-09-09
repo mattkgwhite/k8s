@@ -96,8 +96,9 @@ spec:
             enabled: false
             ingressClassName: nginx
             annotations:
-              external-dns.custom/type: private
-              external-dns.alpha.kubernetes.io/hostname: "authentik.<path:stringreplacesecret#domain>"
+              cert-manager.io/cluster-issuer: letsencrypt-production
+              kubernetes.io/ingress.class: nginx
+              kubernetes.io/tls-acme: 'true'
             hosts:
                 - host: authentik.<path:stringreplacesecret#domain>
                   paths:
