@@ -78,7 +78,7 @@ spec:
   source:
     chart: jenkins
     repoURL: https://charts.jenkins.io
-    targetRevision: 2.414.1
+    targetRevision: 4.6.4
     helm:
       values: |
         fullnameOverride: jenkins
