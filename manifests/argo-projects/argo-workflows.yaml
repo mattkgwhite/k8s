@@ -85,16 +85,34 @@ spec:
         server:
           enabled: true
           ingress:
-            enabled: false
-            # ingressClassName: nginx
-            # hosts:
-            # - workflows.<path:stringreplacesecret#domain>
-            # tls:
-            # - secretName: workflows-cert
-            #   hosts:
-            #   - workflows.<path:stringreplacesecret#domain>
+            enabled: true
   syncPolicy:
     automated:
       allowEmpty: true
       prune: true
       selfHeal: true
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd
+  namespace: argocd
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - workflows.hacksm.net
+    secretName: workflows-cert
+  rules:
+  - host: workflows.hacksm.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: argo-workflows-server
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
