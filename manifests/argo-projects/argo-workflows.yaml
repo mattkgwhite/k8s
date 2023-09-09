@@ -85,7 +85,7 @@ spec:
         server:
           enabled: true
           ingress:
-            enabled: true
+            enabled: false
   syncPolicy:
     automated:
       allowEmpty: true
