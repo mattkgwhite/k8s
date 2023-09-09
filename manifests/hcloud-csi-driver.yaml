@@ -1,3 +1,5 @@
+# after applying need to run the following command, to make this the '(default)' storage class
+# kubectl patch storageclass hcloud-volume -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 kind: Namespace
 apiVersion: v1
 metadata:
