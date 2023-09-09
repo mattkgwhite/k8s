@@ -202,11 +202,11 @@ metadata:
   name: argocd-extname
   namespace: argocd
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: argocd.hacksm.net
+    external-dns.alpha.kubernetes.io/hostname: argocd.<path:stringreplacesecret#domain>
     external-dns.alpha.kubernetes.io/ttl: "300"
 spec:
   type: ExternalName
-  externalName: nginx.hacksm.net
+  externalName: nginx.<path:stringreplacesecret#domain>
   sessionAffinity: None
 ---
 apiVersion: networking.k8s.io/v1
@@ -222,10 +222,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - argocd.hacksm.net
+    - argocd.<path:stringreplacesecret#domain>
     secretName: argocd-cert
   rules:
-  - host: argocd.hacksm.net
+  - host: argocd.<path:stringreplacesecret#domain>
     http:
       paths:
       - backend:

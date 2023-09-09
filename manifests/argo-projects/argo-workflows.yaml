@@ -105,10 +105,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - workflows.hacksm.net
+    - workflows.<path:stringreplacesecret#domain>
     secretName: workflows-cert
   rules:
-  - host: workflows.hacksm.net
+  - host: workflows.<path:stringreplacesecret#domain>
     http:
       paths:
       - backend:

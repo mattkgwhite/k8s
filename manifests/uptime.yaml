@@ -39,9 +39,9 @@
 #           #   # Broken in Chart v1.2.2, Common 4.5.2
 #           #   enabled: false
 #           #   type: ExternalName
-#           #   externalName: traefik.hacksm.net
+#           #   externalName: traefik.<path:stringreplacesecret#domain>
 #           #   annotations:
-#           #     external-dns.alpha.kubernetes.io/hostname: uptime.hacksm.net
+#           #     external-dns.alpha.kubernetes.io/hostname: uptime.<path:stringreplacesecret#domain>
 #           #     external-dns.alpha.kubernetes.io/ttl: "300"
 #         ingress:
 #           main:
@@ -67,10 +67,10 @@
 #   name: uptime-cert
 #   namespace: monitoring
 # spec:
-#   commonName: uptime.hacksm.net
+#   commonName: uptime.<path:stringreplacesecret#domain>
 #   secretName: uptime-cert
 #   dnsNames:
-#     - uptime.hacksm.net
+#     - uptime.<path:stringreplacesecret#domain>
 #   issuerRef:
 #     name: acme-prod
 #     kind: ClusterIssuer
@@ -86,10 +86,10 @@
 #   ingressClassName: nginx
 #   tls:
 #   - hosts:
-#     - uptime.hacksm.net
+#     - uptime.<path:stringreplacesecret#domain>
 #     secretName: uptime-cert
 #   rules:
-#   - host: uptime.hacksm.net
+#   - host: uptime.<path:stringreplacesecret#domain>
 #     http:
 #       paths:
 #       - backend:
@@ -105,11 +105,11 @@
 # metadata:
 #   name: uptime-kuma-extname
 #   annotations:
-#     external-dns.alpha.kubernetes.io/hostname: uptime.hacksm.net
+#     external-dns.alpha.kubernetes.io/hostname: uptime.<path:stringreplacesecret#domain>
 #     external-dns.alpha.kubernetes.io/ttl: "300"
 #   labels:
 #     app.kubernetes.io/instance: uptime-kuma
 # spec:
 #   type: ExternalName
-#   externalName: nginx.hacksm.net
+#   externalName: nginx.<path:stringreplacesecret#domain>
 #   sessionAffinity: None
