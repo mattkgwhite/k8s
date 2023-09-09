@@ -334,7 +334,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: authentik-extname
-  namespace: argocd
+  namespace: authentik
   annotations:
     external-dns.alpha.kubernetes.io/hostname: authentik.<path:stringreplacesecret#domain>
     external-dns.alpha.kubernetes.io/ttl: "300"
