@@ -108,16 +108,16 @@ spec:
             host: "authentik-postgres.authentik"
             name: "authentik"
             user: "authentik"
-          persistence:
-            enabled: true
-            storageClass: hcloud-volume
-            accessModes:
-              - ReadWriteOnce
-        redis:
-            enabled: true
-            master:
-              persistence:
-                enabled: false
+            persistence:
+              enabled: true
+              storageClass:
+              accessModes:
+                - ReadWriteOnce
+          redis:
+              enabled: true
+              master:
+                persistence:
+                  enabled: false
         envValueFrom:
           AUTHENTIK_SECRET_KEY:
             secretKeyRef:
