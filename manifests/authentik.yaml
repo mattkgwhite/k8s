@@ -114,11 +114,11 @@ spec:
               storageClass: hcloud-volume
               accessModes:
                 - ReadWriteOnce
-          redis:
-              enabled: true
-              master:
-                persistence:
-                  enabled: false
+        redis:
+            enabled: true
+            master:
+              persistence:
+                enabled: false
         envValueFrom:
           AUTHENTIK_SECRET_KEY:
             secretKeyRef:
