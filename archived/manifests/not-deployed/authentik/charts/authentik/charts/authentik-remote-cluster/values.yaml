@@ -1,7 +1,0 @@
-nameOverride: ""
-fullnameOverride: ""
-
-annotations: {}
-
-serviceAccountSecret:
-  enabled: true
