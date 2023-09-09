@@ -115,6 +115,6 @@ spec:
           service:
             name: argo-workflows-server
             port:
-              number: 80
+              number: 2746
         path: /
         pathType: Prefix
