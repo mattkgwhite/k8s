@@ -108,6 +108,7 @@ spec:
             host: "authentik-postgres.authentik"
             name: "authentik"
             user: "authentik"
+            storageClass: "hcloud-volume"
             persistence:
               enabled: true
               storageClass: hcloud-volume
@@ -347,15 +348,15 @@ spec:
       targetPort: 80
   selector:
     app.kubernetes.io/name: authentik
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: authentik-postgres
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: hcloud-volume
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: authentik-postgres
+# spec:
+#   accessModes:
+#   - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 10Gi
+#   storageClassName: hcloud-volume
