@@ -68,15 +68,15 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: jenkins
   namespace: argocd
 spec:
   destination:
-    namespace: argocd
+    namespace: jenkins
     server: https://kubernetes.default.svc
   project: homelab
   source:
-    chart: argo-cd
+    chart: jenkins
     repoURL: https://charts.jenkins.io
     targetRevision: 2.414.1
     helm:
