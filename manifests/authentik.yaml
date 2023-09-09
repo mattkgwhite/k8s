@@ -110,7 +110,7 @@ spec:
             user: "authentik"
             persistence:
               enabled: true
-              storageClass:
+              storageClass: hcloud-volume
               accessModes:
                 - ReadWriteOnce
           redis:
@@ -351,11 +351,11 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: csi-pvc-1
+  name: authentik-postgres
 spec:
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
-  storageClassName: hcloud-volumes
+  storageClassName: hcloud-volume
