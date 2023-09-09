@@ -106,8 +106,8 @@ spec:
             #             pathType: Prefix
             # tls:
             #   - hosts:
-            #     - argocd.<path:stringreplacesecret#domain>
-            #     secretName: argocd-cert
+            #     - authentik.<path:stringreplacesecret#domain>
+            #     secretName: authentik-cert
         authentik:
           postgresql:
             host: "authentik-postgres.authentik"
