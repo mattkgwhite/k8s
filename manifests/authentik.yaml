@@ -347,3 +347,15 @@ spec:
       targetPort: 80
   selector:
     app.kubernetes.io/name: authentik
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csi-pvc-1
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: hcloud-volumes
