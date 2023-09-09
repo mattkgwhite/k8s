@@ -373,6 +373,6 @@ spec:
           service:
             name: authentik
             port:
-              number: 80
+              number: 9000
         path: /
         pathType: Prefix
