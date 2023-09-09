@@ -112,8 +112,7 @@ spec:
             enabled: true
             storageClass: hcloud-volume
             accessModes:
-              - ReadWriteMany
-
+              - ReadWriteOnce
         redis:
             enabled: true
             master:
