@@ -66,51 +66,36 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: knative-serving
-  namespace: argocd
-spec:
-  destination:
-    namespace: knative-serving
-    server: https://kubernetes.default.svc
-  project: homelab
-  source:
-    repoURL: https://github.com/mattkgwhite/empty.git
-    path: .
-    plugin:
-      name: kustomize-inline
-      env:
-        - name: KUSTOMIZATION_YAML
-          # $ must be escaped with by $$
-          value: |
-            apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
   name: jenkins
-  namespace: argocd
+  namespace: jenkins
 spec:
   destination:
     namespace: jenkins
     server: https://kubernetes.default.svc
   project: homelab
   source:
-    # renovate: registryUrl=https://charts.jenkins.io
     chart: jenkins
     repoURL: https://charts.jenkins.io
-    targetRevision: 4.3.23
+    targetRevision: 4.6.4
     helm:
       values: |
         fullnameOverride: jenkins
         controller:
           image: "jenkins/jenkins"
-          tag: 2.330-jdk11
           tagLabel: jdk11
           imagePullPolicy: IfNotPresent
           numExecutors: 1
+          adminUser: "admin"
           # admin:
           #   existingSecret: "jenkins-admin-secret"
           #   userKey: 
           #   passwordKey: "jenkins"
         initializedOnce: true
+        sidecars:
+          configAutoReload:
+            enabled: true
+            image: kiwigrid/k8s-sidecar:1.24.4
+            imagePullPolicy: IfNotPresent
         ingress:
           enabled: false
         podSecurityContextOVerride:
@@ -121,14 +106,12 @@ spec:
         agent:
           enabled: true
           image: "jenkins/inbound-agent"
-          tag: "4.11-1"
         persistence:
-          jenkins-home:
-            enabled:
-            storageClass: hcloud-volume
-            accessMode: ReadWriteOnce
-            mountPath: /var/jenkins_home
-            size: 20Gi
+          enabled: true
+          storageClass: hcloud-volume
+          accessMode: "ReadWriteOnce"
+          mountPath: /var/jenkins_home
+          size: 20Gi
   syncPolicy:
     automated:
       allowEmpty: true
