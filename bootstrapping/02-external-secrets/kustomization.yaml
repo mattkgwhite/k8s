@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: external-secrets
+
+resources:
+- ns.yaml
+- clustersecretstore.yaml
+- argo.yaml
+
+helmCharts:
+- name: external-secrets
+  releaseName: external-secrets
+  namespace: external-secrets
+  repo: https://charts.external-secrets.io
+  version: "0.9.4"
+  # valuesFile: values.yaml
