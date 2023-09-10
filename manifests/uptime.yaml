@@ -73,7 +73,7 @@ spec:
   dnsNames:
     - uptime.<path:stringreplacesecret#domain>
   issuerRef:
-    name: acme-prod
+    name: letsencrypt-production
     kind: ClusterIssuer
 ---
 apiVersion: networking.k8s.io/v1
@@ -108,8 +108,6 @@ metadata:
   annotations:
     external-dns.alpha.kubernetes.io/hostname: uptime.<path:stringreplacesecret#domain>
     external-dns.alpha.kubernetes.io/ttl: "300"
-  labels:
-    app.kubernetes.io/instance: uptime-kuma
 spec:
   type: ExternalName
   externalName: nginx.<path:stringreplacesecret#domain>
