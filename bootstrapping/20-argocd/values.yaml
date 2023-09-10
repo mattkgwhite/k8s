@@ -31,7 +31,7 @@ repoServer:
     kubernetes.io/arch: amd64
 
   deploymentAnnotations:
-            reloader.stakater.com/auto: "true"
+    reloader.stakater.com/auto: "true"
 
   rbac:
     - apiGroups: [""]

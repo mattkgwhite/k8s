@@ -9,14 +9,15 @@ spec:
         repoURL: https://github.com/mattkgwhite/home-ops.git
         revision: HEAD
         directories:
-          - path: "manifests/workloads/*/*"
+          - path: "manifests/folders/*/*"
+          - path: "manifests/files/*.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: true
   template:
     metadata:
       name: "{{path.basenameNormalized}}"
     spec:
-      project: default
+      project: homelab
       source:
         repoURL: https://github.com/mattkgwhite/home-ops.git
         targetRevision: HEAD
