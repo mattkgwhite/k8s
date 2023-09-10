@@ -74,9 +74,10 @@ spec:
     server: https://kubernetes.default.svc
   project: homelab
   source:
+    # renovate: registryUrl=https://charts.jenkins.io
     chart: jenkins
     repoURL: https://charts.jenkins.io
-    targetRevision: 4.6.4
+    targetRevision: 4.3.23
     helm:
       values: |
         fullnameOverride: jenkins
