@@ -29,8 +29,13 @@ spec:
       project: default
       source:
         repoURL: https://github.com/mattkgwhite/home-ops.git
-        targetRevision: main
+        targetRevision: HEAD
         path: bootstrapping/{{appName}}
+        plugin:
+          name: avp-directory-include
+          env:
+            - name: FILE_NAME
+              value: '{{ .path.filename }}'
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{namespace}}'

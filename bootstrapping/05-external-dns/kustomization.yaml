@@ -12,5 +12,5 @@ helmCharts:
 
 resources:
   - ns.yaml
-  - argo.yaml
+  # - argo.yaml
   - externalsecret.yaml
