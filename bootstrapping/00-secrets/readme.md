@@ -17,8 +17,6 @@ kubectl create secret generic 1passwordconnect --namespace external-secrets --fr
 
 ```
 
-
-
 ```bash
 kustomize build --enable-alpha-plugins | kubectl apply -f -
 ```

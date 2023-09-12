@@ -1,0 +1,20 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-nginx-external
+  namespace: argocd
+spec:
+  destination:
+    namespace: ingress-nginx-external
+    server: https://kubernetes.default.svc
+  project: homelab
+  source:
+    repoURL: https://github.com/mattkgwhite/home-ops.git
+    path: manifests/bootstrapping/05-ingress-nginx
+    targetRevision: main
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
