@@ -44,14 +44,6 @@ repoServer:
     value: '/.config'
   # Add the KSOPS plugin
   initContainers:
-  - name: install-ksops
-    image: viaductoss/ksops:v4.2.1
-    command: ["/bin/sh", "-c"]
-    args:
-    - echo "Installing KSOPS..."; mv ksops /custom-tools/; mv kustomize /custom-tools/; echo "Done.";
-    volumeMounts:
-    - mountPath: /custom-tools
-      name: custom-tools
   - name: download-tools
     image: registry.access.redhat.com/ubi8
     env:
@@ -62,10 +54,10 @@ repoServer:
       - >-
         curl -L https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_amd64 -o argocd-vault-plugin &&
         chmod +x argocd-vault-plugin &&
-        mv argocd-vault-plugin /custom-tools2/
+        mv argocd-vault-plugin /custom-tools/
     volumeMounts:
-      - mountPath: /custom-tools2
-        name: custom-tools2
+      - mountPath: /custom-tools
+        name: custom-tools
   
   extraContainers:
     - name: plugin-avp-directory-include
@@ -87,7 +79,7 @@ repoServer:
         - mountPath: /home/argocd/cmp-server/config/plugin.yaml
           subPath: avp-directory-include.yaml
           name: cmp-plugin
-        - name: custom-tools2
+        - name: custom-tools
           subPath: argocd-vault-plugin
           mountPath: /usr/local/bin/argocd-vault-plugin
 
