@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/mattkgwhite/home-ops.git
-    path: manifests/bootstrapping/03-cert-manager
+    path: bootstrapping/04-cert-manager
     targetRevision: main
   syncPolicy:
     automated:

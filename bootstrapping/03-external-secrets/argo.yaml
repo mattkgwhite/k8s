@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/mattkgwhite/home-ops.git
-    path: manifests/bootstrapping/02-external-secrets
+    path: bootstrapping/03-external-secrets
     targetRevision: main
   syncPolicy:
     automated:

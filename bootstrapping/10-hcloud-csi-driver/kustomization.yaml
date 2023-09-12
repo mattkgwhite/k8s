@@ -11,7 +11,7 @@ helmCharts:
   valuesFile: values.yaml
 
 resources:
-- argo.yaml
+# - argo.yaml
 - ns.yaml
 - externalsecret.yaml
 

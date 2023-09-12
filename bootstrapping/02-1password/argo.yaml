@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/mattkgwhite/home-ops.git
-    path: manifests/bootstrapping/02-1password
+    path: bootstrapping/02-1password
     targetRevision: main
   syncPolicy:
     automated:

@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/mattkgwhite/home-ops.git
-    path: manifests/bootstrapping/06-hcloud-csi-driver
+    path: bootstrapping/06-hcloud-csi-driver
     targetRevision: main
   syncPolicy:
     automated:

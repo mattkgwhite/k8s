@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/mattkgwhite/home-ops.git
-    path: manifests/bootstrapping/05-ingress-nginx
+    path: bootstrapping/05-ingress-nginx
     targetRevision: main
   syncPolicy:
     automated:

@@ -10,7 +10,7 @@ resources:
   # One-Time Deployment Resources
   # - https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.yaml
   - ns.yaml
-  - argo.yaml
+  # - argo.yaml
   - clusterissuer.yaml
   - externalsecret.yaml
 

@@ -8,15 +8,17 @@ spec:
       elements:
       - appName: 01-metallb
         namespace: kube-system
-      - appName: 02-external-secrets
+      - appName: 02-1password
         namespace: kube-system
-      - appName: 03-cert-manager
+      - appName: 03-external-secrets
         namespace: kube-system
-      - appName: 04-external-dns
+      - appName: 04-cert-manager
         namespace: kube-system
-      - appName: 05-ingress-nginx
+      - appName: 05-external-dns
         namespace: kube-system
-      - appName: 06-hcloud-csi-driver
+      - appName: 06-ingress-nginx
+        namespace: kube-system
+      - appName: 10-hcloud-csi-driver
         namespace: kube-system
       - appName: 20-argocd
         namespace: kube-system

@@ -4,7 +4,7 @@ namespace: 1passwordconnect
 
 resources:
 - ns.yaml
-- argo.yaml
+# - argo.yaml
 
 helmCharts:
 - name: connect

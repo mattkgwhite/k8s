@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/mattkgwhite/home-ops.git
-    path: manifests/bootstrapping/04-external-dns
+    path: bootstrapping/05-external-dns
     targetRevision: main
   syncPolicy:
     automated:

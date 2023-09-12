@@ -8,8 +8,8 @@ spec:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
   source:
-    repoURL: "https://github.com/danmanners/homelab-kube-cluster.git"
-    path: manifests/bootstrapping-onprem/11-bootstrapping-argoprojects/
+    repoURL: https://github.com/mattkgwhite/home-ops.git
+    path: bootstrapping/30-argo-bootstrapping
     targetRevision: main
   project: default
   syncPolicy:
