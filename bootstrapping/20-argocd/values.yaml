@@ -49,20 +49,23 @@ repoServer:
     command: ["/bin/sh", "-c"]
     args:
     - echo "Installing KSOPS..."; mv ksops /custom-tools/; mv kustomize /custom-tools/; echo "Done.";
+    volumeMounts:
+    - mountPath: /custom-tools
+      name: custom-tools
   - name: download-tools
     image: registry.access.redhat.com/ubi8
     env:
       - name: AVP_VERSION
         value: 1.16.0
-        command: [sh, -c]
+    command: [sh, -c]
     args:
       - >-
         curl -L https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) -o argocd-vault-plugin &&
         chmod +x argocd-vault-plugin &&
-        mv argocd-vault-plugin /custom-tools/
+        mv argocd-vault-plugin /custom-tools2/
     volumeMounts:
-    - mountPath: /custom-tools
-      name: custom-tools
+      - mountPath: /custom-tools2
+        name: custom-tools2
   
   extraContainers:
     - name: plugin-avp-directory-include
@@ -84,7 +87,7 @@ repoServer:
         - mountPath: /home/argocd/cmp-server/config/plugin.yaml
           subPath: avp-directory-include.yaml
           name: cmp-plugin
-        - name: custom-tools
+        - name: custom-tools2
           subPath: argocd-vault-plugin
           mountPath: /usr/local/bin/argocd-vault-plugin
 
@@ -102,8 +105,12 @@ repoServer:
     subPath: credentials
   - mountPath: /custom-tools
     name: custom-tools
+  - mountPath: /custom-tools2
+    name: custom-tools2
   volumes:
   - name: custom-tools
+    emptyDir: {}
+  - name: custom-tools2
     emptyDir: {}
   - name: aws-creds
     secret:
@@ -111,8 +118,6 @@ repoServer:
   - name: cmp-plugin
     configMap:
       name: cmp-plugin
-  - name: custom-tools
-    emptyDir: {}
   - name: cmp-tmp
     emptyDir: {}
 
@@ -144,7 +149,7 @@ server:
           pathType: Prefix
           backend:
             service:
-              name: argocd-server
+              name: argo-argocd-server
               port:
                 name: 80
 extraObjects:

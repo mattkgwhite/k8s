@@ -17,7 +17,7 @@ spec:
     metadata:
       name: "{{path.basenameNormalized}}"
     spec:
-      project: homelab
+      project: default
       source:
         repoURL: https://github.com/mattkgwhite/home-ops.git
         targetRevision: HEAD

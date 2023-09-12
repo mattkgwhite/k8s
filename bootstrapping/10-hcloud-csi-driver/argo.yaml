@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: kube-system
     server: https://kubernetes.default.svc
-  project: homelab
+  project: default
   source:
     repoURL: https://github.com/mattkgwhite/home-ops.git
     path: manifests/bootstrapping/06-hcloud-csi-driver
