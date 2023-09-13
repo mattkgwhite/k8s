@@ -76,7 +76,7 @@ spec:
   source:
     chart: argo-cd
     repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: 5.43.8
+    targetRevision: 5.46.2
     helm:
       values: |
         configs:
@@ -85,7 +85,7 @@ spec:
           cm:
             resource.compareoptions: |
               ignoreAggregatedRoles: true
-            url: "https://argocd.<path:stringreplacesecret#domain>"
+            url: "http://argocd.<path:stringreplacesecret#domain>"
             dex.config: |
               connectors:
                 - type: oidc
@@ -172,6 +172,43 @@ spec:
                 - mountPath: /home/argocd/cmp-server/config/plugin.yaml
                   subPath: kustomize-inline.yaml
                   name: cmp-plugin
+        extraObjects:
+          - apiVersion: v1
+            kind: ConfigMap
+            metadata:
+              name: cmp-plugin
+              namespace: "{{ .Release.Namespace }}"
+            data:
+              avp-directory-include.yaml: |
+                apiVersion: argoproj.io/v1alpha1
+                kind: ConfigManagementPlugin
+                metadata:
+                  name: avp-directory-include
+                spec:
+                  allowConcurrency: true
+                  generate:
+                    command:
+                      - bash
+                      - "-c"
+                      - |
+                        argocd-vault-plugin generate $ARGOCD_ENV_FILE_NAME
+                  lockRepo: false
+              kustomize-inline.yaml: |
+                apiVersion: argoproj.io/v1alpha1
+                kind: ConfigManagementPlugin
+                metadata:
+                  name: kustomize-inline
+                spec:
+                  allowConcurrency: true
+                  generate:
+                    command:
+                      - /bin/sh
+                      - -c
+                    args:
+                      - |
+                        echo "$ARGOCD_ENV_KUSTOMIZATION_YAML" > kustomization.yaml;
+                        kustomize build
+                  lockRepo: false
   syncPolicy:
     automated:
       allowEmpty: true
