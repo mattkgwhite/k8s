@@ -29,15 +29,18 @@ repoServer:
   # on amd64 nodes.
   nodeSelector:
     kubernetes.io/arch: amd64
-
   deploymentAnnotations:
     reloader.stakater.com/auto: "true"
-
   rbac:
     - apiGroups: [""]
       resources: ["secrets"]
       verbs: ["get", "watch", "list"]
-
+  volumes:
+    - name: cmp-plugin
+      configMap:
+        name: cmp-plugin
+    - name: custom-tools
+      emptyDir: {}
   initContainers:
     - name: download-tools
       image: registry.access.redhat.com/ubi8
@@ -76,16 +79,35 @@ repoServer:
         - name: custom-tools
           subPath: argocd-vault-plugin
           mountPath: /usr/local/bin/argocd-vault-plugin
-  volumes:
-    - name: cmp-plugin
-      configMap:
-        name: cmp-plugin
-    - name: custom-tools
-      emptyDir: {}
-
+extraObjects:
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: cmp-plugin
+      namespace: "{{ .Release.Namespace }}"
+    data:
+      avp-directory-include.yaml: |
+        apiVersion: argoproj.io/v1alpha1
+        kind: ConfigManagementPlugin
+        metadata:
+          name: avp-directory-include
+        spec:
+          allowConcurrency: true
+          discover:
+            find:
+              command:
+                - sh
+                - "-c"
+                - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
+          generate:
+            command:
+              - bash
+              - "-c"
+              - |
+                argocd-vault-plugin generate $ARGOCD_ENV_FILE_NAME
+          lockRepo: false
 server:
   config:
-    kustomize.buildOptions: "--enable-alpha-plugins --enable-exec"
     application.instanceLabelKey: argocd.argoproj.io/instance
     url: https://argocd.hacksm.net
     # Why in the FUCK is this here? See below!
@@ -114,34 +136,6 @@ server:
               name: argo-argocd-server
               port:
                 name: 80
-extraObjects:
-  - apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: cmp-plugin
-      namespace: "{{ .Release.Namespace }}"
-    data:
-      avp-directory-include.yaml: |
-        apiVersion: argoproj.io/v1alpha1
-        kind: ConfigManagementPlugin
-        metadata:
-          name: avp-directory-include
-        spec:
-          allowConcurrency: true
-          discover:
-            find:
-              command:
-                - sh
-                - "-c"
-                - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
-          generate:
-            command:
-              - bash
-              - "-c"
-              - |
-                argocd-vault-plugin generate $ARGOCD_ENV_FILE_NAME
-          lockRepo: false
-
 # dex:
 #   env:
 #   - name: ARGO_WORKFLOWS_SSO_CLIENT_ID
