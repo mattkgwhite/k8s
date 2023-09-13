@@ -4,7 +4,7 @@ namespace: argocd
 
 resources:
 - ns.yaml
-- ../00-secrets
+# - ../00-secrets
 - networking
 # - configmap.yaml
 - externalsecret.yaml

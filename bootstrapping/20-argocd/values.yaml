@@ -25,12 +25,6 @@ configs:
     server.insecure: "true"
 
 repoServer:
-  # Until KSOPS setup logic is re-written, this can only run
-  # on amd64 nodes.
-  nodeSelector:
-    kubernetes.io/arch: amd64
-  deploymentAnnotations:
-    reloader.stakater.com/auto: "true"
   rbac:
     - apiGroups: [""]
       resources: ["secrets"]
