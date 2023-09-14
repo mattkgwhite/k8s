@@ -42,7 +42,7 @@ spec:
   destination:
     namespace: kube-system
     server: https://kubernetes.default.svc
-  project: homelab
+  project: default
   source:
     chart: hcloud-csi-driver
     repoURL: https://helm-charts.mlohr.com/

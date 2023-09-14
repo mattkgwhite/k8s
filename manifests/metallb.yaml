@@ -12,7 +12,7 @@ spec:
   destination:
     namespace: metallb-system
     server: https://kubernetes.default.svc
-  project: homelab
+  project: default
   source:
     chart: metallb
     repoURL: https://metallb.github.io/metallb

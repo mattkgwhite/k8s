@@ -52,7 +52,7 @@ spec:
   destination:
     namespace: authentik
     server: https://kubernetes.default.svc
-  project: homelab
+  project: default
   source:
     chart: postgresql
     repoURL: https://charts.bitnami.com/bitnami
@@ -85,7 +85,7 @@ spec:
   destination:
     namespace: authentik
     server: https://kubernetes.default.svc
-  project: homelab
+  project: default
   source:
     chart: authentik
     repoURL: https://charts.goauthentik.io

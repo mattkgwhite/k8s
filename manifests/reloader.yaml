@@ -12,7 +12,7 @@ spec:
   destination:
     namespace: reloader
     server: https://kubernetes.default.svc
-  project: homelab
+  project: default
   source:
     chart: reloader
     repoURL: https://stakater.github.io/stakater-charts

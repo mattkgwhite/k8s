@@ -12,7 +12,7 @@ spec:
   destination:
     namespace: monitoring
     server: https://kubernetes.default.svc
-  project: homelab
+  project: default
   source:
     chart: kube-state-metrics
     repoURL: https://prometheus-community.github.io/helm-charts

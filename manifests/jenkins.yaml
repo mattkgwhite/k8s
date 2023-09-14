@@ -72,7 +72,7 @@ spec:
   destination:
     namespace: jenkins
     server: https://kubernetes.default.svc
-  project: homelab
+  project: default
   source:
     chart: jenkins
     repoURL: https://charts.jenkins.io
