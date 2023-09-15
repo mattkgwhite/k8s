@@ -85,14 +85,14 @@ spec:
           cm:
             resource.compareoptions: |
               ignoreAggregatedRoles: true
-            url: "http://argocd.<path:stringreplacesecret#domain>"
+            url: "https://argocd.<path:stringreplacesecret#domain>"
             dex.config: |
               connectors:
                 - type: oidc
                   name: authentik
                   id: authentik
                   config:
-                    issuer: http://authentik.<path:stringreplacesecret#domain>/application/o/argocd/
+                    issuer: https://authentik.<path:stringreplacesecret#domain>/application/o/argocd/
                     clientID: argocd
                     clientSecret: $sso:token
                     insecureEnableGroups: true
@@ -127,7 +127,7 @@ spec:
               command: [sh, -c]
               args:
                 - >-
-                  curl -L https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_amd64/) -o argocd-vault-plugin &&
+                  curl -L https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) -o argocd-vault-plugin &&
                   chmod +x argocd-vault-plugin &&
                   mv argocd-vault-plugin /custom-tools/
               volumeMounts:
@@ -172,43 +172,6 @@ spec:
                 - mountPath: /home/argocd/cmp-server/config/plugin.yaml
                   subPath: kustomize-inline.yaml
                   name: cmp-plugin
-        extraObjects:
-          - apiVersion: v1
-            kind: ConfigMap
-            metadata:
-              name: cmp-plugin
-              namespace: "{{ .Release.Namespace }}"
-            data:
-              avp-directory-include.yaml: |
-                apiVersion: argoproj.io/v1alpha1
-                kind: ConfigManagementPlugin
-                metadata:
-                  name: avp-directory-include
-                spec:
-                  allowConcurrency: true
-                  generate:
-                    command:
-                      - bash
-                      - "-c"
-                      - |
-                        argocd-vault-plugin generate $ARGOCD_ENV_FILE_NAME
-                  lockRepo: false
-              kustomize-inline.yaml: |
-                apiVersion: argoproj.io/v1alpha1
-                kind: ConfigManagementPlugin
-                metadata:
-                  name: kustomize-inline
-                spec:
-                  allowConcurrency: true
-                  generate:
-                    command:
-                      - /bin/sh
-                      - -c
-                    args:
-                      - |
-                        echo "$ARGOCD_ENV_KUSTOMIZATION_YAML" > kustomization.yaml;
-                        kustomize build
-                  lockRepo: false
   syncPolicy:
     automated:
       allowEmpty: true
