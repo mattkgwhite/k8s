@@ -100,13 +100,13 @@ spec:
             #   kubernetes.io/ingress.class: nginx
             #   kubernetes.io/tls-acme: 'true'
             # hosts:
-            #     - host: authentik.<path:stringreplacesecret#domain>
+            #     - host: authentik.hacksm.net
             #       paths:
             #           - path: "/"
             #             pathType: Prefix
             # tls:
             #   - hosts:
-            #     - authentik.<path:stringreplacesecret#domain>
+            #     - authentik.hacksm.net
             #     secretName: authentik-cert
         authentik:
           postgresql:
@@ -185,7 +185,7 @@ spec:
         key: token
   configuration: |
     provider "authentik" {
-      url   = "http://authentik.<path:stringreplacesecret#domain>"
+      url   = "http://authentik.hacksm.net"
       token = file("${path.module}/token")
     }
 
@@ -283,7 +283,7 @@ spec:
         client_secret = var.grafana_token
         authorization_flow = data.authentik_flow.default-authorization-flow.id
         access_code_validity = "minutes=10"
-        redirect_uris = [ "http://grafana.<path:stringreplacesecret#domain>/login/generic_oauth"]
+        redirect_uris = [ "http://grafana.hacksm.net/login/generic_oauth"]
         signing_key = data.authentik_certificate_key_pair.generated.id
         property_mappings = [
           data.authentik_scope_mapping.openid.id,
@@ -297,7 +297,7 @@ spec:
         slug = authentik_provider_oauth2.grafana_ouath2.name
         protocol_provider = authentik_provider_oauth2.grafana_ouath2.id
         meta_icon = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Grafana_logo.svg/768px-Grafana_logo.svg.png"
-        meta_launch_url = "http://grafana.<path:stringreplacesecret#domain>/login/generic_oauth"
+        meta_launch_url = "http://grafana.hacksm.net/login/generic_oauth"
         policy_engine_mode = "all"
       }
 
@@ -312,7 +312,7 @@ spec:
         client_secret = var.argocd_token
         authorization_flow = data.authentik_flow.default-authorization-flow.id
         access_code_validity = "minutes=10"
-        redirect_uris = [ "http://argocd.<path:stringreplacesecret#domain>/api/dex/callback","http://localhost:8085/auth/callback"]
+        redirect_uris = [ "http://argocd.hacksm.net/api/dex/callback","http://localhost:8085/auth/callback"]
         signing_key = data.authentik_certificate_key_pair.generated.id
         property_mappings = [
           data.authentik_scope_mapping.openid.id,
@@ -326,7 +326,7 @@ spec:
         slug = authentik_provider_oauth2.argocd_ouath2.name
         protocol_provider = authentik_provider_oauth2.argocd_ouath2.id
         meta_icon = "https://landscape.cncf.io/logos/argo.svg"
-        meta_launch_url = "http://argocd.<path:stringreplacesecret#domain>/auth/login"
+        meta_launch_url = "http://argocd.hacksm.net/auth/login"
         policy_engine_mode = "all"
       }
 ---
@@ -336,11 +336,11 @@ metadata:
   name: authentik-extname
   namespace: authentik
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: authentik.<path:stringreplacesecret#domain>
+    external-dns.alpha.kubernetes.io/hostname: authentik.hacksm.net
     external-dns.alpha.kubernetes.io/ttl: "300"
 spec:
   type: ExternalName
-  externalName: nginx.<path:stringreplacesecret#domain>
+  externalName: nginx.hacksm.net
   sessionAffinity: None
   ports:
     - name: https
@@ -363,10 +363,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - authentik.<path:stringreplacesecret#domain>
+    - authentik.hacksm.net
     secretName: authentik-cert
   rules:
-  - host: authentik.<path:stringreplacesecret#domain>
+  - host: authentik.hacksm.net
     http:
       paths:
       - backend:
