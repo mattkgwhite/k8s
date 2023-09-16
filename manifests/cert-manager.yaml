@@ -15,7 +15,7 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/mattkgwhite/home-ops.git
-      path: manifests/cert-manager.yaml
+      path: manifests/
       targetRevision: HEAD
     - chart: cert-manager
       repoURL: https://charts.jetstack.io
