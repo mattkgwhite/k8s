@@ -44,13 +44,16 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: hcloud-csi-driver
-    repoURL: https://helm-charts.mlohr.com/
-    targetRevision: 2.2.1
-    helm: 
-      values: |
-        secret:
-          existingSecretName: hcloud-secret
+    - repoURL: https://github.com/mattkgwhite/home-ops.git
+      path: manifests/hcloud-csi-driver.yaml
+      targetRevision: HEAD
+    - chart: hcloud-csi-driver
+      repoURL: https://helm-charts.mlohr.com/
+      targetRevision: 2.2.1
+      helm: 
+        values: |
+          secret:
+            existingSecretName: hcloud-secret
   syncPolicy:
     automated:
       allowEmpty: true

@@ -42,42 +42,45 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: external-dns
-    repoURL: https://kubernetes-sigs.github.io/external-dns/
-    targetRevision: 1.13.0
-    helm:
-      values: |
-        fullnameOverride: external-dns
-        txtOwnerId: "default"
-        txtPrefix: txt.
-        registry: txt
-        replicas: 1
-        domainFilters:
-          - <path:stringreplacesecret#domain>
-        sources:
-          - service
-          - ingress
-          - crd
-        loglevel: debug
-        logFormat: json
-        policy: upsert-only
-        interval: 30s
-        crd:
-          create: true
-        provider: aws
-        extraArgs:
-          - --aws-zone-type=public
-        env:
-          - name: AWS_ACCESS_KEY_ID
-            valueFrom:
-              secretKeyRef:
-                name: external-dns-secret
-                key: aws-access-key
-          - name: AWS_SECRET_ACCESS_KEY
-            valueFrom:
-              secretKeyRef:
-                name: external-dns-secret
-                key: secret-access-key
+    - repoURL: https://github.com/mattkgwhite/home-ops.git
+      path: manifests/1passwordconnect.yaml
+      targetRevision: HEAD
+    - chart: external-dns
+      repoURL: https://kubernetes-sigs.github.io/external-dns/
+      targetRevision: 1.13.0
+      helm:
+        values: |
+          fullnameOverride: external-dns
+          txtOwnerId: "default"
+          txtPrefix: txt.
+          registry: txt
+          replicas: 1
+          domainFilters:
+            - <path:stringreplacesecret#domain>
+          sources:
+            - service
+            - ingress
+            - crd
+          loglevel: debug
+          logFormat: json
+          policy: upsert-only
+          interval: 30s
+          crd:
+            create: true
+          provider: aws
+          extraArgs:
+            - --aws-zone-type=public
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: external-dns-secret
+                  key: aws-access-key
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: external-dns-secret
+                  key: secret-access-key
   syncPolicy:
     automated:
       allowEmpty: true

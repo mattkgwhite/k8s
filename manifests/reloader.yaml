@@ -14,9 +14,12 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: reloader
-    repoURL: https://stakater.github.io/stakater-charts
-    targetRevision: 1.0.38
+    - repoURL: https://github.com/mattkgwhite/home-ops.git
+      path: manifests/reloader.yaml
+      targetRevision: HEAD
+    - chart: reloader
+      repoURL: https://stakater.github.io/stakater-charts
+      targetRevision: 1.0.38
   syncPolicy:
     automated:
       allowEmpty: true

@@ -74,44 +74,47 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: jenkins
-    repoURL: https://charts.jenkins.io
-    targetRevision: 4.6.4
-    helm:
-      values: |
-        fullnameOverride: jenkins
-        controller:
-          image: "jenkins/jenkins"
-          tagLabel: jdk11
-          imagePullPolicy: IfNotPresent
-          numExecutors: 1
-          adminUser: "admin"
-          # admin:
-          #   existingSecret: "jenkins-admin-secret"
-          #   userKey: 
-          #   passwordKey: "jenkins"
-        initializedOnce: true
-        sidecars:
-          configAutoReload:
-            enabled: true
-            image: kiwigrid/k8s-sidecar:1.24.4
+    - repoURL: https://github.com/mattkgwhite/home-ops.git
+      path: manifests/jenkins.yaml
+      targetRevision: HEAD
+    - chart: jenkins
+      repoURL: https://charts.jenkins.io
+      targetRevision: 4.6.4
+      helm:
+        values: |
+          fullnameOverride: jenkins
+          controller:
+            image: "jenkins/jenkins"
+            tagLabel: jdk11
             imagePullPolicy: IfNotPresent
-        ingress:
-          enabled: false
-        podSecurityContextOVerride:
-          runAsUser: 1000
-          runAsNonRoot: false
-          supplementGroups: [1000]
-          capabilities: {}
-        agent:
-          enabled: true
-          image: "jenkins/inbound-agent"
-        persistence:
-          enabled: true
-          storageClass: hcloud-volume
-          accessMode: "ReadWriteOnce"
-          mountPath: /var/jenkins_home
-          size: 20Gi
+            numExecutors: 1
+            adminUser: "admin"
+            # admin:
+            #   existingSecret: "jenkins-admin-secret"
+            #   userKey: 
+            #   passwordKey: "jenkins"
+          initializedOnce: true
+          sidecars:
+            configAutoReload:
+              enabled: true
+              image: kiwigrid/k8s-sidecar:1.24.4
+              imagePullPolicy: IfNotPresent
+          ingress:
+            enabled: false
+          podSecurityContextOVerride:
+            runAsUser: 1000
+            runAsNonRoot: false
+            supplementGroups: [1000]
+            capabilities: {}
+          agent:
+            enabled: true
+            image: "jenkins/inbound-agent"
+          persistence:
+            enabled: true
+            storageClass: hcloud-volume
+            accessMode: "ReadWriteOnce"
+            mountPath: /var/jenkins_home
+            size: 20Gi
   syncPolicy:
     automated:
       allowEmpty: true

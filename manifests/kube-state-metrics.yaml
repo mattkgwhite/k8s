@@ -14,15 +14,18 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: kube-state-metrics
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 5.12.1
-    helm:
-      values: |
-        fullnameOverride: kube-state-metrics
-        prometheus:
-          monitor:
-            enabled: true
+    - repoURL: https://github.com/mattkgwhite/home-ops.git
+      path: manifests/kube-state-metrics.yaml
+      targetRevision: HEAD
+    - chart: kube-state-metrics
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: 5.12.1
+      helm:
+        values: |
+          fullnameOverride: kube-state-metrics
+          prometheus:
+            monitor:
+              enabled: true
   syncPolicy:
     automated:
       allowEmpty: true
