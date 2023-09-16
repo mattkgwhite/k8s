@@ -75,7 +75,7 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/mattkgwhite/home-ops.git
-      path: manifests/argocd.yaml
+      path: manifests
       targetRevision: HEAD
     - chart: argo-cd
       repoURL: https://argoproj.github.io/argo-helm
