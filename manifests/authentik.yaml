@@ -86,7 +86,7 @@ spec:
     namespace: authentik
     server: https://kubernetes.default.svc
   project: default
-  source:
+  sources:
     - repoURL: https://github.com/mattkgwhite/home-ops.git
       path: manifests/authentik.yaml
       targetRevision: HEAD

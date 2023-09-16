@@ -41,7 +41,7 @@ spec:
     namespace: external-dns
     server: https://kubernetes.default.svc
   project: default
-  source:
+  sources:
     - repoURL: https://github.com/mattkgwhite/home-ops.git
       path: manifests/1passwordconnect.yaml
       targetRevision: HEAD

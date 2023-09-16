@@ -13,7 +13,7 @@ spec:
     namespace: metallb-system
     server: https://kubernetes.default.svc
   project: default
-  source:
+  sources:
     - repoURL: https://github.com/mattkgwhite/home-ops.git
       path: manifests/metallb.yaml
       targetRevision: HEAD

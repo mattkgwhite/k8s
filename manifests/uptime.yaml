@@ -13,7 +13,7 @@ metadata:
   namespace: monitoring
 spec:
   project: default
-  source:
+  sources:
     - repoURL: https://github.com/mattkgwhite/home-ops.git
       path: manifests/uptime.yaml
       targetRevision: HEAD

@@ -87,7 +87,7 @@ spec:
     server: https://kubernetes.default.svc
     namespace: vault
   project: default
-  source:
+  sources:
     - repoURL: https://github.com/mattkgwhite/home-ops.git
       path: manifests/workloads/secret-management/vault
       targetRevision: main

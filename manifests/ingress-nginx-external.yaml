@@ -13,7 +13,7 @@ spec:
     namespace: ingress-nginx-external
     server: https://kubernetes.default.svc
   project: default
-  source:
+  sources:
     - repoURL: https://github.com/mattkgwhite/home-ops.git
       path: manifests/ingress-nginx-external.yaml
       targetRevision: HEAD

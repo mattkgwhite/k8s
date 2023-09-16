@@ -73,7 +73,7 @@ spec:
     namespace: jenkins
     server: https://kubernetes.default.svc
   project: default
-  source:
+  sources:
     - repoURL: https://github.com/mattkgwhite/home-ops.git
       path: manifests/jenkins.yaml
       targetRevision: HEAD

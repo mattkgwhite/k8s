@@ -43,7 +43,7 @@ spec:
     namespace: kube-system
     server: https://kubernetes.default.svc
   project: default
-  source:
+  sources:
     - repoURL: https://github.com/mattkgwhite/home-ops.git
       path: manifests/hcloud-csi-driver.yaml
       targetRevision: HEAD
