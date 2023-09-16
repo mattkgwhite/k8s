@@ -13,16 +13,13 @@ spec:
     namespace: cert-manager
     server: https://kubernetes.default.svc
   project: default
-  sources:
-    - repoURL: https://github.com/mattkgwhite/home-ops.git
-      path: manifests/
-      targetRevision: HEAD
-    - chart: cert-manager
-      repoURL: https://charts.jetstack.io
-      targetRevision: v1.13.0
-      helm:
-        values: |
-          installCRDs: "true"
+  source:
+    chart: cert-manager
+    repoURL: https://charts.jetstack.io
+    targetRevision: v1.13.0
+    helm:
+      values: |
+        installCRDs: "true"
   syncPolicy:
     automated:
       allowEmpty: true

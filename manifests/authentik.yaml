@@ -86,54 +86,51 @@ spec:
     namespace: authentik
     server: https://kubernetes.default.svc
   project: default
-  sources:
-    - repoURL: https://github.com/mattkgwhite/home-ops.git
-      path: manifests/authentik.yaml
-      targetRevision: HEAD
-    - chart: authentik
-      repoURL: https://charts.goauthentik.io
-      targetRevision: 2023.8.3
-      helm:
-        values: |
-          ingress:
-              enabled: false
-          authentik:
-            postgresql:
-              host: "authentik-postgres.authentik"
-              name: "authentik"
-              user: "authentik"
-              storageClass: "hcloud-volume"
-              persistence:
-                enabled: true
-                storageClass: "hcloud-volume"
-                accessModes:
-                  - ReadWriteOnce
-          redis:
+  source:
+    chart: authentik
+    repoURL: https://charts.goauthentik.io
+    targetRevision: 2023.8.3
+    helm:
+      values: |
+        ingress:
+            enabled: false
+        authentik:
+          postgresql:
+            host: "authentik-postgres.authentik"
+            name: "authentik"
+            user: "authentik"
+            storageClass: "hcloud-volume"
+            persistence:
               enabled: true
-              master:
-                persistence:
-                  enabled: false
-          envValueFrom:
-            AUTHENTIK_SECRET_KEY:
-              secretKeyRef:
-                key: secret_key
-                name: authentik-configsecrets
-            AUTHENTIK_POSTGRESQL__PASSWORD:
-              secretKeyRef:
-                key: postgresuserpassword
-                name: authentik-configsecrets
-            AUTHENTIK_BOOTSTRAP_PASSWORD:
-              secretKeyRef:
-                key: bootstrap_password
-                name: authentik-configsecrets
-            AUTHENTIK_BOOTSTRAP_TOKEN:
-              secretKeyRef:
-                key: bootstrap_token
-                name: authentik-configsecrets
-            AUTHENTIK_BOOTSTRAP_EMAIL:
-              secretKeyRef:
-                key: bootstrap_email
-                name: authentik-configsecrets
+              storageClass: "hcloud-volume"
+              accessModes:
+                - ReadWriteOnce
+        redis:
+            enabled: true
+            master:
+              persistence:
+                enabled: false
+        envValueFrom:
+          AUTHENTIK_SECRET_KEY:
+            secretKeyRef:
+              key: secret_key
+              name: authentik-configsecrets
+          AUTHENTIK_POSTGRESQL__PASSWORD:
+            secretKeyRef:
+              key: postgresuserpassword
+              name: authentik-configsecrets
+          AUTHENTIK_BOOTSTRAP_PASSWORD:
+            secretKeyRef:
+              key: bootstrap_password
+              name: authentik-configsecrets
+          AUTHENTIK_BOOTSTRAP_TOKEN:
+            secretKeyRef:
+              key: bootstrap_token
+              name: authentik-configsecrets
+          AUTHENTIK_BOOTSTRAP_EMAIL:
+            secretKeyRef:
+              key: bootstrap_email
+              name: authentik-configsecrets
   syncPolicy:
     automated:
       allowEmpty: true

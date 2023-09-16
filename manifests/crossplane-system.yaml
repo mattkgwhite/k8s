@@ -13,13 +13,10 @@ spec:
     namespace: crossplane-system
     server: https://kubernetes.default.svc
   project: default
-  sources:
-    - repoURL: https://github.com/mattkgwhite/home-ops.git
-      path: manifests/crossplane-system.yaml
-      targetRevision: HEAD
-    - chart: crossplane
-      repoURL: https://charts.crossplane.io/stable
-      targetRevision: 1.13.2
+  source:
+    chart: crossplane
+    repoURL: https://charts.crossplane.io/stable
+    targetRevision: 1.13.2
   syncPolicy:
     automated:
       allowEmpty: true

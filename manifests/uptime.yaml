@@ -13,49 +13,46 @@ metadata:
   namespace: monitoring
 spec:
   project: default
-  sources:
-    - repoURL: https://github.com/mattkgwhite/home-ops.git
-      path: manifests/uptime.yaml
-      targetRevision: HEAD
-    - chart: uptime-kuma
-      repoURL: https://k8s-at-home.com/charts/
-      targetRevision: 1.4.2
-      helm:
-        values: |
-          nameOverride: uptime-kuma
-          image:
-            repository: louislam/uptime-kuma
-            tag: 1.21.3
-            pullPolicy: IfNotPresent
-          env:
-            TZ: Europe/London
-          service:
-            main:
-              enabled: true
-              type: ClusterIP
-              ports:
-                http:
-                  protocol: TCP
-                  port: 80
-                  targetPort: 3001
-            # extname:
-            #   # Broken in Chart v1.2.2, Common 4.5.2
-            #   enabled: false
-            #   type: ExternalName
-            #   externalName: traefik.<path:stringreplacesecret#domain>
-            #   annotations:
-            #     external-dns.alpha.kubernetes.io/hostname: uptime.<path:stringreplacesecret#domain>
-            #     external-dns.alpha.kubernetes.io/ttl: "300"
-          ingress:
-            main:
-              enabled: false
-          persistence:
-            config:
-              enabled: true
-              mountPath: /app/data
-              storageClass: hcloud-volume
-              accessMode: ReadWriteMany
-              size: 4Gi
+  source:
+    chart: uptime-kuma
+    repoURL: https://k8s-at-home.com/charts/
+    targetRevision: 1.4.2
+    helm:
+      values: |
+        nameOverride: uptime-kuma
+        image:
+          repository: louislam/uptime-kuma
+          tag: 1.21.3
+          pullPolicy: IfNotPresent
+        env:
+          TZ: Europe/London
+        service:
+          main:
+            enabled: true
+            type: ClusterIP
+            ports:
+              http:
+                protocol: TCP
+                port: 80
+                targetPort: 3001
+          # extname:
+          #   # Broken in Chart v1.2.2, Common 4.5.2
+          #   enabled: false
+          #   type: ExternalName
+          #   externalName: traefik.<path:stringreplacesecret#domain>
+          #   annotations:
+          #     external-dns.alpha.kubernetes.io/hostname: uptime.<path:stringreplacesecret#domain>
+          #     external-dns.alpha.kubernetes.io/ttl: "300"
+        ingress:
+          main:
+            enabled: false
+        persistence:
+          config:
+            enabled: true
+            mountPath: /app/data
+            storageClass: hcloud-volume
+            accessMode: ReadWriteMany
+            size: 4Gi
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
