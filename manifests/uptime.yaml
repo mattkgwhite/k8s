@@ -12,7 +12,7 @@ metadata:
   name: uptime-kuma
   namespace: monitoring
 spec:
-  project: default
+  project: homelab
   source:
     chart: uptime-kuma
     repoURL: https://k8s-at-home.com/charts/

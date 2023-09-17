@@ -72,7 +72,7 @@ spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  project: default
+  project: homelab
   source:
     chart: argo-cd
     repoURL: https://argoproj.github.io/argo-helm

@@ -86,7 +86,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: vault
-  project: default
+  project: homelab
   source:
     chart: vault
     repoURL: https://helm.releases.hashicorp.com
