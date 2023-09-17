@@ -99,12 +99,6 @@ spec:
             host: "authentik-postgres.authentik"
             name: "authentik"
             user: "authentik"
-            storageClass: "hcloud-volume"
-            persistence:
-              enabled: true
-              storageClass: "hcloud-volume"
-              accessModes:
-                - ReadWriteOnce
         redis:
             enabled: true
             master:
