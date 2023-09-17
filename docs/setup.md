@@ -66,3 +66,10 @@ echo "$argocd_values" | helm template $argocd_name $argocd_chart --repo $argocd_
 # configure
 echo "$argocd_config" | kubectl apply --filename -
 ```
+
+
+### Troubleshooting
+
+#### Removing CRDs that are stuck on troubleshooting
+
+kubectl patch crd/appprojects.argoproj.io -p '{"metadata":{"finalizers":[]}}' --type=merge
