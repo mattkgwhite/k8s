@@ -93,7 +93,7 @@ spec:
     helm:
       values: |
         ingress:
-            enabled: false
+          enabled: false
         authentik:
           postgresql:
             host: "authentik-postgres.authentik"
@@ -171,7 +171,7 @@ spec:
         key: token
   configuration: |
     provider "authentik" {
-      url   = "http://authentik.hacksm.net"
+      url   = "https://authentik.hacksm.net"
       token = file("${path.module}/token")
     }
 
