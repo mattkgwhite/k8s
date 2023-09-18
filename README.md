@@ -22,19 +22,18 @@ Using a combination of a variety of resources such as [Vault](https://www.vaultp
 - [X] Ingress - Ingress-Nginx
 - [X] ArgoCD
 - [X] Cluster Bootstrapping - handover control after bootstrapping cluster to ArgoCD.
-- [ ] Storage
+- [X] Storage
   - [X] HCloud Volumes
-  - [ ] Minio
 - [ ] Monitoring & Alerting
   - [ ] kube-prometheus-stack
   - [ ] loki
 - [ ] Security
-  - [ ] Authentication / Access Control
+  - [X] Authentication / Access Control
+    - [X] Authentik
 - [ ] Database
   - [ ] PGNative
 - [ ] CI / CD
   - [ ] Jenkins
-  - [ ] Tekton
 - [ ] Backups
   - [ ] Scheduled / Automated
   - [ ] External Backups
@@ -98,6 +97,7 @@ Authentication services that are waiting to be configured and deployed to the cl
 - Authelia
 - 0Auth
 - Keycloak
+-
 
 ### CI/CD
 
