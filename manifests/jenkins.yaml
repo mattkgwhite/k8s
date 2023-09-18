@@ -4,24 +4,24 @@ metadata:
   labels:
     name: jenkins
   name: jenkins
-# ---
-# apiVersion: external-secrets.io/v1beta1
-# kind: ExternalSecret
-# metadata:
-#   name: sso
-#   namespace: jenkins
-# spec:
-#   refreshInterval: "5m"
-#   secretStoreRef:
-#     kind: ClusterSecretStore
-#     name: 1password
-#   target:
-#     creationPolicy: Owner
-#   data:
-#     - secretKey: jenkins-admin-secret
-#       remoteRef:
-#         key: jenkins
-#         property: admin-secret
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: sso
+  namespace: jenkins
+spec:
+  refreshInterval: "5m"
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: 1password
+  target:
+    creationPolicy: Owner
+  data:
+    - secretKey: jenkins
+      remoteRef:
+        key: jenkins
+        property: admin-secret
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -82,10 +82,18 @@ spec:
         fullnameOverride: jenkins
         controller:
           image: "jenkins/jenkins"
-          tagLabel: jdk11
+          tag: 2.423
+          tagLabel: jdk17
           imagePullPolicy: IfNotPresent
           numExecutors: 1
           adminUser: "admin"
+            existingsecret: "jenkins"
+            userKey: admin-user
+            passwordKey: admin-secret
+        # installPlugins:
+        #   -
+        #   -
+        # installLatestPlugins: true
         initializedOnce: true
         sidecars:
           configAutoReload:
@@ -102,6 +110,8 @@ spec:
         agent:
           enabled: true
           image: "jenkins/inbound-agent"
+          # tag: "3107.v665000b_51092-15"
+          tag: "alpine-jdk17"
         persistence:
           enabled: true
           storageClass: hcloud-volume
