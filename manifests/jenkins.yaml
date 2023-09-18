@@ -86,10 +86,6 @@ spec:
           imagePullPolicy: IfNotPresent
           numExecutors: 1
           adminUser: "admin"
-          # admin:
-          #   existingSecret: "jenkins-admin-secret"
-          #   userKey: 
-          #   passwordKey: "jenkins"
         initializedOnce: true
         sidecars:
           configAutoReload:
