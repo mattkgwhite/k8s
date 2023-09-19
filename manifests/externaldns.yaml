@@ -56,8 +56,6 @@ spec:
           - <path:stringreplacesecret#domain>
         sources:
           - service
-          - ingress
-          - crd
         loglevel: debug
         logFormat: json
         policy: upsert-only
