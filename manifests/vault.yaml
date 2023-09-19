@@ -96,7 +96,7 @@ spec:
         server:
           image:
             repository: "hashicorp/vault"
-            tag: "1.10.1"
+            tag: "1.14.0"
             pullPolicy: IfNotPresent
           ingress:
             enabled: false
