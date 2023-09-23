@@ -99,7 +99,8 @@ spec:
         sso:
           enabled: true
           issuer: https://authentik.<path:stringreplacesecret#domain>/application/o/workflows/
-          redirectUrl: https://workflows.hacksm.net/login/generic_oauth
+          redirectUrl: http://workflows.<path:stringreplacesecret#domain>/login/generic_oauth
+          userInfoPath: /application/o/userinfo/
           sessionExpiry: 240h
           scopes:
           - email
