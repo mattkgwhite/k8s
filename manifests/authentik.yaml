@@ -202,6 +202,7 @@ spec:
         sso.tfvars: |
           grafana_token = "{{ .grafana_token | toString }}"
           argocd_token = "{{ .argocd_token | toString }}"
+          workflows_token = "{{ .workflows_token | toString }}"
   data:
     - secretKey: grafana_token
       remoteRef:
@@ -211,6 +212,10 @@ spec:
       remoteRef:
         key: sso
         property: argocd
+    - secretKey: workflows_token
+      remoteRef:
+        key: sso
+        property: workflows
 ---
 apiVersion: tf.upbound.io/v1beta1
 kind: Workspace
@@ -230,6 +235,7 @@ spec:
     module: |
       variable "argocd_token" {}
       variable "grafana_token" {}
+      variable "workflows_token" {}
 
       data "authentik_certificate_key_pair" "generated" {
         name = "authentik Self-signed Certificate"
@@ -307,6 +313,35 @@ spec:
         protocol_provider = authentik_provider_oauth2.argocd_ouath2.id
         meta_icon = "https://landscape.cncf.io/logos/argo.svg"
         meta_launch_url = "http://argocd.hacksm.net/auth/login"
+        policy_engine_mode = "all"
+      }
+
+      resource "authentik_group" "workflows_admin" {
+        name         = "Workflows Admin"
+        is_superuser = false
+      }
+
+      resource "authentik_provider_oauth2" "workflows_ouath2" {
+        name      = "workflows"
+        client_id = "workflows"
+        client_secret = var.workflows_token
+        authorization_flow = data.authentik_flow.default-authorization-flow.id
+        access_code_validity = "minutes=10"
+        redirect_uris = [ "http://workflows.hacksm.net/login/generic_oauth"]
+        signing_key = data.authentik_certificate_key_pair.generated.id
+        property_mappings = [
+          data.authentik_scope_mapping.openid.id,
+          data.authentik_scope_mapping.email.id,
+          data.authentik_scope_mapping.profile.id
+        ]
+      }
+
+      resource "authentik_application" "workflows_application" {
+        name = authentik_provider_oauth2.workflows_ouath2.name
+        slug = authentik_provider_oauth2.workflows_ouath2.name
+        protocol_provider = authentik_provider_oauth2.workflows_ouath2.id
+        meta_icon = "https://landscape.cncf.io/logos/argo.svg"
+        meta_launch_url = "http://workflows.hacksm.net/auth/login"
         policy_engine_mode = "all"
       }
 ---
