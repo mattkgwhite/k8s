@@ -34,33 +34,33 @@ spec:
   externalName: nginx.<path:stringreplacesecret#domain>
   sessionAffinity: None
 
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: grafana
-  namespace: grafana
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production
-    kubernetes.io/ingress.class: nginx
-    kubernetes.io/tls-acme: 'true'
-spec:
-  ingressClassName: nginx
-  tls:
-  - hosts:
-    - grafana.<path:stringreplacesecret#domain>
-    secretName: grafana-cert
-  rules:
-  - host: grafana.<path:stringreplacesecret#domain>
-    http:
-      paths:
-      - backend:
-          service:
-            name: grafana
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: grafana
+#   namespace: grafana
+#   annotations:
+#     cert-manager.io/cluster-issuer: letsencrypt-production
+#     kubernetes.io/ingress.class: nginx
+#     kubernetes.io/tls-acme: 'true'
+# spec:
+#   ingressClassName: nginx
+#   tls:
+#   - hosts:
+#     - grafana.<path:stringreplacesecret#domain>
+#     secretName: grafana-cert
+#   rules:
+#   - host: grafana.<path:stringreplacesecret#domain>
+#     http:
+#       paths:
+#       - backend:
+#           service:
+#             name: grafana
+#             port:
+#               number: 80
+#         path: /
+#         pathType: Prefix
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -96,7 +96,14 @@ spec:
               key: token
               name: sso
         ingress:
-          enabled: false
+          enabled: true
+          ingressClassName: nginx
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt-production
+            kubernetes.io/ingress.class: nginx
+            kubernetes.io/tls-acme: 'true'
+          hosts:
+          - grafana.<path:stringreplacesecret#domain>
   syncPolicy:
     automated:
       allowEmpty: true
