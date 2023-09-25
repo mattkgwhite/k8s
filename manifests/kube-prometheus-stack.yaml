@@ -1,0 +1,58 @@
+# kind: Namespace
+# apiVersion: v1
+# metadata:
+#   name: monitoring
+# # ---
+# # apiVersion: external-secrets.io/v1beta1
+# # kind: ExternalSecret
+# # metadata:
+# #   name: sso
+# #   namespace: monitoring
+# # spec:
+# #   refreshInterval: "5m"
+# #   secretStoreRef:
+# #     kind: ClusterSecretStore
+# #     name: 1password
+# #   target:
+# #     creationPolicy: Owner
+# #   data:
+# #     - secretKey: token
+# #       remoteRef:
+# #         key: sso
+# #         property: grafana
+# # ---
+# # apiVersion: v1
+# # kind: Service
+# # metadata:
+# #   name: grafana-extname
+# #   namespace: monitoring
+# #   annotations:
+# #     external-dns.alpha.kubernetes.io/hostname: grafana.<path:stringreplacesecret#domain>
+# #     external-dns.alpha.kubernetes.io/ttl: "300"
+# # spec:
+# #   type: ExternalName
+# #   externalName: nginx.<path:stringreplacesecret#domain>
+# #   sessionAffinity: None
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: kube-prometheus-stack
+#   namespace: argocd
+# spec:
+#   destination:
+#     namespace: monitoring
+#     server: https://kubernetes.default.svc
+#   project: homelab
+#   source:
+#     chart: kube-prometheus-stack
+#     repoURL: https://prometheus-community.github.io/helm-charts
+#     targetRevision: 51.2.0
+#     helm:
+#       values: |
+
+#   syncPolicy:
+#     automated:
+#       allowEmpty: true
+#       prune: true
+#       selfHeal: true
