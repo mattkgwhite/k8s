@@ -93,6 +93,8 @@ spec:
     targetRevision: 0.25.0
     helm:
       values: |
+        injector:
+          replicas: 1
         server:
           image:
             repository: "hashicorp/vault"
@@ -126,7 +128,7 @@ spec:
       prune: true
     syncOptions:
       - CreateNamespace=true
-  ignoreDifferences:
-    - group: "admissionregistration.k8s.io"
-      kind: MutatingWebhookConfiguration
-      name: vault-agent-injector-cfg
+  # ignoreDifferences:
+  #   - group: "admissionregistration.k8s.io"
+  #     kind: MutatingWebhookConfiguration
+  #     name: vault-agent-injector-cfg
