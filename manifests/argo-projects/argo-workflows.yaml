@@ -96,22 +96,20 @@ spec:
           extraArgs:
           - --secure
           - --auth-mode=sso
-          auth:
-            mode: sso
-            sso:
+          sso:
+            enabled: true
+            issuer: "https://authentik.<path:stringreplacesecret#domain>/application/o/workflows/"
+            redirectUrl: "http://workflows.<path:stringreplacesecret#domain>/login/generic_oauth"
+            userInfoPath: /application/o/userinfo/
+            sessionExpiry: 240h
+            scopes:
+            - email
+            userInfoGroupsField: memberof
+            rbac:
               enabled: true
-              issuer: "https://authentik.<path:stringreplacesecret#domain>/application/o/workflows/"
-              redirectUrl: "http://workflows.<path:stringreplacesecret#domain>/login/generic_oauth"
-              userInfoPath: /application/o/userinfo/
-              sessionExpiry: 240h
-              scopes:
-              - email
-              userInfoGroupsField: memberof
-              rbac:
-                enabled: true
-              clientId:
-                name: workflows
-              clientSecret: $sso:token
+            clientId:
+              name: workflows
+            clientSecret: $sso:token
   syncPolicy:
     automated:
       allowEmpty: true
