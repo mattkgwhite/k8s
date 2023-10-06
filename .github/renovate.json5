@@ -3,12 +3,9 @@
   "extends":[
     "config:base"
   ],
-  "enabled": true,
-  "timezone": "UTC",
   "argocd": {
     "fileMatch":[
       "manifest/.+\\.yaml$",
-      "manifest/argo-projects/.+\\.yaml$"
     ]
   },
   "kubernetes": {
