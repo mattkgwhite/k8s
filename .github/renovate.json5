@@ -5,8 +5,6 @@
   ],
   "enabled": true,
   "timezone": "UTC",
-  "dependencyDashboard": true,
-  "dependencyDashboardAutoclose": true,
   "argocd": {
     "fileMatch":[
       "manifest/.+\\.yaml$",
