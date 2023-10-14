@@ -34,7 +34,7 @@ namespace: utility
 metadata:
   name: echo
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: authentik.<path:stringreplacesecret#domain>
+    external-dns.alpha.kubernetes.io/hostname: echo.<path:stringreplacesecret#domain>
     external-dns.alpha.kubernetes.io/ttl: "300"
 spec:
   ports:
