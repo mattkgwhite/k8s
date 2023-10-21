@@ -30,10 +30,10 @@ metadata:
 #   name: vault-cert
 #   namespace: vault
 # spec:
-#   commonName: vault.hacksm.net
+#   commonName: vault.<path:stringreplacesecret#domain>
 #   secretName: vault-cert
 #   dnsNames:
-#     - vault.hacksm.net
+#     - vault.<path:stringreplacesecret#domain>
 #   issuerRef:
 #     name: acme-prod
 #     kind: ClusterIssuer
@@ -49,10 +49,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - vault.hacksm.net
+    - vault.<path:stringreplacesecret#domain>
     secretName: vault-cert
   rules:
-  - host: vault.hacksm.net
+  - host: vault.<path:stringreplacesecret#domain>
     http:
       paths:
       - backend:
@@ -68,13 +68,13 @@ kind: Service
 metadata:
   name: vault-extname
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: vault.hacksm.net
+    external-dns.alpha.kubernetes.io/hostname: vault.<path:stringreplacesecret#domain>
     external-dns.alpha.kubernetes.io/ttl: "300"
   labels:
     app.kubernetes.io/instance: vault
 spec:
   type: ExternalName
-  externalName: nginx.hacksm.net
+  externalName: nginx.<path:stringreplacesecret#domain>
   sessionAffinity: None
 ---
 apiVersion: argoproj.io/v1alpha1
