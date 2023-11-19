@@ -5,7 +5,7 @@
   ],
   "argocd": {
     "fileMatch":[
-      "manifest/.+\\.yaml$",
+      "manifest/.+\\.yaml$"
     ]
   },
   "kubernetes": {
