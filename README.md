@@ -1,107 +1,74 @@
-# HOME-OPS
+# home-ops
 
-This repository contains the Kubernetes configuration files managed by GitOps, specifically [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) and is a work is progress / under development.
+This repository contains a declarative Kubernetes configuration, which is by ArgoCD.
 
-Using a combination of a variety of resources such as [Vault](https://www.vaultproject.io/), [SOPS](https://github.com/mozilla/sops), [Age](https://github.com/FiloSottile/age)
+*This repo is subject to change, as it is active development* 
 
-### Requirements
+## Setup
 
-- ksops: https://github.com/viaduct-ai/kustomize-sops
-  - Required to build the secrets defined as part of the configuration.
-- sops: https://github.com/mozilla/sops
-  - encrypt secrets stored in `secret.sops.yaml` files within this repository.
+First you will need the following:
 
-### TODO
+- 1Password
+- An AWS Account
+- An IAM User with *Programmatic Access* configuration, and the Access Key and Secret Access Key from that user.
+- A Domain that has been setup with Route53
+- A Virtual Machine with a Public IPv4 Address
 
-- [X] Folder Structure Setup
-  - [ ] Addition Configuration, On-Going
-- [X] Secret Management - SOPS, Age & KSOPS
-- [X] Metallb - Load Balancer
-- [X] SSL Certificates - Cert Manager
-- [X] DNS Records - External DNS
-- [X] Ingress - Ingress-Nginx
-- [X] ArgoCD
-- [X] Cluster Bootstrapping - handover control after bootstrapping cluster to ArgoCD.
-- [X] Storage
-  - [X] HCloud Volumes
-- [ ] Monitoring & Alerting
-  - [ ] kube-prometheus-stack
-  - [ ] loki
-- [ ] Security
-  - [X] Authentication / Access Control
-    - [X] Authentik
-- [ ] Database
-  - [ ] PGNative
-- [ ] CI / CD
-  - [ ] Jenkins
-- [ ] Backups
-  - [ ] Scheduled / Automated
-  - [ ] External Backups
+### 1Password Credentials
 
-## 📂 Repository structure
-
-## Setup - Single Cluster
-
-After creating the Node / Host, the following command needs to be run against the Node / Host. This specific command will downloading the latest K3s server install, and install against the Node / Host...With the Traefik and ServiceLB disabled.
+- Create a vault called `Homelab`
+- Follow https://developer.1password.com/docs/connect/get-started/#step-1-set-up-a-secrets-automation-workflow 1Password.com tab for generating 1password-credentials.json and save into bootstrap directory.
+- Follow https://developer.1password.com/docs/connect/get-started/#step-1-set-up-a-secrets-automation-workflow 1Password CLI tab for generating a 1password connect token and save as 1password-token.secret in bootstrap directory.
 
 ```shell
-curl -fL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init --kube-apiserver-arg default-not-ready-toleration-seconds=10 --kube-apiserver-arg default-unreachable-toleration-seconds=10 --disable=traefik,servicelb
+export domain=mydomain.tld
+export ip=0.0.0.0/32
+export hcloudsecret=""
+
+kubectl create namespace 1passwordconnect
+kubectl create secret generic 1passwordconnect --namespace 1passwordconnect --from-literal 1password-credentials.json=$(cat 1password-credentials.json | base64 )
+
+kubectl create namespace external-secrets
+kubectl create secret generic 1passwordconnect --namespace external-secrets --from-file=token=1password-token.secret
+
+kubectl create namespace argocd
+kubectl create secret generic stringreplacesecret --namespace argocd --from-literal domain=$domain --from-literal ip=$ip --from-literal hcloudsecret=$hcloudsecret
 ```
 
-### Configuration Updates
-
-1. 00-secrets - update the secrets.sops.yaml file with relevant AWS Credentials.
-2. 01-metallb - update Public IP Address reference in ipaddress.yaml file.
-3. 02-cert-manager - update clusterissuer.yaml file, specifically email reference, access-key reference and dnsNames.
-4. 03-external-dns - update values.yaml file, specifically domainFilters
-5. 04-ingress-nginx - update services.yaml file, specifically IPV4 address with the IPV4 address entered into `01-metallb > ipaddress.yaml` and the domain reference for *external-dns.alpha.kubernetes.io/hostname*
-6. 05-argocd - update domain references
-7. 06-bootstrapping-argoprojects - update names and github repository references.
-
-### Prerequisites for Cluster
-
-**CSI Driver** - Access to remote storage via a CIFs Share. To install use one of the following depending on Host Node OS:
+### Argocd Install
 
 ```
-Ubuntu: `sudo apt-get install -y cifs-utils`
-CentOS: `yum -y install cifs-utils`
+export argocd_applicationyaml=$(curl -sL "https://raw.githubusercontent.com/mattkgwhite/home-ops/main/manifests/argocd.yaml" | yq eval-all '. | select(.metadata.name == "argocd" and .kind == "Application")' -)
+export argocd_name=$(echo "$argocd_applicationyaml" | yq eval '.metadata.name' -)
+export argocd_chart=$(echo "$argocd_applicationyaml" | yq eval '.spec.source.chart' -)
+export argocd_repo=$(echo "$argocd_applicationyaml" | yq eval '.spec.source.repoURL' -)
+export argocd_namespace=$(echo "$argocd_applicationyaml" | yq eval '.spec.destination.namespace' -)
+export argocd_version=$(echo "$argocd_applicationyaml" | yq eval '.spec.source.targetRevision' -)
+export argocd_values=$(curl -sL "https://raw.githubusercontent.com/mattkgwhite/home-ops/main/bootstrap/argocd-values.yaml")
+
+# install
+echo "$argocd_values" | helm template $argocd_name $argocd_chart --repo $argocd_repo --version $argocd_version --namespace $argocd_namespace --values - | kubectl apply -n $argocd_namespace -f -
+
+# configure
+kubectl apply -f https://raw.githubusercontent.com/mattkgwhite/home-ops/main/bootstrap/argocd-config.yaml
 ```
 
-### 💾 Storage
+### Argo Install - New Way
 
-Remote Storage: 
-This functionality requires the CSI-Driver to be install from the `Prerequisites for Cluster:` section. Once install will provide the ability of the cluster to reference remote storage options such as [Hetzner's Storage Boxes](https://www.hetzner.com/storage/storage-box), which are scaleable options for remote storage.
+```
+export argocd_applicationyaml=$(curl -sL "https://raw.githubusercontent.com/mattkgwhite/home-ops/main/manifests/argocd.yaml" | yq eval-all '. | select(.metadata.name == "argocd" and .kind == "Application")' -)
+export argocd_name=$(echo "$argocd_applicationyaml" | yq eval '.metadata.name' -)
+export argocd_chart=$(echo "$argocd_applicationyaml" | yq eval '.spec.source.chart' -)
+export argocd_repo=$(echo "$argocd_applicationyaml" | yq eval '.spec.source.repoURL' -)
+export argocd_namespace=$(echo "$argocd_applicationyaml" | yq eval '.spec.destination.namespace' -)
+export argocd_version=$(echo "$argocd_applicationyaml" | yq eval '.spec.source.targetRevision' -)
+# removing .configs.cm from bootstrap requires argovaultplugin variables
+export argocd_values=$(echo "$argocd_applicationyaml" | yq eval '.spec.source.helm.values' - | yq eval 'del(.configs.cm)' -)
+export argocd_config=$(curl -sL "https://raw.githubusercontent.com/mattkgwhite/home-ops/main/manifests/argocd.yaml" | yq eval-all '. | select(.kind == "AppProject" or .kind == "ApplicationSet")' -)
 
-- Hetzner Storage Box
-- Hetzner 'hcloud-csi-driver' - virtual disks against the VPS itself.
+# install
+echo "$argocd_values" | helm template $argocd_name $argocd_chart --repo $argocd_repo --version $argocd_version --namespace $argocd_namespace --values - | kubectl apply --namespace $argocd_namespace --filename -
 
-### Databaase
-
-Databases that are waiting to be configured and deployed to the cluster:
-
-- Postgresql
-- pg-native
-
-### Monitoring
-
-Monitoring services that are waiting to be configured and deployed to the cluster:
-
-- Grafana
-- Loki
-- Prometheus
-
-### Authentication
-
-Authentication services that are waiting to be configured and deployed to the cluster:
-
-- Authelia
-- 0Auth
-- Keycloak
--
-
-### CI/CD
-
-CI/CD services that are waiting to be configured and deployed to the cluster:
-
-- Jenkins
-- Tekton
+# configure
+echo "$argocd_config" | kubectl apply --filename -
+```
