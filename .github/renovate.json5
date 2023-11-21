@@ -4,15 +4,7 @@
     "config:base",
     "dependencyDashboardApproval"
   ],
-  "argocd": {
-    "fileMatch":[
-      "manifest/.+\\.yaml$"
-    ]
-  },
-  "kubernetes": {
-    "fileMatch": [
-      "manifest/.+\\.yaml$",
-      "bootstrap/.+\\.yaml$"
-    ]
+  "major": {
+    "dependencyDashboardApproval": true
   }
 }
