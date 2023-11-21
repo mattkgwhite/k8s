@@ -3,7 +3,6 @@
   "enabled": true,
   "timezone": "UTC",
   "dependencyDashboard": true,
-  "dependencyDashboardAutoclose": true,
   "requiredStatusChecks": null,
   "commitMessageSuffix": "[ci-skip]",
   "commitBody": "Signed-off-by: Matt White <krangence@users.noreply.github.com>",
