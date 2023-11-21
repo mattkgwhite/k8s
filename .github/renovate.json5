@@ -22,5 +22,52 @@
       "manifest/.+\\.yaml$",
       "bootstrap/.+\\.yaml$"
     ]
-  }
+  },
+  "packageRules": [
+    {
+      "datasources": ["helm"],
+      "commitMessageTopic": "Helm chart {{depName}}"
+    },
+    {
+      "datasources": ["docker"],
+      "commitMessageTopic": "Docker image {{depName}}",
+      "commitMessageExtra": "to {{#if isSingleVersion}}v{{{toVersion}}}{{else}}{{{newValue}}}{{/if}}",
+      "updateTypes": ["major", "minor", "patch"],
+      "enabled": true
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": false
+    },
+    {
+      "datasources": ["docker"],
+      "updateTypes": ["major"],
+      "labels": ["renovate/image-release", "dependency/major"]
+    },
+    {
+      "datasources": ["docker"],
+      "updateTypes": ["minor"],
+      "labels": ["renovate/image-release", "dependency/minor"]
+    },
+    {
+      "datasources": ["docker"],
+      "updateTypes": ["patch"],
+      "labels": ["renovate/image-release", "dependency/patch"]
+    },
+    {
+      "datasources": ["helm"],
+      "updateTypes": ["major"],
+      "labels": ["renovate/helm-release", "dependency/major"]
+    },
+    {
+      "datasources": ["helm"],
+      "updateTypes": ["minor"],
+      "labels": ["renovate/helm-release", "dependency/minor"]
+    },
+    {
+      "datasources": ["helm"],
+      "updateTypes": ["patch"],
+      "labels": ["renovate/helm-release", "dependency/patch"]
+    }
+  ]
 }
