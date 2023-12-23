@@ -279,7 +279,7 @@ spec:
   goTemplate: true
   generators:
     - git:
-        repoURL: https://github.com/acelinkio/argocd-homelab.git
+        repoURL: https://github.com/mattkgwhite/home-ops.git
         revision: HEAD
         files:
           - path: manifest/*.yaml
@@ -289,7 +289,7 @@ spec:
     spec:
       project: homelab
       source:
-        repoURL: https://github.com/acelinkio/argocd-homelab.git
+        repoURL: https://github.com/mattkgwhite/home-ops.git
         path: '{{ .path.path }}'
         plugin:
           name: avp-directory-include
