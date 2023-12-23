@@ -282,7 +282,7 @@ spec:
         repoURL: https://github.com/mattkgwhite/home-ops.git
         revision: HEAD
         files:
-          - path: manifest/*.yaml
+          - path: manifests/*.yaml
   template:
     metadata:
       name: '{{ normalize .path.filename }}'
