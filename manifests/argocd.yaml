@@ -140,7 +140,7 @@ spec:
               kind: ConfigMap
               metadata:
                 name: cmp-plugin
-                namespace: argocd
+                namespace: "{{ .Release.Namespace }}"
               data:
                 avp-directory-include.yaml: |
                   apiVersion: argoproj.io/v1alpha1
