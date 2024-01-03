@@ -10,7 +10,10 @@ helmCharts:
     version: 1.13.1
     valuesFile: values.yaml
 
+generators:
+  - ksops-generator.yaml
+
 resources:
   - ns.yaml
-  - argo.yaml
-  - externalsecret.yaml
+  # - argo.yaml
+  # - externalsecret.yaml

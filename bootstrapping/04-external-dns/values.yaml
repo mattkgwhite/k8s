@@ -3,7 +3,7 @@ txtPrefix: txt.
 registry: txt
 replicas: 1
 domainFilters:
-  - <path:stringreplacesecret#domain>
+  - hacksm.net
 sources:
   - service
 

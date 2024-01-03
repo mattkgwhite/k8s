@@ -3,17 +3,15 @@ kind: Kustomization
 namespace: kube-system
 
 helmCharts:
-- name: hcloud-csi-driver
-  releaseName: hcloud-csi-driver
+- name: hcloud-csi
+  releaseName: hcloud-csi
   namespace: kube-system
-  repo: https://helm-charts.mlohr.com/
-  version: "2.2.1"
+  repo: https://charts.hetzner.cloud
+  version: "2.6.0"
   valuesFile: values.yaml
-
-resources:
-- argo.yaml
-- ns.yaml
-- externalsecret.yaml
 
 patches:
 - path: patches/storageclass.yaml
+
+generators:
+  - ksops-generator.yaml

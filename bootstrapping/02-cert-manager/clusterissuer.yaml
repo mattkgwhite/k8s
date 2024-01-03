@@ -21,7 +21,7 @@ spec:
             key: secret-access-key
       selector:
         dnsZones:
-          - '<path:stringreplacesecret#domain>'
+          - hacksm.net
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -45,4 +45,4 @@ spec:
             key: secret-access-key
       selector:
         dnsZones:
-          - '<path:stringreplacesecret#domain>'
+          - hacksm.net

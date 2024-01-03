@@ -10,6 +10,8 @@ helmCharts:
   version: 0.13.12
   valuesInline:
     loadBalancerClass: metallb
+    crds:
+      enable: true
 
 resources:
 - ns.yaml
