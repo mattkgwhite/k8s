@@ -5,9 +5,10 @@ namespace: argocd
 resources:
 # - ns.yaml
 - ../00-secrets
-- networking
-- externalsecret.yaml
+# - externalsecret.yaml
 - manifest-apps.yaml
+- certs.yaml
+- service.yaml
 
 helmCharts:
 - name: argo-cd

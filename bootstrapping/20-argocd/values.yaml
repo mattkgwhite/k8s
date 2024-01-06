@@ -27,8 +27,8 @@ configs:
 repoServer:
   # Until KSOPS setup logic is re-written, this can only run
   # on amd64 nodes.
-  nodeSelector:
-    kubernetes.io/arch: amd64
+  # nodeSelector:
+  #   kubernetes.io/arch: amd64
 
   deploymentAnnotations:
     reloader.stakater.com/auto: "true"
@@ -45,19 +45,19 @@ repoServer:
   # Add the KSOPS plugin
   initContainers:
   - name: install-custom-tools
-      image: docker.io/library/alpine:latest
-      command: ["ash", "-c"]
-      args:
-      - |
-        export ARCH=$(uname -m | awk '{print ($1=="x86_64" ? "x86_64" : ($1=="aarch64" ? "arm64" : "unknown"))}')
-        wget -qO- https://github.com/viaduct-ai/kustomize-sops/releases/download/v4.2.1/ksops_4.2.1_Linux_${ARCH}.tar.gz | tar -xzf -
-        export ARCH=$(uname -m | awk '{print ($1=="x86_64" ? "amd64" : ($1=="aarch64" ? "arm64" : "unknown"))}')
-        wget -qO- https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.1.1/kustomize_v5.1.1_linux_${ARCH}.tar.gz | tar -xzf -
-        mv kustomize ksops /custom-tools/
-        chown -R 999:999 /custom-tools/*
-      volumeMounts:
-      - mountPath: /custom-tools
-        name: custom-tools
+    image: docker.io/library/alpine:latest
+    command: ["ash", "-c"]
+    args:
+    - |
+      export ARCH=$(uname -m | awk '{print ($1=="x86_64" ? "x86_64" : ($1=="aarch64" ? "arm64" : "unknown"))}')
+      wget -qO- https://github.com/viaduct-ai/kustomize-sops/releases/download/v4.2.1/ksops_4.2.1_Linux_${ARCH}.tar.gz | tar -xzf -
+      export ARCH=$(uname -m | awk '{print ($1=="x86_64" ? "amd64" : ($1=="aarch64" ? "arm64" : "unknown"))}')
+      wget -qO- https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.1.1/kustomize_v5.1.1_linux_${ARCH}.tar.gz | tar -xzf -
+      mv kustomize ksops /custom-tools/
+      chown -R 999:999 /custom-tools/*
+    volumeMounts:
+    - mountPath: /custom-tools
+      name: custom-tools
   # Volume Work
   volumeMounts:
   - mountPath: /usr/local/bin/kustomize

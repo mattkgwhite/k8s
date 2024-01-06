@@ -1,43 +1,51 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: homelab
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destinations:
+    - name: "*"
+      namespace: "*"
+      server: "*"
+  sourceRepos:
+    - "*"
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: manifest-apps
+  name: homelab-manifest
   namespace: argocd
 spec:
+  goTemplate: true
   generators:
     - git:
         repoURL: https://github.com/mattkgwhite/home-ops.git
         revision: HEAD
-        directories:
-          - path: "manifests/*.yaml"
-  syncPolicy:
-    preserveResourcesOnDeletion: true
+        files:
+          - path: manifests/*.yaml
   template:
     metadata:
-      name: "{{path.basenameNormalized}}"
+      name: '{{ normalize .path.filename }}'
     spec:
       project: homelab
       source:
         repoURL: https://github.com/mattkgwhite/home-ops.git
+        path: '{{ .path.path }}'
         targetRevision: HEAD
-        path: "{{path}}"
       destination:
-        server: https://kubernetes.default.svc
-        namespace: "{{path[2]}}"
-      ignoreDifferences:
-        - group: kyverno.io
-          kind: ClusterPolicy
-          jqPathExpressions:
-            - .spec.rules[] | select(.name|test("autogen-."))
-        - group: "*"
-          kind: "*"
-          jqPathExpressions:
-            - .spec.template.spec.labels[] | select(.name == "kyverno.io/*")
+        server: "https://kubernetes.default.svc"
+        namespace: '{{ trimSuffix (ext ".yaml") (base .path.filename) }}'
       syncPolicy:
         syncOptions:
-          - RespectIgnoreDifferences=true
           - CreateNamespace=true
-          - ServerSideApply=true
         automated:
           prune: true
           selfHeal: true
+          allowEmpty: true
