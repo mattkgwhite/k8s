@@ -44,50 +44,20 @@ repoServer:
     value: '/.config'
   # Add the KSOPS plugin
   initContainers:
-  - name: install-ksops
-    image: viaductoss/ksops:v4.2.1
-    command: ["/bin/sh", "-c"]
-    args:
-    - echo "Installing KSOPS..."; mv ksops /custom-tools/; mv kustomize /custom-tools/; echo "Done.";
-  - name: download-tools
-    image: registry.access.redhat.com/ubi8
-    env:
-      - name: AVP_VERSION
-        value: 1.16.0
-        command: [sh, -c]
-    args:
-      - >-
-        curl -L https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) -o argocd-vault-plugin &&
-        chmod +x argocd-vault-plugin &&
-        mv argocd-vault-plugin /custom-tools/
-    volumeMounts:
-    - mountPath: /custom-tools
-      name: custom-tools
-  
-  extraContainers:
-    - name: plugin-avp-directory-include
-      command: [/var/run/argocd/argocd-cmp-server]
-      image: "{{ default .Values.global.image.repository .Values.server.image.repository }}:{{ default (include \"argo-cd.defaultTag\" .) .Values.server.image.tag }}"
-      env:
-      - name: AVP_TYPE
-        value: kubernetessecret
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 999
+  - name: install-custom-tools
+      image: docker.io/library/alpine:latest
+      command: ["ash", "-c"]
+      args:
+      - |
+        export ARCH=$(uname -m | awk '{print ($1=="x86_64" ? "x86_64" : ($1=="aarch64" ? "arm64" : "unknown"))}')
+        wget -qO- https://github.com/viaduct-ai/kustomize-sops/releases/download/v4.2.1/ksops_4.2.1_Linux_${ARCH}.tar.gz | tar -xzf -
+        export ARCH=$(uname -m | awk '{print ($1=="x86_64" ? "amd64" : ($1=="aarch64" ? "arm64" : "unknown"))}')
+        wget -qO- https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.1.1/kustomize_v5.1.1_linux_${ARCH}.tar.gz | tar -xzf -
+        mv kustomize ksops /custom-tools/
+        chown -R 999:999 /custom-tools/*
       volumeMounts:
-        - mountPath: /var/run/argocd
-          name: var-files
-        - mountPath: /home/argocd/cmp-server/plugins
-          name: plugins
-        - mountPath: /tmp
-          name: tmp
-        - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-          subPath: avp-directory-include.yaml
-          name: cmp-plugin
-        - name: custom-tools
-          subPath: argocd-vault-plugin
-          mountPath: /usr/local/bin/argocd-vault-plugin
-
+      - mountPath: /custom-tools
+        name: custom-tools
   # Volume Work
   volumeMounts:
   - mountPath: /usr/local/bin/kustomize
@@ -108,13 +78,6 @@ repoServer:
   - name: aws-creds
     secret:
       secretName: aws-creds
-  - name: cmp-plugin
-    configMap:
-      name: cmp-plugin
-  - name: custom-tools
-    emptyDir: {}
-  - name: cmp-tmp
-    emptyDir: {}
 
 server:
   config:
@@ -147,43 +110,3 @@ server:
               name: argocd-server
               port:
                 name: 80
-extraObjects:
-  - apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: cmp-plugin
-      namespace: "{{ .Release.Namespace }}"
-    data:
-      avp-directory-include.yaml: |
-        apiVersion: argoproj.io/v1alpha1
-        kind: ConfigManagementPlugin
-        metadata:
-          name: avp-directory-include
-        spec:
-          allowConcurrency: true
-          discover:
-            find:
-              command:
-                - sh
-                - "-c"
-                - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
-          generate:
-            command:
-              - bash
-              - "-c"
-              - |
-                argocd-vault-plugin generate $ARGOCD_ENV_FILE_NAME
-          lockRepo: false
-
-# dex:
-#   env:
-#   - name: ARGO_WORKFLOWS_SSO_CLIENT_ID
-#     valueFrom:
-#       secretKeyRef:
-#         name: argo-workflows-sso
-#         key: client-id
-#   - name: ARGO_WORKFLOWS_SSO_CLIENT_SECRET
-#     valueFrom:
-#       secretKeyRef:
-#         name: argo-workflows-sso
-#         key: client-secret

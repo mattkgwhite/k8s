@@ -9,8 +9,7 @@ spec:
         repoURL: https://github.com/mattkgwhite/home-ops.git
         revision: HEAD
         directories:
-          - path: "manifests/folders/*/*"
-          - path: "manifests/files/*.yaml"
+          - path: "manifests/*.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: true
   template:

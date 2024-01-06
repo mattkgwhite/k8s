@@ -3,16 +3,16 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-- ns.yaml
+# - ns.yaml
 - ../00-secrets
 - networking
-# - configmap.yaml
 - externalsecret.yaml
+- manifest-apps.yaml
 
 helmCharts:
 - name: argo-cd
   releaseName: argo
   namespace: argocd
   repo: https://argoproj.github.io/argo-helm
-  version: "5.46.0"
+  version: "5.51.6"
   valuesFile: values.yaml
