@@ -6,7 +6,7 @@ resources:
 # - ns.yaml
 - ../00-secrets
 # - externalsecret.yaml
-- manifest-apps.yaml
+# - manifest-apps.yaml
 - certs.yaml
 - service.yaml
 
