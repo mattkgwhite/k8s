@@ -30,7 +30,7 @@ spec:
       source:
         repoURL: https://github.com/mattkgwhite/home-ops.git
         targetRevision: main
-        path: manifests/{{appName}}
+        path: bootstrapping/{{appName}}
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{namespace}}'
