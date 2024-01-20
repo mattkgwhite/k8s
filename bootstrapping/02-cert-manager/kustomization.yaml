@@ -12,7 +12,7 @@ resources:
   - ns.yaml
   # - argo.yaml
   - clusterissuer.yaml
-  - externalsecret.yaml
+  # - externalsecret.yaml
 
 helmCharts:
   - name: cert-manager
