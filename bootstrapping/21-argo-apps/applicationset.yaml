@@ -18,8 +18,10 @@ spec:
         namespace: hcloud-csi
       - appName: 07-external-secrets
         namespace: kube-system
-      # - appName: 08-kube-prom-stack
-      #   namespace: kube-system
+      - appName: 08-kube-prom-stack
+        namespace: kube-system
+      - appName: 09-sealed-secrets
+        namespace: kube-system
       - appName: 20-argocd
         namespace: argocd
   template:
