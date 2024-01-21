@@ -1,0 +1,22 @@
+kubeVersion: 1.28
+namespace: kube-system
+
+image:
+  registry: docker.io
+  repository: bitnami/sealed-secrets-controller
+  tag: 0.25.0-debian-11-r0
+
+ingress:
+  enabled: false
+  ingressClassName: nginx
+
+createController: true
+secretName: sealed-secrets-key
+
+metrics:
+  serviceMonitor:
+    enabled: true
+    namespace: monitoring
+  dashboards:
+    create: true
+    namespace: monitoring
