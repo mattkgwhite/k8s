@@ -8,12 +8,12 @@ spec:
       elements:
       - appName: 01-metallb
         namespace: metallb-system
-      - appName: 02-cert-manager
-        namespace: cert-manager
-      - appName: 04-external-dns
-        namespace: external-dns
-      - appName: 05-ingress-nginx
-        namespace: kube-system
+      # - appName: 02-cert-manager
+      #   namespace: cert-manager
+      # - appName: 04-external-dns
+      #   namespace: external-dns
+      # - appName: 05-ingress-nginx
+      #   namespace: kube-system
       - appName: 06-hcloud-csi-driver
         namespace: hcloud-csi
       - appName: 07-external-secrets
