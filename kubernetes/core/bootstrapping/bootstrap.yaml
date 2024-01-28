@@ -12,36 +12,45 @@ spec:
         image: replace-image
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        # Cluster Provisioning Script
-        - name: cluster-provisioning
-          mountPath: /opt/cluster-provisioning
+        # 1PasswordConnect Installation Script
+        - name: 1passwordconnect
+          mountPath: /opt/1passwordconnect.sh
+          subpath: install.sh
         # ArgoCD Installation Script
         - name: argocd
           mountPath: /opt/argocd.sh
+          subPath: install.sh
+        # authentik Installation Script
+        - name: authentik
+          mountPath: /opt/authentik.sh
           subPath: install.sh
         # Cert-Manager Installation Script
         - name: cert-manager
           mountPath: /opt/cert-manager.sh
           subPath: install.sh
-        # Cilium Installation Script
-        # - name: cilium
-        #   mountPath: /opt/cilium.sh
-        #   subPath: install.sh
-        # CoreDNS Installation Script
-        # - name: coredns
-        #   mountPath: /opt/coredns.sh
-        #   subPath: install.sh
-        # EBS CSI Driver Installation Script
-        # - name: ebs-csi-driver
-        #   mountPath: /opt/ebs-csi-driver.sh
-        #   subPath: install.sh
-        # External DNS Installation Script
+        # Crossplane Installation Script
+        - name: crossplane
+          mountPath: /opt/crossplane.sh
+          subPath: install.sh
+        # External-DNS Installation Script
         - name: external-dns
           mountPath: /opt/external-dns.sh
+          subPath: install.sh
+        # External-Secrets Installation Script
+        - name: external-secrets
+          mountPath: /opt/external-secrets.sh
+          subPath: install.sh
+        # HCloud-CSI Installation Script
+        - name: hcloud-csi
+          mountPath: /opt/hcloud-csi.sh
           subPath: install.sh
         # Ingress Nginx Installation Script
         - name: ingress-nginx
           mountPath: /opt/ingress-nginx.sh
+          subPath: install.sh
+        # MetalLB Installation Script
+        - name: metallb
+          mountPath: /opt/metallb.sh
           subPath: install.sh
         # Sealed Secrets Installation Script
         - name: sealed-secrets
@@ -51,27 +60,36 @@ spec:
       - name: cluster-provisioning
         configMap:
           name: cluster-provisioning
+      - name: 1password-connect
+        configMap:
+          name: install-1passwordconnect
       - name: argocd
         configMap:
           name: install-argocd
+      - name: authentik
+        configMap:
+          name: install-authentik
       - name: cert-manager
         configMap:
           name: install-cert-manager
-      # - name: cilium
-      #   configMap:
-      #     name: install-cilium
-      # - name: coredns
-      #   configMap:
-      #     name: install-coredns
-      # - name: ebs-csi-driver
-      #   configMap:
-      #     name: install-ebs-csi-driver
+      - name: crossplane
+        configMap:
+          name: install-crossplane
       - name: external-dns
         configMap:
           name: install-external-dns
+      - name: external-secrets
+        configMap:
+          name: install-external-secrets
+      - name: hcloud-csi
+        configMap:
+          name: install-hcloud-csi
       - name: ingress-nginx
         configMap:
           name: install-ingress-nginx
+      - name: metallb
+        configMap:
+          name: install-metallb
       - name: sealed-secrets
         configMap:
           name: install-sealed-secrets
