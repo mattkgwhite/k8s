@@ -13,5 +13,5 @@ helmCharts:
 patches:
 - path: patches/storageclass.yaml
 
-# generators:
-#   - ksops-generator.yaml
+generators:
+  - ksops-generator.yaml
