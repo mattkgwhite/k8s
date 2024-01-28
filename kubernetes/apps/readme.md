@@ -7,8 +7,8 @@ In order to deploy the applications, make sure you replace the `GIT_USERNAME` an
 ## Mac OS
 
 ```bash
-GIT_USERNAME="danmanners"
-GIT_REPOSITORY="aws-argo-cluster-template"
+GIT_USERNAME="mattkgwhite"
+GIT_REPOSITORY="home-ops"
 for file in $(find . -type f -name '*.yaml'); do
   sed -i '' "s/USERNAME/${GIT_USERNAME}/g" $file
   sed -i '' "s/REPOSITORY/${GIT_REPOSITORY}/g" $file
@@ -18,8 +18,8 @@ done
 ## Linux
 
 ```bash
-GIT_USERNAME="danmanners"
-GIT_REPOSITORY="aws-argo-cluster-template"
+GIT_USERNAME="mattkgwhite"
+GIT_REPOSITORY="home-ops"
 for file in $(find . -type f -name '*.yaml'); do
   sed -i "s/USERNAME/${GIT_USERNAME}/g" $file
   sed -i "s/REPOSITORY/${GIT_REPOSITORY}/g" $file
