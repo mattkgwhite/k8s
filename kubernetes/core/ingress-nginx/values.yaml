@@ -54,6 +54,17 @@ controller:
         - /wait-shutdown
   config:
     force-ssl-redirect: true
+  defaultBackend:
+    enabled: true
+    image:
+      repository: billimek/custom-error-pages
+      tag: 0.4.4
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 25m
+      limits:
+        memory: 350Mi
 # Enable RBAC
 rbac:
   create: true
