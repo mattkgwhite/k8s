@@ -20,7 +20,10 @@
   "kubernetes": {
     "fileMatch": [
       "manifest/.+\\.yaml$",
-      "bootstrap/.+\\.yaml$"
+      "bootstrap/.+\\.yaml$",
+      "apps/.+\\.yaml$",
+      "core/.+\\.yaml$",
+      "services/.+\\.yaml$"
     ]
   },
   "packageRules": [
