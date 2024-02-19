@@ -2,6 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "enabled": true,
   "timezone": "UTC",
+  "extends": ["config:base"],
   "dependencyDashboard": true,
   "requiredStatusChecks": null,
   "commitMessageSuffix": "[ci-skip]",
@@ -26,51 +27,21 @@
       "services/.+\\.yaml$"
     ]
   },
-  "packageRules": [
+  customManagers: [
     {
-      "datasources": ["helm"],
-      "commitMessageTopic": "Helm chart {{depName}}"
+      customType: "regex",
+      fileMatch: ["kustomization.ya??ml$"],
+      matchStrings: [
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\n*[^/]+://[^/]+/[^/]+/[^/]+/(?<currentValue>[^/]+)/",
+      ],
     },
     {
-      "datasources": ["docker"],
-      "commitMessageTopic": "Docker image {{depName}}",
-      "commitMessageExtra": "to {{#if isSingleVersion}}v{{{toVersion}}}{{else}}{{{newValue}}}{{/if}}",
-      "updateTypes": ["major", "minor", "patch"],
-      "enabled": true
+      customType: "regex",
+      fileMatch: ["env.sh"],
+      datasourceTemplate: "helm",
+      matchStrings: [
+        'HELM_REPO_SOURCE="(?<registryUrl>[^"]+)"\n*[^"]+"(?<depName>[^"]+)"\n*[^"]+"(?<currentValue>[^"]+)',
+      ],
     },
-    {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": false
-    },
-    {
-      "datasources": ["docker"],
-      "updateTypes": ["major"],
-      "labels": ["renovate/image-release", "dependency/major"]
-    },
-    {
-      "datasources": ["docker"],
-      "updateTypes": ["minor"],
-      "labels": ["renovate/image-release", "dependency/minor"]
-    },
-    {
-      "datasources": ["docker"],
-      "updateTypes": ["patch"],
-      "labels": ["renovate/image-release", "dependency/patch"]
-    },
-    {
-      "datasources": ["helm"],
-      "updateTypes": ["major"],
-      "labels": ["renovate/helm-release", "dependency/major"]
-    },
-    {
-      "datasources": ["helm"],
-      "updateTypes": ["minor"],
-      "labels": ["renovate/helm-release", "dependency/minor"]
-    },
-    {
-      "datasources": ["helm"],
-      "updateTypes": ["patch"],
-      "labels": ["renovate/helm-release", "dependency/patch"]
-    }
-  ]
+  ],
 }
