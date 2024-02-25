@@ -1,32 +1,8 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "enabled": true,
-  "timezone": "UTC",
-  "extends": ["config:base"],
-  "dependencyDashboard": true,
-  "requiredStatusChecks": null,
-  "commitMessageSuffix": "[ci-skip]",
-  "commitBody": "Signed-off-by: Matt White <krangence@users.noreply.github.com>",
-  "suppressNotifications": ["prIgnoreNotification"],
-  "rebaseWhen": "conflicted",
-  "assignees": ["@mattkgwhite"],
-  "helm-values": {
-    "fileMatch": ["./.+\\.yaml$"]
-  },
-  "argocd": {
-    "fileMatch": [
-      "manifest/.+\\.yaml$"
-    ]
-  },
-  "kubernetes": {
-    "fileMatch": [
-      "manifest/.+\\.yaml$",
-      "bootstrap/.+\\.yaml$",
-      "apps/.+\\.yaml$",
-      "core/.+\\.yaml$",
-      "services/.+\\.yaml$"
-    ]
-  },
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  timezone: "UTC",
+  extends: ["config:base"],
+  dependencyDashboard: true,
   customManagers: [
     {
       customType: "regex",
