@@ -9,11 +9,7 @@ else
 fi
 
 # Set our variables
-HELM_REPO_NAME="external-dns"
-HELM_REPO_SOURCE="https://kubernetes-sigs.github.io/external-dns/"
-HELM_APP_NAME="external-dns"
-HELM_APP_VERSION="1.14.3"
-HELM_APP_NAMESPACE="external-dns"
+source env.sh
 
 # Add the Helm repository
 helm repo add ${HELM_REPO_NAME} ${HELM_REPO_SOURCE}

@@ -9,11 +9,7 @@ else
 fi
 
 # Set our variables
-HELM_REPO_NAME="external-secrets"
-HELM_REPO_SOURCE="https://charts.external-secrets.io"
-HELM_APP_NAME="external-secrets"
-HELM_APP_VERSION="0.9.11"
-HELM_APP_NAMESPACE="external-secrets"
+source env.sh
 
 # Add the Helm repository
 helm repo add ${HELM_REPO_NAME} ${HELM_REPO_SOURCE}

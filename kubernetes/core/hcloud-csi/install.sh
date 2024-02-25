@@ -9,11 +9,7 @@ else
 fi
 
 # Set our variables
-HELM_REPO_NAME="hcloud-csi"
-HELM_REPO_SOURCE="https://charts.hetzner.cloud"
-HELM_APP_NAME="hcloud-csi"
-HELM_APP_VERSION="2.6.0"
-HELM_APP_NAMESPACE="kube-system"
+source env.sh
 
 # Add the Helm repository
 helm repo add ${HELM_REPO_NAME} ${HELM_REPO_SOURCE}
