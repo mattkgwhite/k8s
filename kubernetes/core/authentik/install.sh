@@ -9,11 +9,7 @@ else
 fi
 
 # Set our variables
-HELM_REPO_NAME="authentik"
-HELM_REPO_SOURCE="https://charts.goauthentik.io"
-HELM_APP_NAME="authentik"
-HELM_APP_VERSION="2023.10.6"
-HELM_APP_NAMESPACE="authentik"
+source env.sh
 
 # Add the Helm repository
 helm repo add ${HELM_REPO_NAME} ${HELM_REPO_SOURCE}

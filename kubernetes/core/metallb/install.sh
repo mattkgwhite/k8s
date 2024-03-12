@@ -9,11 +9,7 @@ else
 fi
 
 # Set our variables
-HELM_REPO_NAME="metallb"
-HELM_REPO_SOURCE="https://metallb.github.io/metallb"
-HELM_APP_NAME="metallb"
-HELM_APP_VERSION="0.13.12"
-HELM_APP_NAMESPACE="metallb-system"
+source env.sh
 
 # Add the Helm repository
 helm repo add ${HELM_REPO_NAME} ${HELM_REPO_SOURCE}

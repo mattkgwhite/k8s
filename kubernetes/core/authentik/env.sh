@@ -1,0 +1,5 @@
+HELM_APP_NAMESPACE="authentik"
+HELM_REPO_NAME="authentik"
+HELM_REPO_SOURCE="https://charts.goauthentik.io"
+HELM_APP_NAME="authentik"
+HELM_APP_VERSION="2024.2.2"
