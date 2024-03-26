@@ -1,6 +1,6 @@
 image:
   repository: kong
-  tag: "3.5"
+  tag: "3.6"
 
 env:
   prefix: /kong_prefix/
