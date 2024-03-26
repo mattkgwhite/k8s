@@ -1,0 +1,5 @@
+HELM_APP_NAMESPACE="kong"
+HELM_REPO_NAME="kong"
+HELM_REPO_SOURCE="https://charts.konghq.com"
+HELM_APP_NAME="kong"
+HELM_APP_VERSION="2.38.0"
