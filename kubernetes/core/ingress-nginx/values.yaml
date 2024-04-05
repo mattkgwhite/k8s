@@ -22,24 +22,24 @@ controller:
     create: true
     type: LoadBalancer
     externalTrafficPolicy: Local
-    annotations:
-      external-dns.alpha.kubernetes.io/hostname: nginx.hacksm.net
+    # annotations:
+    #   external-dns.alpha.kubernetes.io/hostname: nginx.hacksm.net
     extraLabels: {}
-    # loadBalancerIP: ""
-    # clusterIP: ""
-    # externalIPs: []
-    # loadBalancerSourceRanges: []
-    # ipFamilyPolicy: SingleStack
-    # ipFamilies:
-    # - IPv4
-    # httpPort:
-    #   enable: true
-    #   nodePort: 32120
-    #   targetPort: 80
-    # httpsPort:
-    #   enable: true
-    #   nodePort: 32130
-    #   targetPort: 443
+    loadBalancerIP: ""
+    clusterIP: ""
+    externalIPs: []
+    loadBalancerSourceRanges: []
+    ipFamilyPolicy: SingleStack
+    ipFamilies:
+    - IPv4
+    httpPort:
+      enable: true
+      nodePort: 32120
+      targetPort: 80
+    httpsPort:
+      enable: true
+      nodePort: 32130
+      targetPort: 443
   shareProcessNamespace: false
   opentelemetry:
     enabled: false

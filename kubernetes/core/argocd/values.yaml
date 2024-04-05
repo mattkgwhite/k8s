@@ -33,7 +33,7 @@ server:
       cert-manager.io/cluster-issuer: letsencrypt-production
       external-dns.alpha.kubernetes.io/target: nginx.hacksm.net
       external-dns.alpha.kubernetes.io/ttl: "300"
-      kubernetes.io/ingress.class: nginx
+      # kubernetes.io/ingress.class: nginx
       kubernetes.io/tls-acme: 'true'
     hosts:
     - argocd.hacksm.net
