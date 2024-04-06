@@ -22,5 +22,6 @@ helm repo update
 helm template ${HELM_APP_NAME} ${HELM_REPO_NAME}/${HELM_APP_NAME} \
 --version ${HELM_APP_VERSION} \
 --values values.yaml \
+--values ingress.yaml \
 -n ${HELM_APP_NAMESPACE} | \
 kubectl apply -f - --dry-run=${DRY_RUN}
