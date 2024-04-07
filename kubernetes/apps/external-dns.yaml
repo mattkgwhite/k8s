@@ -16,7 +16,7 @@ spec:
     # Helm Chart Deployment
   - repoURL: https://kubernetes-sigs.github.io/external-dns/
     chart: *name
-    targetRevision: 1.13.1
+    targetRevision: 1.14.4
     helm:
       valueFiles:
       - $values/kubernetes/core/external-dns/values.yaml

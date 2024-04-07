@@ -16,7 +16,7 @@ spec:
     # Helm Chart Deployment
   - repoURL: https://argoproj.github.io/argo-helm
     chart: *name
-    targetRevision: 5.51.2
+    targetRevision: 6.7.10
     helm:
       valueFiles:
       - $values/kubernetes/core/argocd/values.yaml

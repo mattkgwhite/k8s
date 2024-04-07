@@ -16,7 +16,7 @@ spec:
     # Helm Chart Deployment
   - repoURL: https://helm-charts.mlohr.com/
     chart: *name
-    targetRevision: 2.2.1
+    targetRevision: 2.6.0
     helm:
       valueFiles:
       - $values/kubernetes/core/hcloud-csi/values.yaml
